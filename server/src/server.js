@@ -13,7 +13,11 @@ app.use("/api", apiRouter)
 
 const PORT = process.env.PORT || 3000
 
-const server = app.listen(PORT, () => {
-    console.log(`Server listening on port ${PORT}`);
-})
-server.on('error', error => console.log(`Error in server ${error}`))
+try {
+    const server = app.listen(PORT, () => {
+        console.log(`Server listening on port ${PORT}`);
+    })
+}
+ catch{
+    server.on('error', error => console.log(`Error in server ${error}`))
+ }
