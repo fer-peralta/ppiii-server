@@ -11,7 +11,7 @@ app.use(cors())
 
 app.use("/api", apiRouter)
 
-const PORT = process.pid.PORT || 8080 || 8081
+const PORT = process.env.PORT || 3000
 
 const server = app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
