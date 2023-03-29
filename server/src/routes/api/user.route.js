@@ -5,6 +5,12 @@ const router = express.Router()
 
 router.get("/", UserController.getUsers)
 
+router.post("/", UserController.saveUser)
+
+router.put("/", UserController.updateUser)
+
 router.get("/:id", UserController.findUser)
+
+router.delete("/:id", UserController.deleteUser)
 
 export { router as userRouter }

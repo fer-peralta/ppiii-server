@@ -1,4 +1,5 @@
 import { options } from "../config/db.config.js"
+import { logInfo } from "../logs/logger.js"
 import { MongoClient } from "./clients/mongo.client.js"
 
 import { UserModel } from "./models/user.model.js"
@@ -6,6 +7,8 @@ import { UserModel } from "./models/user.model.js"
 export const getApiDao = async (dbType) => {
 
     let UserDaoContainer
+
+    logInfo.info(`${dbType} database was selected`)
 
     switch (dbType) {
         case "MONGO":

@@ -15,18 +15,18 @@ export class MongoClient {
                 useNewUrlParser: true,
                 useUnifiedTopology: true
             })
-            logInfo.info("Conexión exitosa a MongoDB")
+            logInfo.info({ message: "Successful connection to Mongo database" })
         } catch (error) {
-            logError.error(`Hubo un error al conectarse a MongoDB ${error}`)
+            logError.error({ message: `There as an error connecting the Mongo database: ${error}`, error: error, section: "Database client" })
         }
     }
 
     async disconnect() {
         try {
             await this.client.connection.close()
-            logInfo.info("Se ha desconectado exitosamente de MongoDB")
+            logInfo.info({ message: "Successful discconnection to Mongo database" })
         } catch (error) {
-            logError.error(`Hubo un error al desconectarse de MongoDB ${error}`)
+            logError.error({ message: `There as an error disconnecting the Mongo database: ${error}`, error: error, section: "Database client" })
         }
     }
 }
