@@ -13,7 +13,8 @@ app.use(cors())
 
 app.use("/api", apiRouter)
 
-const PORT = process.pid.PORT || config.PORT || config.PORT++
+// const PORT = process.pid.PORT || config.PORT || config.PORT++
+const PORT = 3000
 
 const server = app.listen(PORT, () => {
     logInfo.info(`Server running in process ${process.pid} and listening on port ${PORT}`);
