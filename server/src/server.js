@@ -13,7 +13,9 @@ app.use(cors())
 
 app.use("/api", apiRouter)
 
-const server = app.listen((config.PORT || config.PORT++), () => {
-    logInfo.info(`Server running in process ${process.pid} and listening on port ${config.PORT}`);
+const PORT = process.pid.PORT || config.PORT || config.PORT++
+
+const server = app.listen(PORT, () => {
+    logInfo.info(`Server running in process ${process.pid} and listening on port ${PORT}`);
 })
 server.on('error', error => logError.error({ message: "There was an error running the server", error: error }))
