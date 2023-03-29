@@ -1,5 +1,7 @@
 import express from "express"
+import { config } from "./config/config.js"
 import { apiRouter } from "./routes/index.route.js"
+import { logInfo, logError } from "./logs/logger.js"
 import cors from "cors"
 
 const app = express()
@@ -11,13 +13,7 @@ app.use(cors())
 
 app.use("/api", apiRouter)
 
-const PORT = process.env.PORT || 3000
-
-try {
-    const server = app.listen(PORT, () => {
-        console.log(`Server listening on port ${PORT}`);
-    })
-}
- catch{
-    server.on('error', error => console.log(`Error in server ${error}`))
- }
+const server = app.listen(Number(config.PORT), () => {
+    logInfo.info(`Servidor ejecutandose en el proceso ${process.pid} y escuchando en el puerto ${config.PORT}`);
+})
+server.on('error', error => logError.error({ message: "Error al ejecutar el servidor", error: error }))
