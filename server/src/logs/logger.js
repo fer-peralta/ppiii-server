@@ -14,7 +14,7 @@ log4js.configure({
     categories: {
         default: { appenders: ['console'], level: 'info' },
         error: { appenders: ["console"], level: 'error' },
-        warn: { appenders: ['warnFile'], level: 'warn' },
+        warn: { appenders: ["console"], level: 'warn' },
     }
 })
 
