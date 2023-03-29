@@ -5,4 +5,6 @@ const router = express.Router()
 
 router.get("/", UserController.getUsers)
 
-export { router as apiRouter }
+router.get("/:id", UserController.findUser)
+
+export { router as userRouter }

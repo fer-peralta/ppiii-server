@@ -13,7 +13,7 @@ app.use(cors())
 
 app.use("/api", apiRouter)
 
-const server = app.listen(Number(config.PORT), () => {
+const server = app.listen((config.PORT || config.PORT++), () => {
     logInfo.info(`Servidor ejecutandose en el proceso ${process.pid} y escuchando en el puerto ${config.PORT}`);
 })
 server.on('error', error => logError.error({ message: "Error al ejecutar el servidor", error: error }))
