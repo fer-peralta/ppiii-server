@@ -1,4 +1,3 @@
-import { options } from "../config/db.config.js"
 import { logInfo } from "../logs/logger.js"
 import { MongoClient } from "./clients/mongo.client.js"
 

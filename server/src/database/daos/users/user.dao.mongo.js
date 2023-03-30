@@ -1,4 +1,4 @@
-import { MongoManager } from '../../managers/Mongo.manager.js'
+import { MongoManager } from '../../managers/mongo.manager.js'
 
 export class UserMongoDao extends MongoManager {
     constructor(model) {
