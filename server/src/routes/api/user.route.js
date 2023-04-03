@@ -7,7 +7,7 @@ router.get("/", UserController.getUsers)
 
 router.post("/", UserController.saveUser)
 
-router.put("/", UserController.updateUser)
+router.put("/:id", UserController.updateUser)
 
 router.get("/:id", UserController.findUser)
 
