@@ -1,11 +1,11 @@
-import { config } from "../../config/config.js"
-import mongoose from "mongoose";
-import { logInfo, logError } from "../../logs/logger.js";
+import { dbOptions } from "../../config/db.config.js"
+import mongoose from "mongoose"
+import { logInfo, logError } from "../../logs/logger.js"
 
 export class MongoClient {
     constructor() {
         this.client = mongoose
-        this.URL = config.DB_MONGO
+        this.URL = dbOptions.MongoDB.url
     }
 
     async connect() {
@@ -17,7 +17,7 @@ export class MongoClient {
             })
             logInfo.info({ message: "Successful connection to Mongo database" })
         } catch (error) {
-            logError.error({ message: `There as an error connecting the Mongo database: ${error}`, error: error, section: "Database client" })
+            logError.fatal({ message: `There as an error connecting the Mongo database: ${error}`, error: error, section: "Database client" })
         }
     }
 

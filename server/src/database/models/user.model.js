@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema({
     age: { type: Number, required: true },
     phone: { type: String, required: true },
     avatar: { type: String, required: true },
+    state: { type: String, default: "active", required: true }
 },
     { timestamps: true }
 )
