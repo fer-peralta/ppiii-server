@@ -1,0 +1,35 @@
+.contenedor {
+    margin: auto;
+    width: auto;
+    border-width: 1.5px;
+    /* border-style: dotted;
+    border-color: black; */
+}
+
+.contenedorForm {
+    display: list-item;
+    text-align: center;
+    align-items: center;
+}
+
+form input {
+    margin: 0.5rem;
+}
+
+.contenedor {
+    padding: 2rem;
+    border-radius: 30px;
+    margin: auto;
+    background-image: radial-gradient(circle, rgba(191, 213, 224, 1) 0%, rgba(81, 207, 223, 0.835) 80%, rgb(28, 0, 186) 100%);
+    ;
+    min-width: 300px;
+    height: auto;
+    width: 30%;
+    border: rgb(32, 134, 155) solid 1.5px;
+    box-shadow: 10px 6px 10px rgba(0, 0, 0, 0.5);
+    padding-top: 3rem;
+    margin-top: 2rem;
+    text-align: center;
+    /* border: 1px solid black;  */
+}
+
