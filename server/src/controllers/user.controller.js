@@ -31,7 +31,7 @@ export const updateUser = async (req, res) => {
 
     try {
         const response = await UserService.updateUser(req.params.id, req.body)
-        res.status(200).send({ data: [response, `Se ha actualizado el turno con exito`] })
+        res.status(200).send({ data: response })
     } catch (error) {
         res.status(400).send({ message: `There was an error updating the user: ${error}`, error: error, section: "controller" })
     }
