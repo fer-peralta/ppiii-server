@@ -1,12 +1,28 @@
 import './MainForm.css'
 import Btn from './Btn'
 const MainForm = () => {
+
     return (
         <> <h1 style={{ textAlign: 'center' }}>Welcome  Volunteering Beltran</h1>
             <div className='contenedor'>
-            
 
-                <h2 style={{ textAlign: 'center' }}>Put your mail.</h2>
+                <Btn
+                    text="Show Users"
+
+                />
+
+                <Btn
+                    text="create User"
+                />
+                <Btn
+                    text="Update Users"
+                />
+                <Btn
+                    text="Detele Users"
+                />
+                {/*             
+            <h2 style={{ textAlign: 'center' }}>Put your mail.</h2>
+
 
                 <div className='contenedorForm'>
                     <form className="Form">
@@ -17,13 +33,13 @@ const MainForm = () => {
                                 name="mail" />
                         </div>
 
-
+                
+                
             <button className='btn' >Tutor</button>
-            <button className='btn' >Estudiante Help me !</button>
-            <Btn/>
-
+            <button className='btn' >Estudiante Help me !</button> 
+    
                     </form>
-                </div>
+                </div> */}
             </div>
         </>
     )

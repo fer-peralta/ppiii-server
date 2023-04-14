@@ -17,6 +17,9 @@ form input {
 }
 
 .contenedor {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     padding: 2rem;
     border-radius: 30px;
     margin: auto;
@@ -24,7 +27,6 @@ form input {
     ;
     min-width: 300px;
     height: auto;
-    width: 30%;
     border: rgb(32, 134, 155) solid 1.5px;
     box-shadow: 10px 6px 10px rgba(0, 0, 0, 0.5);
     padding-top: 3rem;
@@ -32,4 +34,3 @@ form input {
     text-align: center;
     /* border: 1px solid black;  */
 }
-
