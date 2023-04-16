@@ -1,7 +1,13 @@
 import React from "react"
 import MainForm from './components/MainForm.js';
 import './App.css';
-import Btn from "./components/Btn";
+//import Btn from "./components/Btn";
+import { QueryClientProvider, QueryClient } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
+
+
+const queryClient = new QueryClient();
+
 
 function App() {
 
@@ -15,15 +21,13 @@ function App() {
   // }, []);
 
   return (
-    <>
-    <MainForm />
-    </>
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>{!data ? "Loading..." : data}</p>
-    //   </header>
-    // </div>
+    <QueryClientProvider client={queryClient}>
+
+      <>
+        <MainForm />
+      </>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 }
 
