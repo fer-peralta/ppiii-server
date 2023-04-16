@@ -22,3 +22,7 @@ export const updateUser = async (id, body) => {
 export const deleteUser = async (id) => {
     return await UserDaoContainer.deleteById(id)
 }
+
+export const deleteLogicUser = async (id) => {
+    return await UserDaoContainer.deleteLogicById(id)
+}

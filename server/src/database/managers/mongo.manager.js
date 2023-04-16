@@ -74,4 +74,21 @@ export class MongoManager {
             return { message: `There was an error deleting the document`, id: id, error: error }
         }
     }
+
+    async deleteLogicById(id) {
+        try {
+            const documentToDelete = await this.model.findById(id)
+            if (documentToDelete) {
+                await this.model.findByIdAndUpdate(id, { state: "inactive" })
+                return { message: "Document deleted successfully" }
+            }
+            else {
+                logWarn.warn({ message: `There was an error searching the id, not found`, id: id })
+                return { message: `There was an error searching the id, not found`, id: id }
+            }
+        } catch (error) {
+            logError.error({ message: `There was an error deleting the document`, id: id, error: error })
+            return { message: `There was an error deleting the document`, id: id, error: error }
+        }
+    }
 }

@@ -3,7 +3,13 @@ import * as UserService from "../services/user.service.js";
 export const getUsers = async (req, res) => {
     try {
         const response = await UserService.getUsers()
-        response.length != 0 ? res.status(200).send({ data: response }) : res.status(200).send({ message: "There's no users in the database, please add at least one" })
+        let newArrayOfUsers = []
+        for (const user of response) {
+            if (user.state === "active") {
+                newArrayOfUsers.push(user)
+            }
+        }
+        response.length != 0 ? res.status(200).send({ data: newArrayOfUsers }) : res.status(200).send({ message: "There's no users in the database, please add at least one" })
     } catch (error) {
         res.status(400).send({ message: `There was an error getting the users: ${error}`, error: error, section: "controller" })
     }
@@ -39,7 +45,7 @@ export const updateUser = async (req, res) => {
 
 export const deleteUser = async (req, res) => {
     try {
-        const response = await UserService.deleteUser(req.params.id)
+        const response = await UserService.deleteLogicUser(req.params.id)
         res.status(200).json({ data: response })
     } catch (error) {
         res.status(400).json({ message: `There was an error deleting the user: ${error}`, error: error, section: "controller" })
