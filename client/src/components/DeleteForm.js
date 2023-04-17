@@ -14,18 +14,12 @@ const DeleteForm = () => {
         e.preventDefault();
         try {
             // Construir el objeto de datos para la actualización del post
-            const Post = { id }
-
             const options = {
                 method: 'DELETE', // O 'PATCH' si corresponde
-                body: JSON.stringify(Post),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
             }
 
             // Hacer la solicitud PUT o PATCH a la API
-            const response = await fetch("https://lime-excited-dugong.cyclic.app/api/users", options)
+            const response = await fetch(`http://localhost:8080/api/users/${id}`, options)
                 .then(resp => resp.json())
                 .then(data => console.log(data))
                 .catch(error => console.log(error))
