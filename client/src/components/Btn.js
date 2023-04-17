@@ -4,6 +4,7 @@ import './Btn.css'
 import UserCard from './UserCard'
 const Btn = (props) => {
     const url1 = "https://lime-excited-dugong.cyclic.app/api/users"
+    // const url1 = "http://localhost:8080/api/users"
     //const url2 = "https://jsonplaceholder.typicode.com/users"
     //   const [datos, setDatos] = useState(null);
     const getUsers = async () => {

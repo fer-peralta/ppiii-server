@@ -2,6 +2,8 @@ import './MainForm.css'
 import Btn from './Btn'
 import Button from './button'
 import Form from './Form'
+import UpdateForm from './UpdateForm'
+import DeleteForm from './DeleteForm'
 const MainForm = () => {
 
 
@@ -24,9 +26,11 @@ const MainForm = () => {
 
                 <Button
                     text="Update user" />
+                <UpdateForm />
                 <Button
-                    text="Delete user" />
 
+                    text="Delete user" />
+                <DeleteForm />
 
 
 

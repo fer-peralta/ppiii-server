@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 // const Form = (props) => {
 
 
-const PostForm = () => {
+const UpdateForm = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
@@ -12,6 +12,7 @@ const PostForm = () => {
     const [age, setAge] = useState('');
     const [phone, setPhone] = useState('');
     const [avatar, setAvatar] = useState('');
+    const [id, setId] = useState('');
 
     //  const [content, setContent] = useState('');
 
@@ -22,7 +23,7 @@ const PostForm = () => {
             const Post = { username, password, name, adress, age, phone, avatar }
 
             const options = {
-                method: 'POST', // O 'PATCH' si corresponde
+                method: 'PUT', // O 'PATCH' si corresponde
                 body: JSON.stringify(Post),
                 headers: {
                     'Content-Type': 'application/json'
@@ -63,6 +64,14 @@ const PostForm = () => {
                 <form onSubmit={handleSubmit}>
                     <h2>Formulario</h2>
                     <div >
+                        <label htmlFor="id">ID</label>
+                        <input
+                            type="text"
+                            name="id"
+                            value={id}
+                            onChange={(e) => setId(e.target.value)}
+
+                        />
                         <label htmlFor="Nombre">Username</label>
                         <input
                             type="text"
@@ -72,7 +81,7 @@ const PostForm = () => {
 
                         />
                         <label htmlFor="password">Password</label>
-                        <input type="password"
+                        <input type="text"
                             name="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
@@ -100,7 +109,7 @@ const PostForm = () => {
 
                         <label htmlFor="phone">Phone</label>
                         <input
-                            type="number"
+                            type="text"
                             name="phone"
                             value={phone}
                             onChange={(e) => setPhone(e.target.value)}
@@ -122,4 +131,4 @@ const PostForm = () => {
     )
 }
 
-export default PostForm
+export default UpdateForm
