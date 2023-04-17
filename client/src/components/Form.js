@@ -19,21 +19,27 @@ const PostForm = () => {
         e.preventDefault();
         try {
             // Construir el objeto de datos para la actualización del post
-            const Post = { username, password, name, adress, age, phone, avatar };
+            const Post = { username, password, name, adress, age, phone, avatar }
 
-            // Hacer la solicitud PUT o PATCH a la API
-            const response = await fetch("https://lime-exc.:ited-dugong.cyclic.app/api/users", {
+            const options = {
                 method: 'POST', // O 'PATCH' si corresponde
                 body: JSON.stringify(Post),
                 headers: {
                     'Content-Type': 'application/json'
                 }
-            });
+            }
+
+            // Hacer la solicitud PUT o PATCH a la API
+            const response = await fetch("https://lime-excited-dugong.cyclic.app/api/users", options)
+                .then(resp => resp.json())
+                .then(data => console.log(data))
+                .catch(error => console.log(error))
 
             // Verificar la respuesta del servidor
             if (response.ok) {
                 // Si la respuesta es exitosa, puedes realizar acciones adicionales aquí,
                 // como mostrar un mensaje de éxito o redirigir a otra página
+                console.log(response)
                 console.log('Post actualizado exitosamente');
             } else {
                 // Si la respuesta es un error, puedes manejarlo adecuadamente,
