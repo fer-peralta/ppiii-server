@@ -3,39 +3,33 @@ import Btn from './Btn'
 import Button from './button'
 import Form from './Form'
 const MainForm = () => {
-    const datos = false;
-    function handleClick() {
 
-        if (datos) {
-
-            alert(JSON.stringify(datos))
-        } else {
-            alert('Aún no se han cargado los datos')
-        }
-
-    }
 
     return (
         <> <h1 style={{ textAlign: 'center' }}>Welcome  Volunteering Beltran</h1>
             <div className='contenedor'>
 
 
-
-                <Button
-                    text="Show users" />
                 <Button
                     text="Create user"
-                    onClick={handleClick}
-                />
 
+
+                />
                 <Form></Form>
                 <Button
-                    text="Delete user" />
-                <Button
-                    text="Update user" />
+                    text="Show users" />
 
 
                 <Btn />
+
+                <Button
+                    text="Update user" />
+                <Button
+                    text="Delete user" />
+
+
+
+
 
                 {/* <Btn
                     text="create User"
