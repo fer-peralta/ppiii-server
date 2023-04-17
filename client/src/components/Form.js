@@ -30,7 +30,7 @@ const PostForm = () => {
             }
 
             // Hacer la solicitud PUT o PATCH a la API
-            const response = await fetch("https://lime-excited-dugong.cyclic.app/api/users", options)
+            const response = await fetch("http://localhost:8080/api/users", options)
                 .then(resp => resp.json())
                 .then(data => console.log(data))
                 .catch(error => console.log(error))
