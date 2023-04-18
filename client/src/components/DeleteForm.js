@@ -1,14 +1,11 @@
-//import { useState, useEffect } from 'react'
 import './Form.css'
-import React, { useState } from 'react';
-// const Form = (props) => {
-
+import React, { useState } from 'react'
+import { config } from '../config/config';
 
 const DeleteForm = () => {
 
     const [id, setId] = useState('');
-
-    //  const [content, setContent] = useState('');
+    const URL = `${config.REACT_APP_API_BASE_URL}users/`
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -19,9 +16,8 @@ const DeleteForm = () => {
             }
 
             // Hacer la solicitud PUT o PATCH a la API
-            const response = await fetch(`http://localhost:8080/api/users/${id}`, options)
+            const response = await fetch(`${URL}${id}`, options)
                 .then(resp => resp.json())
-                .then(data => console.log(data))
                 .catch(error => console.log(error))
 
             // Verificar la respuesta del servidor
@@ -46,9 +42,7 @@ const DeleteForm = () => {
 
     return (
         <>
-
             <div className='contenedorForm'>
-
                 <form onSubmit={handleSubmit}>
                     <h2>Formulario</h2>
                     <div >
@@ -58,10 +52,7 @@ const DeleteForm = () => {
                             name="id"
                             value={id}
                             onChange={(e) => setId(e.target.value)}
-
                         />
-
-
                         <button type="submit">Create</button>
                     </div>
                 </form>

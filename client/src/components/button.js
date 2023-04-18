@@ -1,5 +1,3 @@
-//import { useState, useEffect } from 'react'
-
 import './Btn.css'
 
 const Button = (props) => {

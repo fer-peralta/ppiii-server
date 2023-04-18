@@ -2,15 +2,15 @@
 import { useQuery } from 'react-query'
 import './Btn.css'
 import UserCard from './UserCard'
+import { config } from '../config/config'
 const Btn = (props) => {
-    // const url1 = "https://lime-excited-dugong.cyclic.app/api/users"
-    const url1 = "http://localhost:8080/api/users"
-    //const url2 = "https://jsonplaceholder.typicode.com/users"
+    
+    const URL = `${config.REACT_APP_API_BASE_URL}users`
+    
     //   const [datos, setDatos] = useState(null);
     const getUsers = async () => {
-        const response = await fetch(url1);
+        const response = await fetch(URL);
         return response.json();
-
     }
 
     const { data, status } = useQuery('users', getUsers)

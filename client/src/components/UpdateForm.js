@@ -1,8 +1,7 @@
 //import { useState, useEffect } from 'react'
 import './Form.css'
 import React, { useState } from 'react';
-// const Form = (props) => {
-
+import { config } from '../config/config';
 
 const UpdateForm = () => {
     const [username, setUsername] = useState('');
@@ -14,7 +13,8 @@ const UpdateForm = () => {
     const [avatar, setAvatar] = useState('');
     const [id, setId] = useState('');
 
-    //  const [content, setContent] = useState('');
+    const URL = `${config.REACT_APP_API_BASE_URL}users/`
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -31,9 +31,8 @@ const UpdateForm = () => {
             }
 
             // Hacer la solicitud PUT o PATCH a la API
-            const response = await fetch(`http://localhost:8080/api/users/${id}`, options)
+            const response = await fetch(`${URL}${id}`, options)
                 .then(resp => resp.json())
-                .then(data => console.log(data))
                 .catch(error => console.log(error))
 
             // Verificar la respuesta del servidor
@@ -81,7 +80,7 @@ const UpdateForm = () => {
 
                         />
                         <label htmlFor="password">Password</label>
-                        <input type="text"
+                        <input type="password"
                             name="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
@@ -101,7 +100,7 @@ const UpdateForm = () => {
 
                         <label htmlFor="age">age</label>
                         <input
-                            type="text"
+                            type="number"
                             name="age"
                             value={age}
                             onChange={(e) => setAge(e.target.value)}
@@ -121,8 +120,6 @@ const UpdateForm = () => {
                             value={avatar}
                             onChange={(e) => setAvatar(e.target.value)}
                         />
-
-
                         <button type="submit">Create</button>
                     </div>
                 </form>

@@ -1,8 +1,7 @@
 //import { useState, useEffect } from 'react'
 import './Form.css'
 import React, { useState } from 'react';
-// const Form = (props) => {
-
+import { config } from '../config/config';
 
 const PostForm = () => {
     const [username, setUsername] = useState('');
@@ -13,13 +12,12 @@ const PostForm = () => {
     const [phone, setPhone] = useState('');
     const [avatar, setAvatar] = useState('');
 
-    //  const [content, setContent] = useState('');
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             // Construir el objeto de datos para la actualización del post
             const Post = { username, password, name, adress, age, phone, avatar }
+            const URL = `${config.REACT_APP_API_BASE_URL}users`
 
             const options = {
                 method: 'POST', // O 'PATCH' si corresponde
@@ -30,9 +28,8 @@ const PostForm = () => {
             }
 
             // Hacer la solicitud PUT o PATCH a la API
-            const response = await fetch("http://localhost:8080/api/users", options)
+            const response = await fetch(URL, options)
                 .then(resp => resp.json())
-                .then(data => console.log(data))
                 .catch(error => console.log(error))
 
             // Verificar la respuesta del servidor
@@ -92,7 +89,7 @@ const PostForm = () => {
 
                         <label htmlFor="age">age</label>
                         <input
-                            type="text"
+                            type="number"
                             name="age"
                             value={age}
                             onChange={(e) => setAge(e.target.value)}
@@ -100,7 +97,7 @@ const PostForm = () => {
 
                         <label htmlFor="phone">Phone</label>
                         <input
-                            type="number"
+                            type="text"
                             name="phone"
                             value={phone}
                             onChange={(e) => setPhone(e.target.value)}
@@ -114,7 +111,7 @@ const PostForm = () => {
                         />
 
 
-                        <button type="submit">Create</button>
+                        <button type="submit">Send</button>
                     </div>
                 </form>
             </div>

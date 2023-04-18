@@ -11,29 +11,19 @@ const MainForm = () => {
         <> <h1 style={{ textAlign: 'center' }}>Welcome  Volunteering Beltran</h1>
             <div className='contenedor'>
 
-
                 <Button
                     text="Create user"
-
-
                 />
                 <Form></Form>
                 <Button
                     text="Show users" />
-
-
                 <Btn />
-
                 <Button
                     text="Update user" />
                 <UpdateForm />
                 <Button
-
                     text="Delete user" />
                 <DeleteForm />
-
-
-
 
                 {/* <Btn
                     text="create User"
