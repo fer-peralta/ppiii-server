@@ -4,9 +4,9 @@ import './Btn.css'
 import UserCard from './UserCard'
 import { config } from '../config/config'
 const Btn = (props) => {
-    
+
     const URL = `${config.REACT_APP_API_BASE_URL}users`
-    
+
     //   const [datos, setDatos] = useState(null);
     const getUsers = async () => {
         const response = await fetch(URL);
@@ -60,7 +60,7 @@ const Btn = (props) => {
             </button> */}
             <div className="products">
                 {data.data.map(user => (
-                    <UserCard user={user} key={user.id} />
+                    <UserCard user={user} key={user._id} />
                 ))}
             </div>
             {/* 
