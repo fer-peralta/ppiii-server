@@ -1,16 +1,34 @@
-import express from "express"
-import * as UserController from "../../controllers/user.controller.js"
+import express from 'express'
+import * as UserController from '../../controllers/user.controller.js'
+import passport from 'passport'
+import {
+  signUpStrategy,
+  logInStrategy
+} from '../../services/passport.strategies.js'
 
 const router = express.Router()
 
-router.get("/", UserController.getUsers)
+passport.use('signupStrategy', signUpStrategy)
+passport.use('loginStrategy', logInStrategy)
 
-router.post("/", UserController.saveUser)
+router.get('/', UserController.getUsers)
 
-router.put("/:id", UserController.updateUser)
+router.post('/', UserController.saveUser)
 
-router.get("/:id", UserController.findUser)
+router.post('/signup', UserController.SignUpUserController)
 
-router.delete("/:id", UserController.deleteUser)
+router.post('/login', UserController.logInUserController)
+
+router.get('/logout', UserController.logOutUserController)
+
+router.get('/profile', UserController.profileUserController)
+
+router.delete('/deleteall', UserController.deleteAllUsers)
+
+router.put('/:id', UserController.updateUser)
+
+router.get('/:id', UserController.findUser)
+
+router.delete('/:id', UserController.deleteUser)
 
 export { router as userRouter }
