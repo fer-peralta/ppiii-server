@@ -7,11 +7,6 @@ const Btn = (props) => {
 
     const URL = `${config.REACT_APP_API_BASE_URL}users`
 
-    const getUsers = async () => {
-        const response = await fetch(URL);
-        return response.json();
-    }
-
     const { data, status } = useQuery('users', getUsers)
 
     if (status === 'loading') {

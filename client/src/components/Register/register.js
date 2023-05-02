@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom'
 import '../Register/register.css'
+
 const Register = () => {
 
     const [email, setEmail] = useState('');
@@ -10,18 +12,37 @@ const Register = () => {
     const [age, setAge] = useState('');
     const [phone, setPhone] = useState('');
 
-    const handleClick = (e) => {
-
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        try {
+            const Post = { email, password, name, surname, adress, age, phone }
+            const URL = "http://localhost:8080/api/users/signup"
 
+            const options = {
+                method: 'POST', // O 'PATCH' si corresponde
+                body: JSON.stringify(Post),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
 
-    }
+            // Hacer la solicitud PUT o PATCH a la API
+            const response = await fetch(URL, options)
+                .then(resp => resp.json())
+                .catch(error => console.log(error))
+            // if (response.ok) {
+            response.ok ? console.log("Hola") : console.error("Chau")
+        } catch (error) {
+            // Manejar errores, por ejemplo, mostrar un mensaje de error
+            console.error(error);
+        }
+    };
     return <>
 
         <div className='contenedorLogin'>
-            <form onSubmit={handleClick} className='form'>
+            <form onSubmit={handleSubmit} className='form'>
                 <h2 className='title '>Registro</h2>
-                <label className='label' htmlFor="Nombre">Username</label>
+                <label className='label' htmlFor="Nombre">Email</label>
                 <input
                     type="text"
                     name="email"
@@ -68,7 +89,9 @@ const Register = () => {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                 />
-                <button className='submit' type="submit">Send</button>
+
+                <Link to='/profile' className='submit'>Ingresar</Link>
+
             </form>
         </div>
     </>

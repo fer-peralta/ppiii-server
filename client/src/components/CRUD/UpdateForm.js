@@ -2,28 +2,27 @@
 import './Form.css'
 import React, { useState } from 'react';
 import { config } from '../config/config';
-import { avatarGenerator } from "../services/avatar.generator"
 
-const PostForm = () => {
-    const [email, setEmail] = useState('');
+const UpdateForm = () => {
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
-    const [surname, setSurname] = useState('');
     const [adress, setAdress] = useState('');
     const [age, setAge] = useState('');
     const [phone, setPhone] = useState('');
     const [avatar, setAvatar] = useState('');
+    const [id, setId] = useState('');
+
+    const URL = `${config.REACT_APP_API_BASE_URL}users/`
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            setAvatar(avatarGenerator(name, surname))
-            console.log(avatar)
-            const Post = { email, password, name, surname, adress, age, phone, avatar }
-            const URL = `${config.REACT_APP_API_BASE_URL}users`
+            // Construir el objeto de datos para la actualización del post
+            const Post = { username, password, name, adress, age, phone }
 
             const options = {
-                method: 'POST', // O 'PATCH' si corresponde
+                method: 'PUT', // O 'PATCH' si corresponde
                 body: JSON.stringify(Post),
                 headers: {
                     'Content-Type': 'application/json'
@@ -31,7 +30,7 @@ const PostForm = () => {
             }
 
             // Hacer la solicitud PUT o PATCH a la API
-            const response = await fetch(URL, options)
+            const response = await fetch(`${URL}${id}`, options)
                 .then(resp => resp.json())
                 .catch(error => console.log(error))
 
@@ -63,12 +62,20 @@ const PostForm = () => {
                 <form onSubmit={handleSubmit}>
                     <h2>Formulario</h2>
                     <div >
+                        <label htmlFor="id">ID</label>
+                        <input
+                            type="text"
+                            name="id"
+                            value={id}
+                            onChange={(e) => setId(e.target.value)}
+
+                        />
                         <label htmlFor="Nombre">Username</label>
                         <input
                             type="text"
-                            name="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            name="username"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
 
                         />
                         <label htmlFor="password">Password</label>
@@ -83,12 +90,6 @@ const PostForm = () => {
                             name="name"
                             value={name}
                             onChange={(e) => setName(e.target.value)} />
-
-                        <label htmlFor="Surname">Surname</label>
-                        <input type="text"
-                            name="surname"
-                            value={surname}
-                            onChange={(e) => setSurname(e.target.value)} />
 
                         <label htmlFor="adress">Adress</label>
                         <input type="text"
@@ -111,7 +112,8 @@ const PostForm = () => {
                             value={phone}
                             onChange={(e) => setPhone(e.target.value)}
                         />
-                        <button type="submit">Send</button>
+
+                        <button type="submit">Update</button>
                     </div>
                 </form>
             </div>
@@ -119,4 +121,4 @@ const PostForm = () => {
     )
 }
 
-export default PostForm
+export default UpdateForm

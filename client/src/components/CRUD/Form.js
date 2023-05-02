@@ -2,28 +2,26 @@
 import './Form.css'
 import React, { useState } from 'react';
 import { config } from '../config/config';
+import { avatarGenerator } from "../services/avatar.generator"
 
-const UpdateForm = () => {
-    const [username, setUsername] = useState('');
+const PostForm = () => {
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
+    const [surname, setSurname] = useState('');
     const [adress, setAdress] = useState('');
     const [age, setAge] = useState('');
     const [phone, setPhone] = useState('');
     const [avatar, setAvatar] = useState('');
-    const [id, setId] = useState('');
-
-    const URL = `${config.REACT_APP_API_BASE_URL}users/`
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            // Construir el objeto de datos para la actualización del post
-            const Post = { username, password, name, adress, age, phone, avatar }
+            const Post = { email, password, name, surname, adress, age, phone }
+            const URL = `${config.REACT_APP_API_BASE_URL}users`
 
             const options = {
-                method: 'PUT', // O 'PATCH' si corresponde
+                method: 'POST', // O 'PATCH' si corresponde
                 body: JSON.stringify(Post),
                 headers: {
                     'Content-Type': 'application/json'
@@ -31,7 +29,7 @@ const UpdateForm = () => {
             }
 
             // Hacer la solicitud PUT o PATCH a la API
-            const response = await fetch(`${URL}${id}`, options)
+            const response = await fetch(URL, options)
                 .then(resp => resp.json())
                 .catch(error => console.log(error))
 
@@ -63,20 +61,12 @@ const UpdateForm = () => {
                 <form onSubmit={handleSubmit}>
                     <h2>Formulario</h2>
                     <div >
-                        <label htmlFor="id">ID</label>
-                        <input
-                            type="text"
-                            name="id"
-                            value={id}
-                            onChange={(e) => setId(e.target.value)}
-
-                        />
                         <label htmlFor="Nombre">Username</label>
                         <input
                             type="text"
-                            name="username"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
+                            name="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
 
                         />
                         <label htmlFor="password">Password</label>
@@ -91,6 +81,12 @@ const UpdateForm = () => {
                             name="name"
                             value={name}
                             onChange={(e) => setName(e.target.value)} />
+
+                        <label htmlFor="Surname">Surname</label>
+                        <input type="text"
+                            name="surname"
+                            value={surname}
+                            onChange={(e) => setSurname(e.target.value)} />
 
                         <label htmlFor="adress">Adress</label>
                         <input type="text"
@@ -113,14 +109,7 @@ const UpdateForm = () => {
                             value={phone}
                             onChange={(e) => setPhone(e.target.value)}
                         />
-                        <label htmlFor="avatar">Avatar</label>
-                        <input
-                            type="text"
-                            name="avatar"
-                            value={avatar}
-                            onChange={(e) => setAvatar(e.target.value)}
-                        />
-                        <button type="submit">Create</button>
+                        <button type="submit">Send</button>
                     </div>
                 </form>
             </div>
@@ -128,4 +117,4 @@ const UpdateForm = () => {
     )
 }
 
-export default UpdateForm
+export default PostForm

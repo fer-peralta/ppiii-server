@@ -6,7 +6,6 @@ import UpdateForm from './UpdateForm'
 import DeleteForm from './DeleteForm'
 const MainForm = () => {
 
-
     return (
         <> <h1 style={{ textAlign: 'center' }}>Welcome  Volunteering Beltran</h1>
             <div className='contenedor'>

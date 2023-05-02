@@ -39,66 +39,6 @@ const UserTable = () => {
 
     return (
         <div>
-            <h2>User Table</h2>
-            {/* <table>
-                <tbody>
-                    <thead>
-                        <tr>
-                            <th>USERNAME</th>
-                            <th>PASSWORD</th>
-                            <th>NAME</th>
-                            <th>ADRESS</th>
-                            <th>AGE</th>
-                            <th>PHONE</th>
-                            <th>AVATAR</th>
-                        </tr>
-                    </thead>
-                </tbody>
-                <tbody>
-                    {users.map(user =>
-                        <tr key={user._id}>
-                            <td>{user.username}</td>
-                            <td>{user.password}</td>
-                            <td>{user.name}</td>
-                            <td>{user.adress}</td>
-                            <td>{user.age}</td>
-                            <td>{user.phone}</td>
-                            <td>{user.avatar}</td>
-                            <td><button type="submit">Modificar</button></td>
-                            <td><button type="submit">Eliminar</button></td>
-                        </tr>
-                    )}
-                </tbody>
-            </table> */}
-
-            {/* <table >
-                <thead>
-                    <tr>
-                        <th>USERNAME</th>
-                        <th>PASSWORD</th>
-                        <th>NAME</th>
-                        <th>ADRESS</th>
-                        <th>AGE</th>
-                        <th>PHONE</th>
-                        <th>AVATAR</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {users.map(user =>
-                        <tr key={user._id}>
-                            <td>{user.username}</td>
-                            <td>{user.password}</td>
-                            <td>{user.name}</td>
-                            <td>{user.adress}</td>
-                            <td>{user.age}</td>
-                            <td>{user.phone}</td>
-                            <td>{user.avatar}</td>
-                            <td><button type="submit">Modificar</button></td>
-                            <td><button type="submit">Eliminar</button></td>
-                        </tr>
-                    )}
-                </tbody>
-            </table> */}
             <AddUserForm onAddUser={handleAddUser} />
         </div>
     );

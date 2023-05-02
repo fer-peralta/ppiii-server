@@ -1,18 +1,22 @@
 .contenedorLogin {
     margin-top: 40px;
+    padding: 2rem;
+}
+
+form {
+    margin: 2rem
 }
 
 .form {
+    padding: 2rem;
+    display: flex;
     margin: auto;
+    padding: 30px;
     max-width: 320px;
     width: 100%;
     background-color: #fff;
-    padding: 20px;
     box-shadow: 0px 0px 0px 4px rgba(52, 52, 53, 0.185);
-    display: flex;
-    /* flex-direction: column; */
     border-radius: 10px;
-    align-items: center;
 }
 
 .title {
@@ -29,8 +33,8 @@
 
 .input {
     padding: 10px;
-
     margin-bottom: 20px;
+    margin-right: 10px;
     width: 100%;
     font-size: 1rem;
     color: #4a5568;
@@ -47,6 +51,7 @@
 
 
 .submit {
+    text-decoration: none;
     margin-bottom: 0.5rem;
     background-color: #1a202c;
     color: #fff;
@@ -64,6 +69,7 @@
 }
 
 .submitR {
+    text-decoration: none;
     margin-bottom: 0.5rem;
     background-color: #5a92a7;
     color: #fff;
@@ -78,4 +84,10 @@
 .submitR:hover {
     background-color: #c9cfdc;
     color: #403f4b;
+}
+
+.botones {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
