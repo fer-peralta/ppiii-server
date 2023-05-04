@@ -18,7 +18,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
 
         <Routes>
-          <Route path='/login' element={<Login />} />
+          <Route path='/' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='*' element={<h1>NOT FOUND !</h1>} />

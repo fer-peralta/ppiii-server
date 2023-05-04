@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import './login.css'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
+//mport Profile from '../UserProfile/USerProfile';
 const Login = () => {
-
+    // const [data, setdata] = useState({});
+    const [miLogin, setMiLogin] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -12,6 +14,7 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         try {
 
 
@@ -27,18 +30,23 @@ const Login = () => {
             }
 
             // Hacer la solicitud PUT o PATCH a la API
+
             const response = await fetch(URL, options)
                 .then(resp => resp.json())
-                .catch(error => console.log(error))
+            //setdata(response)
+            // console.log(data)
+            if (response.message === "User log in with success") {
+                console.log("logeado con exito")
+                setMiLogin(true)
 
-            // Verificar la respuesta del servidor
-            if (response.ok) {
-                // Si la respuesta es exitosa, puedes realizar acciones adicionales aquí,
-                // como mostrar un mensaje de éxito o redirigir a otra página
-                console.log(response)
-                console.log('Post actualizado exitosamente');
+                //history.push('http://localhost:8080/api/users/profile');
 
+
+
+            } else {
+                alert("Email o usuario incorrecto")
             }
+
         } catch (error) {
             // Manejar errores, por ejemplo, mostrar un mensaje de error
             console.error(error);
@@ -69,12 +77,13 @@ const Login = () => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
+                    <button type='submit' className='submit'>send</button>
                     <div className='botones'>
-                        <Link to='/profile' className='submit'>Ingresar</Link>
-                        <Link to='/register' className='submitR'>Register</Link>
+                        <Link to='/register' className='submitR'>Registrar</Link>
                     </div>
                 </form>
 
+                {miLogin === true && <Navigate to="/profile" />}
             </div>
 
         </div>

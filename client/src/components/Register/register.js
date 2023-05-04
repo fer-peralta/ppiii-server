@@ -29,8 +29,8 @@ const Register = () => {
             // Hacer la solicitud PUT o PATCH a la API
             const response = await fetch(URL, options)
                 .then(resp => resp.json())
-                .catch(error => console.log(error))
-            // if (response.ok) {
+
+
             response.ok ? console.log("Hola") : console.error("Chau")
         } catch (error) {
             // Manejar errores, por ejemplo, mostrar un mensaje de error
@@ -89,7 +89,7 @@ const Register = () => {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                 />
-
+                <button type='submit' className='submit'>send</button>
                 <Link to='/profile' className='submit'>Ingresar</Link>
 
             </form>
