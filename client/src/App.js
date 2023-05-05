@@ -8,6 +8,7 @@ import Register from "./components/Register/register";
 import Profile from "./components/UserProfile/USerProfile";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+
 const queryClient = new QueryClient();
 
 
