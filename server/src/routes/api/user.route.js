@@ -1,27 +1,11 @@
 import express from 'express'
-import * as UserController from '../../controllers/user.controller.js'
-import passport from 'passport'
-import {
-  signUpStrategy,
-  logInStrategy
-} from '../../services/passport.strategies.js'
+import * as UserController from '../../controllers/user.crud.controller.js'
 
 const router = express.Router()
-
-passport.use('signupStrategy', signUpStrategy)
-passport.use('loginStrategy', logInStrategy)
 
 router.get('/', UserController.getUsers)
 
 router.post('/', UserController.saveUser)
-
-router.post('/signup', UserController.SignUpUserController)
-
-router.post('/login', UserController.logInUserController)
-
-router.get('/logout', UserController.logOutUserController)
-
-router.get('/profile', UserController.profileUserController)
 
 router.delete('/deleteall', UserController.deleteAllUsers)
 

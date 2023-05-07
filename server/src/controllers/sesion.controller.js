@@ -2,7 +2,7 @@ import { avatarGenerator } from '../services/avatar.generator.js'
 import * as UserService from '../services/user.service.js'
 import { generateToken } from '../services/jwt.js'
 import { logError, logInfo } from '../logs/logger.js'
-import { createHash } from '../services/bcrypt.hash.js'
+import { createHash, isValidPassword } from '../services/bcrypt.hash.js'
 import { UserModel } from '../database/models/user.model.js'
 
 export const SignUpUserController = async (req, res, next) => {
@@ -40,14 +40,20 @@ export const logInUserController = async (req, res, next) => {
     if (!email || !password) {
       return res.json({ message: 'Missing credentials' })
     }
-    const user = await UserModel.findOne(
-      u => u.email == email && u.password == password
-    ).exec()
+    const user = await UserModel.findOne({
+      email: req.body.email
+    }).exec()
+    const validPass = isValidPassword(user, password)
     if (!user) {
       return res.json({ error: 'Wrong credentials' })
     }
-    const access_token = generateToken(user)
-    res.json({ access_token })
+    if (validPass) {
+      const access_token = generateToken(user)
+      logInfo.info(`User ${user.email} logged in`)
+      res.json({ access_token })
+    } else {
+      return res.json({ error: 'Wrong credentials' })
+    }
   } catch (error) {
     const errorMessage = { message: `There was an error: ${error}` }
     logError.error(errorMessage)
@@ -76,8 +82,10 @@ export const logOutUserController = async (req, res) => {
 }
 export const profileUserController = async (req, res) => {
   try {
-    res.status(200).json({ message: 'User profile', User: req.user })
-  } catch {
+    const { data } = await UserService.findUser(req.user._id)
+    console.log(data)
+    res.status(200).json({ message: 'User profile', User: data })
+  } catch (error) {
     const errorMessage = { message: `There was an error: ${error}` }
     logError.error(errorMessage)
     res.status(400).json(errorMessage)
