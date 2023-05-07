@@ -16,7 +16,7 @@ const Register = () => {
         e.preventDefault();
         try {
             const Post = { email, password, name, surname, adress, age, phone }
-            const URL = "http://localhost:8080/api/users/signup"
+            const URL = "http://localhost:8080/api/session/signup"
 
             const options = {
                 method: 'POST', // O 'PATCH' si corresponde
@@ -27,11 +27,10 @@ const Register = () => {
             }
 
             // Hacer la solicitud PUT o PATCH a la API
-            const response = await fetch(URL, options)
+            await fetch(URL, options)
                 .then(resp => resp.json())
+                .then(data => localStorage.setItem('token', data.access_token))
 
-
-            response.ok ? console.log("Hola") : console.error("Chau")
         } catch (error) {
             // Manejar errores, por ejemplo, mostrar un mensaje de error
             console.error(error);
