@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken'
-import { PRIVATE_KEY } from '../services/jwt'
+import { PRIVATE_KEY } from '../services/jwt.js'
 
 export const auth = (req, res, next) => {
   const authHeader = req.headers.authorization
