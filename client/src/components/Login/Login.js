@@ -1,11 +1,10 @@
 import { useState } from 'react'
-// import axios from 'axios'
 import './login.css'
 import { Link, Navigate } from 'react-router-dom'
-//mport Profile from '../UserProfile/USerProfile';
 import { redirect } from 'react-router-dom'
+import { config } from '../../config/config'
+
 const Login = () => {
-  // const [data, setdata] = useState({});
   const [miLogin, setMiLogin] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -15,16 +14,10 @@ const Login = () => {
 
     try {
       const Post = { email, password }
-      const URL = 'http://localhost:8080/api/session/login'
+      const URL = `${config.REACT_APP_API_BASE_URL}session/login`
 
-      //   const response = () => {
-      //     const resp = axios
-      //       .post(URL, Post, {
-      //         headers: { 'Content-type': 'application/json' },
-      //         withCredentials: true
-      //       })
       const options = {
-        method: 'POST', // O 'PATCH' si corresponde
+        method: 'POST',
         body: JSON.stringify(Post),
         headers: {
           'Content-Type': 'application/json'
@@ -56,6 +49,7 @@ const Login = () => {
               type='email'
               name='email'
               value={email}
+              placeholder='Ej: usuario@itbeltran.com.ar'
               onChange={e => setEmail(e.target.value)}
             />
             <label className='label' htmlFor='password'>
@@ -68,11 +62,11 @@ const Login = () => {
               value={password}
               onChange={e => setPassword(e.target.value)}
             />
-            <button type='submit' className='submit'>
-              send
-            </button>
             <div className='botones'>
-              <Link to='/register' className='submitR'>
+              <button type='submit' className='login-btn'>
+                Enviar
+              </button>
+              <Link to='/register' className='register-btn'>
                 Registrar
               </Link>
             </div>

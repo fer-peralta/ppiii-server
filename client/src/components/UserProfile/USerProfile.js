@@ -1,57 +1,65 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import './UserProfile.css'
 import { useQuery } from 'react-query'
-import { redirect } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { config } from '../../config/config'
 
 const Profile = () => {
+  const [logout, setLogout] = useState(false)
+  const navigate = useNavigate()
 
-    const handleLogOut = async () => {
+  const handleLogOut = async () => {
+    window.localStorage.removeItem('token')
+    setLogout(true)
+  }
 
-        window.localStorage.removeItem('token');
-        window.location.href = 'http://localhost:3000/';
+  useEffect(() => {
+    if (logout === true) {
+      setTimeout(() => {
+        navigate('/')
+      }, '500')
     }
-    // useEffect(() => {
-    //     handleLogOut()
-    // }, []);
+  }, [navigate, logout])
 
+  const URL = `${config.REACT_APP_API_BASE_URL}session/profile`
+  const token = JSON.stringify(localStorage.getItem('token'))
 
-    const url1 = 'http://localhost:8080/api/session/profile'
-
-    const token = JSON.stringify(localStorage.getItem('token'))
-
-    console.log(token)
-
-    const options = {
-        method: 'GET',
-        headers: {
-            Authorization: `Bearer ${token}`,
-            Accept: 'application/json',
-            'Content-Type': 'application/json'
-        }
+  const options = {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
     }
+  }
 
-    const getUsers = async () => {
-        const response = await fetch(url1, options)
-        return response.json()
-    }
-    const { data, status } = useQuery('users', getUsers)
+  const getUsers = async () => {
+    const response = await fetch(URL, options)
+    return response.json()
+  }
+  const { data, status } = useQuery('users', getUsers)
 
-    if (status === 'loading') {
-        return <p>Recuperando los users...</p>
-    }
+  if (status === 'loading') {
+    return <p>Recuperando los users...</p>
+  }
 
-    if (status === 'error') {
-        return <p>Error</p>
-    }
+  if (status === 'error') {
+    return <p>Error</p>
+  }
 
-    return (
-        <div className='user'>
-            <div className='right'>
-                <p>Bienvenido {data.User.email}</p>
-                <button onClick={handleLogOut} className='submitR'>Cerrar sesion</button>
-            </div>
-        </div>
-    )
+  return (
+    <div className='user'>
+      <div className='right'>
+        <h1>Bienvenido a tu perfil</h1>
+        <h2>
+          {data.User.name} {data.User.surname}
+        </h2>
+        <button onClick={handleLogOut} className='submitR'>
+          Cerrar sesion
+        </button>
+      </div>
+    </div>
+  )
 }
 
 export default Profile

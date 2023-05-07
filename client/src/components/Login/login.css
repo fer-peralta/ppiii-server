@@ -15,7 +15,7 @@ form {
     max-width: 320px;
     width: 100%;
     background-color: #fff;
-    box-shadow: 0px 0px 0px 4px rgba(52, 52, 53, 0.185);
+    box-shadow: 0px 0px 0px 3px rgba(52, 52, 53, 0.185);
     border-radius: 10px;
 }
 
@@ -27,7 +27,7 @@ form {
 }
 
 .label {
-    color: rgb(0, 0, 0);
+    color: #1a202c;
     margin-bottom: 4px;
 }
 
@@ -39,7 +39,7 @@ form {
     font-size: 1rem;
     color: #4a5568;
     outline: none;
-    border: 1px solid black;
+    border: 1px solid #1a202c;
     border-radius: 4px;
     transition: all 0.2s ease-in-out;
 }
@@ -50,38 +50,43 @@ form {
 }
 
 
-.submit {
+.login-btn {
+    width: 200px;
+    height: 35.4px;
     text-decoration: none;
     margin-bottom: 0.5rem;
     background-color: #1a202c;
     color: #fff;
     border: none;
     border-radius: 4px;
-    padding: 10px 20px;
+    /* padding: 10px 20px; */
     font-size: 1.2rem;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
 }
 
-.submit:hover {
+.login-btn:hover {
+    transition: 0.7s;
     background-color: #c9cfdc;
     color: #403f4b;
 }
 
-.submitR {
+.register-btn {
+    width: 190px;
+    text-align: center;
     text-decoration: none;
-    margin-bottom: 0.5rem;
     background-color: #5a92a7;
     color: #fff;
     border: none;
     border-radius: 4px;
-    padding: 8px 18px;
-    font-size: 1rem;
+    /* padding: 8px 18px; */
+    font-size: 1.2rem;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
 }
 
-.submitR:hover {
+.register-btn:hover {
+    transition: 0.7s;
     background-color: #c9cfdc;
     color: #403f4b;
 }
@@ -90,4 +95,21 @@ form {
     display: flex;
     flex-direction: column;
     align-items: center;
+
+}
+
+.botones>button,
+a {
+    padding: 5px 5px;
+}
+
+@media only screen and (max-width: 400px) {
+    .contenedorLogin {
+        display: flex;
+        justify-content: center;
+    }
+
+    .botones {
+        margin-left: 2vh;
+    }
 }
