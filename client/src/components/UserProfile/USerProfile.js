@@ -1,37 +1,44 @@
 import './UserProfile.css'
-//import { Link } from 'react-router-dom'
-//import { useState } from 'react';
 import { useQuery } from 'react-query'
 
 const Profile = () => {
-    //const [user, setUser] = useState(null);
+  const url1 = 'http://localhost:8080/api/session/profile'
 
-    const url1 = 'http://localhost:8080/api/users/profile'
+  const token = JSON.stringify(localStorage.getItem('token'))
 
-    const getUsers = async () => {
-        const response = await fetch(url1);
+  console.log(token)
 
-        return response.json();
+  const options = {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
     }
-    const { data, status } = useQuery('users', getUsers)
-    //console.log(user)
+  }
 
-    if (status === 'loading') {
-        return <p>Recuperando los users...</p>;
-    }
+  const getUsers = async () => {
+    const response = await fetch(url1, options)
+    return response.json()
+  }
+  const { data, status } = useQuery('users', getUsers)
 
-    if (status === 'error') {
-        return <p>Error</p>;
-    }
+  if (status === 'loading') {
+    return <p>Recuperando los users...</p>
+  }
 
-    return <div className="user">
+  if (status === 'error') {
+    return <p>Error</p>
+  }
 
-        <div className="right">
-
-            <p>Bienvenido {data.message}</p>
-            {/* <Link to='/' className='submitR'>Cerrar sesion</Link> */}
-        </div>
+  return (
+    <div className='user'>
+      <div className='right'>
+        <p>Bienvenido {data.User.email}</p>
+        {/* <Link to='/' className='submitR'>Cerrar sesion</Link> */}
+      </div>
     </div>
+  )
 }
 
-export default Profile;
+export default Profile

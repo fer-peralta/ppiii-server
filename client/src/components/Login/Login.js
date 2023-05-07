@@ -1,87 +1,88 @@
-import { useState } from 'react';
+import { useState } from 'react'
+// import axios from 'axios'
 import './login.css'
-import { Link } from 'react-router-dom'
-//import Profile from '../UserProfile/USerProfile';
+import { Link, Navigate } from 'react-router-dom'
+//mport Profile from '../UserProfile/USerProfile';
+import { redirect } from 'react-router-dom'
 const Login = () => {
-    const [data, setdata] = useState({});
-    const [miLogin, setMiLogin] = useState(false);
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+  // const [data, setdata] = useState({});
+  const [miLogin, setMiLogin] = useState(false)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
+  const handleSubmit = async e => {
+    e.preventDefault()
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    try {
+      const Post = { email, password }
+      const URL = 'http://localhost:8080/api/session/login'
 
-        try {
-
-
-            const Post = { email, password }
-            const URL = "http://localhost:8080/api/users/login"
-
-            const options = {
-                method: 'POST', // O 'PATCH' si corresponde
-                body: JSON.stringify(Post),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }
-
-            // Hacer la solicitud PUT o PATCH a la API
-
-            const response = await fetch(URL, options)
-                .then(resp => resp.json())
-            console.log(data)
-            setdata(response)
-            if (response.message === "User log in with success") {
-                console.log("logeado con exito")
-                setMiLogin(true)
-            } else {
-                alert("Email o usuario incorrecto")
-            }
-
-        } catch (error) {
-            // Manejar errores, por ejemplo, mostrar un mensaje de error
-            console.error(error);
+      //   const response = () => {
+      //     const resp = axios
+      //       .post(URL, Post, {
+      //         headers: { 'Content-type': 'application/json' },
+      //         withCredentials: true
+      //       })
+      const options = {
+        method: 'POST', // O 'PATCH' si corresponde
+        body: JSON.stringify(Post),
+        headers: {
+          'Content-Type': 'application/json'
         }
-    };
+      }
+      await fetch(URL, options)
+        .then(resp => resp.json())
+        .then(data => localStorage.setItem('token', data.access_token))
+      setMiLogin(true)
+      redirect('http://localhost:8080/api/session/profile')
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
+  return (
+    <>
+      <h1 style={{ textAlign: 'center' }}>Bienvenido voluntarios Beltran</h1>
+      <div className='contenedorLogin'>
+        <div className='form'>
+          <form onSubmit={handleSubmit}>
+            <h2 className='title '>Log in</h2>
 
-    return <>
-        <h1 style={{ textAlign: 'center' }}>Bienvenido voluntarios Beltran</h1>
-        <Link style={{ textAlign: 'center' }} to='/profile' className='submit'>Perfil</Link>
-        <div className='contenedorLogin'>
-            <div className='form'>
-                <form onSubmit={handleSubmit} >
-                    <h2 className='title '>Log in</h2>
-
-                    <label className='label' htmlFor="username">Email</label>
-                    <input
-                        className='input'
-                        type="email"
-                        name="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <label className='label' htmlFor="password">Password</label>
-                    <input
-                        className='input'
-                        type="password"
-                        name="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-
-                    <button type='submit' className='submit'>Ingresar</button>
-                    <div className='botones'>
-
-                    </div>
-                </form>
-                {miLogin === true && <p>Bienvenido {data.user.name} {data.user.surname}</p>}
-                <Link to='/register' className='submitR'>registrarme</Link>
+            <label className='label' htmlFor='username'>
+              Email
+            </label>
+            <input
+              className='input'
+              type='email'
+              name='email'
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+            />
+            <label className='label' htmlFor='password'>
+              Password
+            </label>
+            <input
+              className='input'
+              type='password'
+              name='password'
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+            />
+            <button type='submit' className='submit'>
+              send
+            </button>
+            <div className='botones'>
+              <Link to='/register' className='submitR'>
+                Registrar
+              </Link>
             </div>
+          </form>
 
+          {miLogin === true && <Navigate to='/profile' />}
         </div>
+      </div>
     </>
+  )
 }
 
-export default Login;
+export default Login
