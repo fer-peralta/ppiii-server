@@ -16,6 +16,7 @@ export const auth = (req, res, next) => {
       })
     }
     req.user = decoded.data
+    console.log(req.user)
     next()
   })
 }
