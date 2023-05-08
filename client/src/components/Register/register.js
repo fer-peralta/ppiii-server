@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import '../Register/register.css'
 import { config } from '../../config/config'
 
@@ -15,13 +15,14 @@ const Register = () => {
   const [emailError, setEmailError] = useState('');
   const [ageError, setAgeError] = useState('');
   const [phoneError, setPhoneError] = useState('');
+  const [miregister, setMiregister] = useState(false)
 
   const navigate = useNavigate()
 
   const validateEmail = (value) => {
     if (!value.includes('@itbeltran.com.ar')) {
       setEmailError('El correo electrónico debe incluir @itbeltran.com.ar');
-      return;
+
     } else {
       setEmailError('');
     }
@@ -57,20 +58,36 @@ const Register = () => {
           'Content-Type': 'application/json'
         }
       }
-
       await fetch(URL, options)
-        .then(resp => resp.json())
-        .then(data => localStorage.setItem('token', data.access_token))
+        .then(resp => {
+          resp.json()
+            .then(data => {
+              localStorage.setItem('token', data.access_token)
+              data.message === 'There was an error: ReferenceError: error is not defined' ? setMiregister(false) : navigate('/profile')
+            })
+        })
 
 
+
+
+      // const responsePost = await fetch(URL, options)
+
+
+      //   .then(resp => resp.json())
+      //   .then(data => localStorage.setItem('token', data.access_token))
+      // data.message ? setMiregister(true) : console.error("Usuario incorrecto")
+      // if (responsePost.message === "User sign up with success") {
+      //   alert('Registro exitoso.')
+      //   
+      // }
 
     } catch (error) {
       console.error(error)
     }
-    finally {
-      alert('Registro exitoso.')
-      navigate('/')
-    }
+    // finally {
+    //   alert('Registro exitoso.')
+
+    // }
   }
   return (
     <>
@@ -90,7 +107,7 @@ const Register = () => {
               validateEmail(e.target.value);
             }}
           />
-          {emailError && <div style={{ color: 'red', border: '1px solid #1a202c' }}>{emailError}</div>}
+          {emailError && <div style={{ color: 'red' }}>{emailError}</div>}
           <label htmlFor='password'>Password</label>
           <input
             type='password'
@@ -154,13 +171,14 @@ const Register = () => {
           />
           {phoneError && <div style={{ color: 'red' }}>{phoneError}</div>}
           <button type='submit' className='submit'>
-            send
+            Registrar
           </button>
           <Link to='/' className='submit'>
             Ir a Log in
           </Link>
         </form>
       </div>
+      {miregister === true && <Navigate to='/profile' />}
     </>
   )
 }

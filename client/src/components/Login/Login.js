@@ -13,12 +13,10 @@ const Login = () => {
   const validateEmail = (value) => {
     if (!value.includes('@itbeltran.com.ar')) {
       setEmailError('El correo electrónico debe incluir @itbeltran.com.ar');
-      return;
     } else {
       setEmailError('');
     }
   }
-
   const handleSubmit = async e => {
     e.preventDefault()
 
@@ -33,11 +31,16 @@ const Login = () => {
           'Content-Type': 'application/json'
         }
       }
+
       await fetch(URL, options)
-        .then(resp => resp.json())
-        .then(data => localStorage.setItem('token', data.access_token))
-      setMiLogin(true)
-      //redirect('http://localhost:8080/api/session/profile')
+        .then(resp => {
+          resp.json()
+            .then(data => {
+              localStorage.setItem('token', data.access_token)
+              data.access_token ? setMiLogin(true) : console.error("Usuario incorrecto")
+            })
+        })
+
     } catch (error) {
       console.error(error)
     }

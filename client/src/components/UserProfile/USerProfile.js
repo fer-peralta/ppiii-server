@@ -53,11 +53,11 @@ const Profile = () => {
       <div className='contenedor'>
 
         <div className='user'>
-
+          <img className='imgAvatar' src={data.User.avatar} alt='avatar' />
           <h2>
-            {data.User.name.toUpperCase()} {data.User.surname}
+            {data.User.name.toUpperCase()} {data.User.surname.toUpperCase()}
           </h2>
-          <img src={data.User.avatar} alt='avatar' />
+
 
 
         </div>
