@@ -8,8 +8,6 @@ import { UserModel } from '../database/models/user.model.js'
 export const SignUpUserController = async (req, res, next) => {
   try {
     const user = await UserModel.findOne({ email: req.body.email }).exec()
-    // const user = await UserService.findUser({ email: req.body.email })
-
     if (user) {
       res.json({ message: 'The user is already in the database, try to login' })
     }
@@ -25,8 +23,13 @@ export const SignUpUserController = async (req, res, next) => {
       avatar: req.body.avatar
     }
     const createUser = await UserService.saveUser(newUser)
+    if (createUser.error) {
+      res.json({ message: 'User sign up failed', error: error })
+    }
     const access_token = generateToken(createUser)
-    res.json({ message: 'User sign up with success', access_token })
+    if (createUser) {
+      res.json({ message: 'User sign up with success', access_token })
+    }
   } catch (error) {
     const errorMessage = { message: `There was an error: ${error}` }
     logError.error(errorMessage)
@@ -82,9 +85,15 @@ export const logOutUserController = async (req, res) => {
 }
 export const profileUserController = async (req, res) => {
   try {
-    const { data } = await UserService.findUser(req.user._id)
-    console.log(data)
-    res.status(200).json({ message: 'User profile', User: data })
+    if (req.user._id) {
+      const { data } = await UserService.findUser(req.user._id)
+      console.log(data)
+      res.status(200).json({ message: 'User profile', User: data })
+    } else if (req.user.id) {
+      const { data } = await UserService.findUser(req.user.id)
+      console.log(data)
+      res.status(200).json({ message: 'User profile', User: data })
+    }
   } catch (error) {
     const errorMessage = { message: `There was an error: ${error}` }
     logError.error(errorMessage)

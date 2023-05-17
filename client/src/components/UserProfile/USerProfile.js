@@ -48,17 +48,28 @@ const Profile = () => {
   }
 
   return (
-    <div className='user'>
-      <div className='right'>
-        <h1>Bienvenido a tu perfil</h1>
-        <h2>
-          {data.User.name} {data.User.surname}
-        </h2>
-        <button onClick={handleLogOut} className='submitR'>
-          Cerrar sesion
-        </button>
+    <>
+      <h1>Bienvenido a tu perfil</h1>
+      <div className='contenedor'>
+
+        <div className='user'>
+          <img className='imgAvatar' src={data.User.avatar} alt='avatar' />
+          <h2>
+            {data.User.name.toUpperCase()} {data.User.surname.toUpperCase()}
+          </h2>
+
+
+
+        </div>
+
       </div>
-    </div>
+
+      <button onClick={handleLogOut} className='submitR'>
+        Cerrar sesion
+      </button>
+
+
+    </>
   )
 }
 
