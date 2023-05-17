@@ -1,6 +1,7 @@
 import express from 'express'
 import { logWarn } from '../logs/logger.js'
 import { userRouter } from './api/user.route.js'
+import { mentoryRouter } from './api/mentory.route.js'
 import path from 'path'
 import { sessionRouter } from './api/session.route.js'
 
@@ -12,6 +13,7 @@ router.get('/', (req, res) => {
 
 router.use('/users', userRouter)
 router.use('/session', sessionRouter)
+router.use('/mentories', mentoryRouter)
 
 //* 404
 router.get('/*', (req, res) => {
