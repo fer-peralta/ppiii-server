@@ -1,7 +1,4 @@
-import { getApiDao } from '../database/index.database.js'
-import { config } from '../config/config.js'
-
-const { UserDaoContainer } = await getApiDao(config.DBTYPE)
+import { UserDaoContainer } from './daos.service.js'
 
 export const getUsers = async () => {
   return await UserDaoContainer.getAll()
