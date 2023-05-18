@@ -34,7 +34,7 @@ const ItemListContainer = ({ saludo }) => {
     getUsers().then(mentories => {
       setMentories(mentories)
     })
-  })
+  }, [])
 
   //   const { data, status } = useQuery('users', getUsers)
 

@@ -1,4 +1,4 @@
-body {
+* {
   background-color: #e8e8e8;
   padding: 0;
   margin: 0;
@@ -8,6 +8,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+li {
+  list-style: none;
 }
 
 code {

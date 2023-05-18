@@ -1,0 +1,18 @@
+table.mentory_card {
+    display: flex;
+    justify-content: center;
+    border-collapse: collapse;
+}
+
+tbody.mentory_card {
+    border: 1px solid;
+    width: 600px;
+}
+
+tr.mentory_card_header {
+    width: 100%;
+}
+
+tr.mentory_card_header td {
+    border: 1px solid;
+}
