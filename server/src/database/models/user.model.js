@@ -6,7 +6,7 @@ mongoose.set('strictQuery', true)
 
 const userSchema = new mongoose.Schema(
   {
-    state: { type: String, default: 'active', required: true },
+    state: { type: String, default: 'pending', required: true },
     email: {
       type: String,
       required: true,
