@@ -16,12 +16,40 @@ export const getMentories = async (req, res) => {
     response.length != 0
       ? res.status(200).send({ data: newArrayOfMentories })
       : res.status(200).send({
-          message:
-            "There's no mentories in the database, please add at least one"
-        })
+        message:
+          "There's no mentories in the database, please add at least one"
+      })
   } catch (error) {
     res.status(400).send({
       message: `There was an error getting the mentories: ${error}`,
+      error: error,
+      section: 'controller'
+    })
+  }
+}
+
+export const getOwnMentories = async (req, res) => {
+  try {
+    console.log(req)
+    const response = await MentoryService.getMentories()
+    let newArrayOfMentories = []
+    if (Array.isArray(response)) {
+      for (const mentory of response) {
+        if (mentory.state === 'active') {
+          newArrayOfMentories.push(mentory)
+        }
+      }
+    }
+    // let ownMentories = newArrayOfMentories.filter(mentory => mentory.email === )
+    response.length != 0
+      ? res.status(200).send({ data: newArrayOfMentories })
+      : res.status(200).send({
+        message:
+          "There's no own mentories in the database, please add at least one"
+      })
+  } catch (error) {
+    res.status(400).send({
+      message: `There was an error getting the owned mentories: ${error}`,
       error: error,
       section: 'controller'
     })
