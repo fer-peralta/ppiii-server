@@ -6,7 +6,7 @@ table.mentory_card {
 
 tbody.mentory_card {
     border: 1px solid;
-    width: 600px;
+
 }
 
 tr.mentory_card_header {
@@ -15,4 +15,59 @@ tr.mentory_card_header {
 
 tr.mentory_card_header td {
     border: 1px solid;
+}
+
+.td {
+    border: 1px solid;
+}
+
+.card {
+    margin: auto;
+    width: 300px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.body {
+    padding: 20px;
+}
+
+.skill {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.skill-name {
+    width: 120px;
+    font-size: 16px;
+}
+
+h3 {
+    padding: 3px;
+}
+
+h4 {
+    padding: 3px;
+}
+
+.contenedorImg {
+    display: flex;
+    justify-content: center;
+}
+
+.imgAvatar {
+    width: '60px';
+    height: '60px';
+    margin: 'auto';
 }

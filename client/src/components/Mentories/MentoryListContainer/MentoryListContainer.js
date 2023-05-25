@@ -5,7 +5,7 @@ import { useQuery } from 'react-query'
 import { config } from '../../../config/config'
 import { Link } from 'react-router-dom'
 
-const ItemListContainer = ({ saludo }) => {
+const ItemListContainer = () => {
   const [mentories, setMentories] = useState([])
 
   const URL = `${config.REACT_APP_API_BASE_URL}mentories`
@@ -44,8 +44,7 @@ const ItemListContainer = ({ saludo }) => {
       <h1>Mentorías disponibles</h1>
       <ul>
         <Link to='/mentories/create'>Crear mentoría</Link>
-        <Link to='/mentories/modify'>Modificar mentoría</Link>
-        <Link to='/mentories/delete'>Borrar mentoría</Link>
+
       </ul>
       <MentoryList mentories={mentories} />
     </div>

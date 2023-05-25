@@ -13,6 +13,11 @@ const Profile = () => {
     setLogout(true)
   }
 
+  const handleLink = async () => {
+    navigate('/mentories')
+  }
+
+
   useEffect(() => {
     if (logout === true) {
       setTimeout(() => {
@@ -49,6 +54,7 @@ const Profile = () => {
 
   return (
     <>
+
       <h1>Bienvenido a tu perfil</h1>
       <div className='contenedor'>
         <div className='user'>
@@ -56,6 +62,7 @@ const Profile = () => {
           <h2>
             {data.User.name.toUpperCase()} {data.User.surname.toUpperCase()}
           </h2>
+
         </div>
       </div>
 

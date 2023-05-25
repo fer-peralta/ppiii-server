@@ -95,7 +95,7 @@ const Login = () => {
             </div>
           </form>
 
-          {miLogin === true && <Navigate to='/profile' />}
+          {miLogin === true && <Navigate to='/mentories' />}
         </div>
       </div>
     </>
