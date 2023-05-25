@@ -1,21 +1,21 @@
 import express from 'express'
 import * as MentoryController from '../../controllers/mentory.crud.controller.js'
+import { auth } from '../../middlewares/check.session.jwt.js'
 
 const router = express.Router()
 
-// router.get('/', MentoryController.getMentories)
+router.get('/', auth, MentoryController.getMentories)
 
-router.get('/', MentoryController.getMentories)
+router.get('/own', auth, MentoryController.getOwnMentories)
 
-router.post('/', MentoryController.saveMentory)
+router.post('/', auth, MentoryController.saveMentory)
 
-router.delete('/deleteall', MentoryController.deleteAllMentories)
+router.delete('/deleteall', auth, MentoryController.deleteAllMentories)
 
+router.put('/:id', auth, MentoryController.updateMentory)
 
-router.put('/:id', MentoryController.updateMentory)
+router.get('/:id', auth, MentoryController.findMentory)
 
-router.get('/:id', MentoryController.findMentory)
-
-router.delete('/:id', MentoryController.deleteMentory)
+router.delete('/:id', auth, MentoryController.deleteMentory)
 
 export { router as mentoryRouter }

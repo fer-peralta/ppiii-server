@@ -9,6 +9,7 @@ const mentoriesSchema = new mongoose.Schema(
     state: { type: String, default: 'active', required: true },
     avatar: { type: String, required: true },
     author: { type: String, required: true },
+    email: { type: String, required: true },
     title: { type: String, required: true },
     description: { type: String, required: true, maxLength: 1000 },
     area: {

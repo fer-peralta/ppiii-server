@@ -16,9 +16,9 @@ export const getMentories = async (req, res) => {
     response.length != 0
       ? res.status(200).send({ data: newArrayOfMentories })
       : res.status(200).send({
-        message:
-          "There's no mentories in the database, please add at least one"
-      })
+          message:
+            "There's no mentories in the database, please add at least one"
+        })
   } catch (error) {
     res.status(400).send({
       message: `There was an error getting the mentories: ${error}`,
@@ -30,7 +30,7 @@ export const getMentories = async (req, res) => {
 
 export const getOwnMentories = async (req, res) => {
   try {
-    console.log(req)
+    console.log(req.user.email)
     const response = await MentoryService.getMentories()
     let newArrayOfMentories = []
     if (Array.isArray(response)) {
@@ -40,16 +40,19 @@ export const getOwnMentories = async (req, res) => {
         }
       }
     }
-    // let ownMentories = newArrayOfMentories.filter(mentory => mentory.email === )
+    let ownMentories = newArrayOfMentories.filter(mentory => {
+      return mentory.email == req.user.email && mentory.state == 'active'
+    })
     response.length != 0
-      ? res.status(200).send({ data: newArrayOfMentories })
+      ? res.status(200).send({ data: ownMentories })
       : res.status(200).send({
-        message:
-          "There's no own mentories in the database, please add at least one"
-      })
+          message:
+            "There's no own mentories in the database, please add at least one"
+        })
   } catch (error) {
+    console.log(error)
     res.status(400).send({
-      message: `There was an error getting the owned mentories: ${error}`,
+      message: `There was an error getting the owned mentories`,
       error: error,
       section: 'controller'
     })
@@ -62,6 +65,8 @@ export const saveMentory = async (req, res) => {
     time = time.getTime()
     let date = new Date()
     date = date.getFullYear()
+    req.body.author = `${req.user.name} ${req.user.surname}`
+    req.body.email = req.user.email
     req.body.avatar = avatarGenerator(req.body.title, req.body.author)
     req.body.time = time
     req.body.date = date
