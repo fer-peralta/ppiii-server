@@ -4,17 +4,17 @@ import { config } from '../../../config/config'
 import { Link } from 'react-router-dom'
 
 const MentoryCreate1 = () => {
-    const [author, setAuthor] = useState('')
+    // const [author, setAuthor] = useState('')
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [area, setArea] = useState('')
     const [capacity, setCapacity] = useState('')
     const [classes_quantity, setClasses_quantity] = useState('')
-    const [classes_minutes, setClasses_minutes] = useState('')
+    const [classes_duration, setClasses_duration] = useState('')
     const [modality, setModality] = useState('')
     const [location, setLocation] = useState('')
     const [time, setTime] = useState('')
-    const [fecha, setFecha] = useState('')
+    //const [fecha, setFecha] = useState('')
     const [dia, setDia] = useState('')
 
 
@@ -22,16 +22,21 @@ const MentoryCreate1 = () => {
         e.preventDefault()
         try {
             const Post = {
-                author,
-                title, description, area, capacity, classes_quantity, classes_minutes, modality, location
-                , time, fecha, dia
+                // author,
+                title, description, area, capacity, classes_quantity, classes_duration, modality, location
+                , time, dia
+                // fecha
+
             }
             const URL = `${config.REACT_APP_API_BASE_URL}mentories`
+            const token = JSON.stringify(localStorage.getItem('token'))
 
             const options = {
                 method: 'POST',
                 body: JSON.stringify(Post),
                 headers: {
+                    Authorization: `Bearer ${token}`,
+                    Accept: 'application/json',
                     'Content-Type': 'application/json'
                 }
             }
@@ -54,7 +59,7 @@ const MentoryCreate1 = () => {
             <div className='contenedorLogin'>
                 <form onSubmit={handleSubmit} className='form'>
                     <h2 className='title '>Mentories</h2>
-                    <label className='label' htmlFor='author'>
+                    {/* <label className='label' htmlFor='author'>
                         Author
                     </label>
                     <input
@@ -65,7 +70,7 @@ const MentoryCreate1 = () => {
                         onChange={e => {
                             setAuthor(e.target.value)
                         }}
-                    />
+                    /> */}
 
                     <label className='label' htmlFor='titulo'>
                         Titulo
@@ -132,9 +137,9 @@ const MentoryCreate1 = () => {
                         type='number'
                         required={true}
                         name='duracion'
-                        value={classes_minutes}
+                        value={classes_duration}
                         onChange={e => {
-                            setClasses_minutes(e.target.value)
+                            setClasses_duration(e.target.value)
 
                         }}
                     />
@@ -165,20 +170,20 @@ const MentoryCreate1 = () => {
                         }} />
                     <label htmlFor='horario'>Horario</label>
                     <input required={true}
-                        type='text'
+                        type='time'
                         name='horario'
                         value={time}
                         onChange={e => {
                             setTime(e.target.value)
                         }} />
-                    <label htmlFor='fecha'>Fecha</label>
+                    {/* <label htmlFor='fecha'>Fecha</label>
                     <input required={false}
                         type='text'
                         name='fecha'
                         value={fecha}
                         onChange={e => {
                             setFecha(e.target.value)
-                        }} />
+                        }} /> */}
                     <label htmlFor='dia'>Día</label>
                     <select required={false}
                         type='text'
