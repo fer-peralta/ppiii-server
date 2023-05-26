@@ -1,29 +1,9 @@
-table.mentory_card {
-    display: flex;
-    justify-content: center;
-    border-collapse: collapse;
-}
-
-tbody.mentory_card {
-    border: 1px solid;
-
-}
-
-tr.mentory_card_header {
-    width: 100%;
-}
-
-tr.mentory_card_header td {
-    border: 1px solid;
-}
-
-.td {
-    border: 1px solid;
-}
-
 .card {
+    display: block;
     margin: auto;
-    width: 300px;
+    max-width: 40vmax;
+    max-height: fit-content;
+    text-align: justify;
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 10px;

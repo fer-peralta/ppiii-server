@@ -1,0 +1,12 @@
+/* .contenedorCards {
+    display: flex;
+    flex-wrap: wrap;
+} */
+
+.itemList {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+}
