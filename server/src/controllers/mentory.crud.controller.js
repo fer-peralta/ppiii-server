@@ -61,15 +61,9 @@ export const getOwnMentories = async (req, res) => {
 
 export const saveMentory = async (req, res) => {
   try {
-    let time = new Date()
-    time = time.getTime()
-    let date = new Date()
-    date = date.getFullYear()
     req.body.author = `${req.user.name} ${req.user.surname}`
     req.body.email = req.user.email
     req.body.avatar = avatarGenerator(req.body.title, req.body.author)
-    req.body.time = time
-    req.body.date = date
     const response = await MentoryService.saveMentory(req.body)
     res.status(200).send({ data: response })
   } catch (error) {

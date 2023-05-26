@@ -23,7 +23,7 @@ const mentoriesSchema = new mongoose.Schema(
     year_career: { type: Number, min: 1, max: 3 },
     capacity: { type: Number, required: true, min: 1, max: 10 },
     classes_quantity: { type: Number, required: true, min: 1 },
-    classes_minutes: { type: Number, required: true, min: 60 },
+    classes_duration: { type: Number, required: true, min: 1, max: 4 },
     modality: {
       type: String,
       enum: ['Presencial', 'Asíncrona', 'Virtual'],
