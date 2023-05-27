@@ -25,7 +25,7 @@
 .skill {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .skill-name {
@@ -34,11 +34,11 @@
 }
 
 h3 {
-    padding: 3px;
+    padding: 1px;
 }
 
 h4 {
-    padding: 3px;
+    padding: 1px;
 }
 
 .contenedorImg {
