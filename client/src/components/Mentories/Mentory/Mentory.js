@@ -1,4 +1,6 @@
 import './Mentory.css'
+import { Link } from 'react-router-dom'
+import { config } from '../../../config/config'
 
 const Mentory = ({ mentory }) => {
   const level = () => {
@@ -24,6 +26,34 @@ const Mentory = ({ mentory }) => {
       return ''
     }
   }
+
+
+  const URL = `${config.REACT_APP_API_BASE_URL}mentories/`
+  const token = JSON.stringify(localStorage.getItem('token'))
+
+  const handleDelete = async (e) => {
+
+    try {
+      // Construir el objeto de datos para la actualización del post
+      const options = {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        } // O 'PATCH' si corresponde
+      }
+
+      // Hacer la solicitud PUT o PATCH a la API
+      const response = await fetch(`${URL}${mentory._id}`, options)
+        .then(resp => resp.json())
+        .catch(error => console.log(error))
+
+    } catch (error) {
+      // Manejar errores, por ejemplo, mostrar un mensaje de error
+      console.error(error);
+    }
+  };
 
   return (
 
@@ -74,12 +104,15 @@ const Mentory = ({ mentory }) => {
             <div className="skill">
               <h4>Día: </h4><span> {mentory.day}</span>
             </div>
-            <button type='submit' className='submit' style={{ backgroundColor: 'red' }}>
+            <button
+              type='submit'
+              className='submit'
+              onClick={() => handleDelete(mentory._id)}
+              style={{ backgroundColor: 'red' }}>
               eliminar
             </button>
-            <button type='submit' className='submit'>
-              Modificar
-            </button>
+            <Link to={`/mentories/${mentory._id}`} className='submit'>Editar</Link>
+
           </div>
         </div >
       </div>

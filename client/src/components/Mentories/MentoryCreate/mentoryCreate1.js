@@ -59,19 +59,6 @@ const MentoryCreate1 = () => {
             <div className='contenedorLogin'>
                 <form onSubmit={handleSubmit} className='form'>
                     <h2 className='title '>Mentories</h2>
-                    {/* <label className='label' htmlFor='author'>
-                        Author
-                    </label>
-                    <input
-                        required={true}
-                        type='text'
-                        name='author'
-                        value={author}
-                        onChange={e => {
-                            setAuthor(e.target.value)
-                        }}
-                    /> */}
-
                     <label className='label' htmlFor='titulo'>
                         Titulo
                     </label>

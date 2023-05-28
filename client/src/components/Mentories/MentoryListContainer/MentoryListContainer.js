@@ -42,10 +42,8 @@ const ItemListContainer = () => {
   return (
     <div className='itemListContainer'>
       <h1>Mentorías disponibles</h1>
-      <ul>
-        <Link to='/mentories/create'>Crear mentoría</Link>
 
-      </ul>
+      <Link to='/mentories/create'>Crear mentoría</Link>
       <MentoryList mentories={mentories} />
     </div>
   )
