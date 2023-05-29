@@ -41,7 +41,7 @@ const ItemListContainer = () => {
 
   return (
     <div className='itemListContainer'>
-      <h1>Mentorías disponibles</h1>
+      <h1>Mis mentorías</h1>
       <MentoryList mentories={mentories} />
     </div>
   )

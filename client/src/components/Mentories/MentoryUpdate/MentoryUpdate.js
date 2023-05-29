@@ -119,7 +119,9 @@ const MentoryUpdate = props => {
             Descripcion
           </label>
           <textarea
+            className='textArea'
             required={true}
+            resize='none'
             type='text-area'
             name='descripcion'
             value={description}
@@ -131,6 +133,7 @@ const MentoryUpdate = props => {
             Area
           </label>
           <select
+            className='select1'
             required={true}
             type='text'
             name='area'
@@ -176,6 +179,7 @@ const MentoryUpdate = props => {
 
           <label htmlFor='modalidad'>Modalidad</label>
           <select
+            className='select1'
             type='text'
             required={true}
             name='modalidad'
@@ -200,16 +204,38 @@ const MentoryUpdate = props => {
               setLocation(e.target.value)
             }}
           />
-          <label htmlFor='horario'>Horario</label>
-          <input
-            required={true}
-            type='time'
-            name='horario'
-            value={time}
-            onChange={e => {
-              setTime(e.target.value)
-            }}
-          />
+          <div className='diaHorario'>
+            <label htmlFor='dia'>Día:</label>
+            <select
+              required={false}
+              type='text'
+              name='dia'
+              value={day}
+              onChange={e => {
+                setDay(e.target.value)
+              }}
+            >
+              <option></option>
+              <option>Lunes</option>
+              <option>Martes</option>
+              <option>Míercoles</option>
+              <option>Jueves</option>
+              <option>Viernes</option>
+              <option>Sábado</option>
+              <option>Domingo</option>
+            </select>
+
+            <label htmlFor='horario'>Horario:</label>
+            <input
+              required={true}
+              type='time'
+              name='horario'
+              value={time}
+              onChange={e => {
+                setTime(e.target.value)
+              }}
+            />
+          </div>
           {/* <label htmlFor='fecha'>Fecha</label>
                     <input required={false}
                         type='text'
@@ -218,28 +244,10 @@ const MentoryUpdate = props => {
                         onChange={e => {
                             setFecha(e.target.value)
                         }} /> */}
-          <label htmlFor='dia'>Día</label>
-          <select
-            required={false}
-            type='text'
-            name='dia'
-            value={day}
-            onChange={e => {
-              setDay(e.target.value)
-            }}
-          >
-            <option></option>
-            <option>Lunes</option>
-            <option>Martes</option>
-            <option>Míercoles</option>
-            <option>Jueves</option>
-            <option>Viernes</option>
-            <option>Sábado</option>
-            <option>Domingo</option>
-          </select>
+
 
           <button type='submit' className='submit'>
-            Registrar mentoria
+            Modificar
           </button>
         </form>
       </div>

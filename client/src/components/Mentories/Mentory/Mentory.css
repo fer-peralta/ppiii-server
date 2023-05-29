@@ -79,3 +79,11 @@ h4 {
     background-color: #c9cfdc;
     color: #403f4b;
 }
+
+.botones1 {
+    display: flex;
+    gap: 1rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}

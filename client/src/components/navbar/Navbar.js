@@ -7,6 +7,7 @@ const Navbar = () => {
 
   const loggedIn = () => {
     if (token) {
+
       return (
         <nav className='navTop'>
           <div className='div_logo'>
@@ -24,7 +25,7 @@ const Navbar = () => {
             <Link to='/register' className='nav_buttons'>
               Registro
             </Link>
-            <Link to='/profile' className='nav_buttons'>
+            <Link to='/profile' className='nav_buttons' id='profile'>
               Perfil
             </Link>
             <Link to='/mentories/create' className='nav_buttons'>

@@ -30,7 +30,7 @@
 
 .input {
     padding: 10px;
-
+    width: 5rem;
     margin-bottom: 20px;
     width: 100%;
     font-size: 1rem;
@@ -39,6 +39,12 @@
     border: 1px solid black;
     border-radius: 4px;
     transition: all 0.2s ease-in-out;
+}
+
+
+
+.select1 {
+    width: 10rem;
 }
 
 .input:focus {
@@ -58,4 +64,13 @@
     font-size: 1.2rem;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
+}
+
+.diaHorario {
+    display: flex;
+    gap: 1rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 8.5px;
 }

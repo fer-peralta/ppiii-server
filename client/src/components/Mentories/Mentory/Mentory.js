@@ -80,13 +80,13 @@ const Mentory = ({ mentory }) => {
               />
             </div>
             <div className='skill'>
-              <h3>Autor : </h3> <span>{mentory.author}</span>
+              <h3>Autor: </h3><span>&nbsp;{mentory.author}</span>
             </div>
             <div className='skill'>
-              <h4>Titulo : </h4> <span> {mentory.title}</span>
+              <h4>Título: </h4> <span>&nbsp;{mentory.title}</span>
             </div>
             <div className='skill1'>
-              <h4>Descripcion:</h4>
+              <h4>Descripción:</h4>
               <hr />
               <span
                 style={{
@@ -99,34 +99,34 @@ const Mentory = ({ mentory }) => {
               </span>
             </div>
             <div className='skill'>
-              <h4>Cantidad de alumnos: </h4>
+              <h4>Cantidad de alumnos:</h4>&nbsp;
               <span>{mentory.capacity}</span>
             </div>
             <div className='skill'>
-              <h4>Cantidad de clases: </h4>
+              <h4>Cantidad de clases:</h4>&nbsp;
               <span>{mentory.classes_quantity}</span>
             </div>
             <div className='skill'>
-              <h4>Duración de la clase:</h4>
-              <span> {mentory.classes_minutes} minutos</span>
+              <h4>Duración de la clase:</h4>&nbsp;
+              <span> {mentory.classes_duration} horas</span>
             </div>
             <div className='skill'>
-              <h4>Modalidad:</h4>
+              <h4>Modalidad:</h4>&nbsp;
               <span> {mentory.modality}</span>
             </div>
             <div className='skill'>
-              <h4>Ubicacion:</h4>
+              <h4>Ubicación:</h4>&nbsp;
               <span> {mentory.location}</span>
             </div>
             <div className='skill'>
-              <h4>Horario: </h4>
+              <h4>Horario:</h4>&nbsp;
               <span> {mentory.time}</span>
             </div>
             <div className='skill'>
-              <h4>Día: </h4>
+              <h4>Día:</h4>&nbsp;
               <span> {mentory.day}</span>
             </div>
-            <div className='botones'>
+            <div className='botones1'>
               <Link to={`/mentories/update`}
                 state={mentoryId}
                 className='submit1'>
@@ -140,7 +140,6 @@ const Mentory = ({ mentory }) => {
               >
                 Eliminar
               </button>
-
             </div>
           </div>
         </div>

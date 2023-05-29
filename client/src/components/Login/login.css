@@ -93,14 +93,13 @@ form {
 
 .botones {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
 
 }
 
 .botones>button,
-a,
-link {
+a {
     padding: 5px 5px;
 }
 
