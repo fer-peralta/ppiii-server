@@ -99,7 +99,8 @@ form {
 }
 
 .botones>button,
-a {
+a,
+link {
     padding: 5px 5px;
 }
 

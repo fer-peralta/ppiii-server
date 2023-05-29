@@ -126,17 +126,22 @@ const Mentory = ({ mentory }) => {
               <h4>Día: </h4>
               <span> {mentory.day}</span>
             </div>
-            <button
-              type='submit'
-              className='submit'
-              onClick={() => handleDelete(mentory._id)}
-              style={{ backgroundColor: 'red' }}
-            >
-              Eliminar
-            </button>
-            <Link to={`/mentories/update`} state={mentoryId} className='submit'>
-              Editar
-            </Link>
+            <div className='botones'>
+              <Link to={`/mentories/update`}
+                state={mentoryId}
+                className='submit1'>
+                Editar
+              </Link>
+              <button
+                type='submit'
+                className='submit1'
+                onClick={() => handleDelete(mentory._id)}
+                style={{ backgroundColor: 'red' }}
+              >
+                Eliminar
+              </button>
+
+            </div>
           </div>
         </div>
       </div>
