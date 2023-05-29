@@ -1,13 +1,11 @@
-import { useState } from 'react'
-import './MentoryCreate.css'
+import { useState, useEffect } from 'react'
+import './MentoryUpdate.css'
 import { config } from '../../../config/config'
-import { Link } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
-const MentoryCreate1 = () => {
+const MentoryUpdate = props => {
   const navigate = useNavigate()
-  // const [author, setAuthor] = useState('')
-  //const [mentories, setMentories] = useState(false)
+
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [area, setArea] = useState('')
@@ -20,11 +18,50 @@ const MentoryCreate1 = () => {
   //const [fecha, setFecha] = useState('')
   const [day, setDay] = useState('')
 
+  const [mentoryToUpdate, setmentoryToUpdate] = useState([])
+  const locationProp = useLocation()
+  const mentoryId = locationProp.state
+
+  const token = JSON.stringify(localStorage.getItem('token'))
+  const URLGetById = `${config.REACT_APP_API_BASE_URL}mentories/${mentoryId}`
+
+  const optionsGetUserById = {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    }
+  }
+
+  const getUserById = async () => {
+    const response = await fetch(URLGetById, optionsGetUserById)
+    const dataNew = await response.json()
+    setmentoryToUpdate(dataNew)
+    setTitle(dataNew.data.data.title)
+    setDescription(dataNew.data.data.description)
+    setArea(dataNew.data.data.area)
+    setCapacity(dataNew.data.data.capacity)
+    setClasses_quantity(dataNew.data.data.classes_quantity)
+    setClasses_duration(dataNew.data.data.classes_duration)
+    setModality(dataNew.data.data.modality)
+    setLocation(dataNew.data.data.location)
+    setTime(dataNew.data.data.time)
+    // setFecha(dataNew.data.data.fecha)
+    setDay(dataNew.data.data.day)
+    return dataNew
+  }
+
+  useEffect(() => {
+    getUserById().then(mentory => {
+      setmentoryToUpdate(mentory)
+    })
+  }, [])
+
   const handleSubmit = async e => {
     e.preventDefault()
     try {
-      const Post = {
-        // author,
+      const putInfo = {
         title,
         description,
         area,
@@ -37,27 +74,28 @@ const MentoryCreate1 = () => {
         day
         // fecha
       }
-      const URL = `${config.REACT_APP_API_BASE_URL}mentories`
-      const token = JSON.stringify(localStorage.getItem('token'))
 
-      const options = {
-        method: 'POST',
-        body: JSON.stringify(Post),
+      const URLPUT = `${config.REACT_APP_API_BASE_URL}mentories/${mentoryId}`
+
+      const optionsUpdate = {
+        method: 'PUT',
+        body: JSON.stringify(putInfo),
         headers: {
           Authorization: `Bearer ${token}`,
           Accept: 'application/json',
           'Content-Type': 'application/json'
         }
       }
-      await fetch(URL, options).then(resp => {
+
+      await fetch(URLPUT, optionsUpdate).then(resp => {
         resp.json().then(data => {
           console.log(data)
-          navigate('../mentories/own')
         })
       })
     } catch (error) {
       console.error(error)
     }
+    navigate('../mentories/own')
   }
   return (
     <>
@@ -81,8 +119,6 @@ const MentoryCreate1 = () => {
             Descripcion
           </label>
           <textarea
-            className='textArea'
-            resize='none'
             required={true}
             type='text-area'
             name='descripcion'
@@ -210,4 +246,4 @@ const MentoryCreate1 = () => {
     </>
   )
 }
-export default MentoryCreate1
+export default MentoryUpdate

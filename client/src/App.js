@@ -11,12 +11,13 @@ import MentoryListContainer from './components/Mentories/MentoryListContainer/Me
 import MentoryOwnListContainer from './components/Mentories/MentoryOwnListContainer/MentoryOwnListContainer'
 //import MentoryCreate1 from './components/Mentories/MentoryCreate/MentoryCreate'
 import MentoryCreate1 from './components/Mentories/MentoryCreate/mentoryCreate1'
+import MentoryUpdate from './components/Mentories/MentoryUpdate/MentoryUpdate'
 import Error404 from './components/Error404/Error404'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 const queryClient = new QueryClient()
 
-function App() {
+function App () {
   return (
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
@@ -27,6 +28,7 @@ function App() {
           <Route path='/profile' element={<Profile />} />
           <Route path='/mentories' element={<MentoryListContainer />} />
           <Route path='/mentories/create' element={<MentoryCreate1 />} />
+          <Route path='/mentories/update/' element={<MentoryUpdate />} />
           <Route path='/mentories/own' element={<MentoryOwnListContainer />} />
           <Route path='*' element={<Error404 />} />
         </Routes>

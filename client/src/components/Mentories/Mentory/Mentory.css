@@ -41,6 +41,12 @@ h4 {
     padding: 1px;
 }
 
+.textArea {
+    width: 160px;
+    height: 150px;
+    resize: none;
+}
+
 .contenedorImg {
     display: flex;
     justify-content: center;
