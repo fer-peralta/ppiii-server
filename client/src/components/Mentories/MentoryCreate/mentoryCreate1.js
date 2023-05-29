@@ -51,7 +51,6 @@ const MentoryCreate1 = () => {
       }
       await fetch(URL, options).then(resp => {
         resp.json().then(data => {
-          console.log(data)
           navigate('../mentories/own')
         })
       })
@@ -69,6 +68,7 @@ const MentoryCreate1 = () => {
             Titulo
           </label>
           <input
+            className='inputMentories'
             required={true}
             type='text'
             name='titulo'
@@ -112,6 +112,7 @@ const MentoryCreate1 = () => {
 
           <label htmlFor='cantAlum'>Cantidad Alumnos</label>
           <input
+            className='inputMentories'
             type='number'
             required={true}
             name='cantAlum'
@@ -121,6 +122,7 @@ const MentoryCreate1 = () => {
 
           <label htmlFor='cantClas'>Cantidad Clases</label>
           <input
+            className='inputMentories'
             type='number'
             required={true}
             name='cantClas'
@@ -130,6 +132,7 @@ const MentoryCreate1 = () => {
 
           <label htmlFor='duracion'>Duracion</label>
           <input
+            className='inputMentories'
             type='number'
             required={true}
             name='duracion'
@@ -141,6 +144,7 @@ const MentoryCreate1 = () => {
 
           <label htmlFor='modalidad'>Modalidad</label>
           <select
+
             className='select1'
             type='text'
             required={true}
@@ -158,6 +162,7 @@ const MentoryCreate1 = () => {
           </select>
           <label htmlFor='ubicación'>Ubicación</label>
           <input
+            className='inputMentories'
             required={true}
             type='text'
             name='ubicación'
@@ -169,7 +174,7 @@ const MentoryCreate1 = () => {
           <div className='diaHorario'>
             <label htmlFor='dia'>Día:</label>
             <select
-
+              className='selectDia'
               required={false}
               type='text'
               name='dia'
@@ -202,7 +207,7 @@ const MentoryCreate1 = () => {
 
 
           <button type='submit' className='submit'>
-            Registrar mentoria
+            Crear mentoria
           </button>
         </form>
       </div>

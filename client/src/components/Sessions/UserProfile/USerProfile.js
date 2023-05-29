@@ -62,6 +62,10 @@ const Profile = () => {
           <h2>
             {data.User.name.toUpperCase()} {data.User.surname.toUpperCase()}
           </h2>
+          <p>{data.User.email}</p>
+          <p>{data.User.adress}</p>
+          <p>{data.User.age} años</p>
+          <p>{data.User.phone}</p>
 
         </div>
       </div>

@@ -107,6 +107,7 @@ const MentoryUpdate = props => {
             Titulo
           </label>
           <input
+            className='inputMentories'
             required={true}
             type='text'
             name='titulo'
@@ -150,6 +151,7 @@ const MentoryUpdate = props => {
 
           <label htmlFor='cantAlum'>Cantidad Alumnos</label>
           <input
+            className='inputMentories'
             type='number'
             required={true}
             name='cantAlum'
@@ -159,6 +161,7 @@ const MentoryUpdate = props => {
 
           <label htmlFor='cantClas'>Cantidad Clases</label>
           <input
+            className='inputMentories'
             type='number'
             required={true}
             name='cantClas'
@@ -168,6 +171,7 @@ const MentoryUpdate = props => {
 
           <label htmlFor='duracion'>Duracion</label>
           <input
+            className='inputMentories'
             type='number'
             required={true}
             name='duracion'
@@ -196,6 +200,7 @@ const MentoryUpdate = props => {
           </select>
           <label htmlFor='ubicación'>Ubicación</label>
           <input
+            className='inputMentories'
             required={true}
             type='text'
             name='ubicación'
@@ -247,7 +252,7 @@ const MentoryUpdate = props => {
 
 
           <button type='submit' className='submit'>
-            Modificar
+            Modificar mentoría
           </button>
         </form>
       </div>

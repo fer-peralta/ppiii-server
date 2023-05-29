@@ -4,13 +4,32 @@ import { config } from '../../../config/config'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 const Mentory = ({ mentory }) => {
-  const navigate = useNavigate()
+  const specificWebPage = window.location.href
+
+  const mentoryOwnEdit = () => {
+    if (specificWebPage == "http://localhost:3000/mentories/own") {
+      return (
+        <div className='botones1' >
+          <Link to={`/mentories/update`}
+            state={mentoryId}
+            className='submit1 mentory-own'>
+            Editar
+          </Link>
+          <button
+            type='submit'
+            className='submit1 mentory-own'
+            onClick={() => handleDelete(mentory._id)}
+            style={{ backgroundColor: 'red' }}
+          >
+            Eliminar
+          </button>
+        </div>
+      )
+
+    }
+  }
 
   const mentoryId = mentory._id
-
-  // useEffect(() => {
-  //   handleDelete()
-  // }, [])
 
   const level = () => {
     if (mentory.level) {
@@ -41,23 +60,19 @@ const Mentory = ({ mentory }) => {
 
   const handleDelete = async e => {
     try {
-      // Construir el objeto de datos para la actualización del post
       const options = {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${token}`,
           Accept: 'application/json',
           'Content-Type': 'application/json'
-        } // O 'PATCH' si corresponde
+        }
       }
-
-      // Hacer la solicitud PUT o PATCH a la API
       const response = await fetch(`${URL}${mentory._id}`, options).then(resp =>
         resp.json()
       )
       window.location.reload().catch(error => console.log(error))
     } catch (error) {
-      // Manejar errores, por ejemplo, mostrar un mensaje de error
       console.error(error)
     }
   }
@@ -85,7 +100,7 @@ const Mentory = ({ mentory }) => {
             <div className='skill'>
               <h4>Título: </h4> <span>&nbsp;{mentory.title}</span>
             </div>
-            <div className='skill1'>
+            <div className='skill1 description'>
               <h4>Descripción:</h4>
               <hr />
               <span
@@ -126,21 +141,7 @@ const Mentory = ({ mentory }) => {
               <h4>Día:</h4>&nbsp;
               <span> {mentory.day}</span>
             </div>
-            <div className='botones1'>
-              <Link to={`/mentories/update`}
-                state={mentoryId}
-                className='submit1'>
-                Editar
-              </Link>
-              <button
-                type='submit'
-                className='submit1'
-                onClick={() => handleDelete(mentory._id)}
-                style={{ backgroundColor: 'red' }}
-              >
-                Eliminar
-              </button>
-            </div>
+            {mentoryOwnEdit()}
           </div>
         </div>
       </div>
