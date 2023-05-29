@@ -144,7 +144,6 @@ const MentoryCreate1 = () => {
 
           <label htmlFor='modalidad'>Modalidad</label>
           <select
-
             className='select1'
             type='text'
             required={true}
@@ -158,7 +157,7 @@ const MentoryCreate1 = () => {
             <option></option>
             <option>Presencial</option>
             <option>Virtual</option>
-            <option>Asincrónica</option>
+            <option>Asíncrona</option>
           </select>
           <label htmlFor='ubicación'>Ubicación</label>
           <input
@@ -204,7 +203,6 @@ const MentoryCreate1 = () => {
               }}
             />
           </div>
-
 
           <button type='submit' className='submit'>
             Crear mentoria

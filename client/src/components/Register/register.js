@@ -12,38 +12,35 @@ const Register = () => {
   const [adress, setAdress] = useState('')
   const [age, setAge] = useState('')
   const [phone, setPhone] = useState('')
-  const [emailError, setEmailError] = useState('');
-  const [ageError, setAgeError] = useState('');
-  const [phoneError, setPhoneError] = useState('');
+  const [emailError, setEmailError] = useState('')
+  const [ageError, setAgeError] = useState('')
+  const [phoneError, setPhoneError] = useState('')
   const [miregister, setMiregister] = useState(false)
 
   const navigate = useNavigate()
 
-  const validateEmail = (value) => {
+  const validateEmail = value => {
     if (!value.includes('@itbeltran.com.ar')) {
-      setEmailError('El correo electrónico debe incluir @itbeltran.com.ar');
-
+      setEmailError('El correo electrónico debe incluir @itbeltran.com.ar')
     } else {
-      setEmailError('');
+      setEmailError('')
     }
   }
-  const validateAge = (value) => {
-    const ageValue = Number(value);
+  const validateAge = value => {
+    const ageValue = Number(value)
     if (ageValue < 18 || ageValue > 65) {
-      setAgeError('La edad debe estar entre 18 y 65 años');
+      setAgeError('La edad debe estar entre 18 y 65 años')
     } else {
-      setAgeError('');
+      setAgeError('')
     }
-  };
-  const validatePhone = (value) => {
-
+  }
+  const validatePhone = value => {
     if (value.length < 10) {
-      setPhoneError('El telefono debe tener 10 o mas digitos');
+      setPhoneError('El telefono debe tener 10 o mas digitos')
     } else {
-      setPhoneError('');
+      setPhoneError('')
     }
-  };
-
+  }
 
   const handleSubmit = async e => {
     e.preventDefault()
@@ -58,29 +55,25 @@ const Register = () => {
           'Content-Type': 'application/json'
         }
       }
-      await fetch(URL, options)
-        .then(resp => {
-          resp.json()
-            .then(data => {
-              localStorage.setItem('token', data.access_token)
-              data.message === 'There was an error: ReferenceError: error is not defined' ? setMiregister(false) : navigate('/profile')
-            })
+      await fetch(URL, options).then(resp => {
+        resp.json().then(data => {
+          localStorage.setItem('token', data.access_token)
+          data.message ===
+          'There was an error: ReferenceError: error is not defined'
+            ? setMiregister(false)
+            : navigate('/mentories')
         })
-
-
-
+      })
 
       // const responsePost = await fetch(URL, options)
-
 
       //   .then(resp => resp.json())
       //   .then(data => localStorage.setItem('token', data.access_token))
       // data.message ? setMiregister(true) : console.error("Usuario incorrecto")
       // if (responsePost.message === "User sign up with success") {
       //   alert('Registro exitoso.')
-      //   
+      //
       // }
-
     } catch (error) {
       console.error(error)
     }
@@ -103,8 +96,8 @@ const Register = () => {
             name='email'
             value={email}
             onChange={e => {
-              setEmail(e.target.value);
-              validateEmail(e.target.value);
+              setEmail(e.target.value)
+              validateEmail(e.target.value)
             }}
           />
           {emailError && <div style={{ color: 'red' }}>{emailError}</div>}
@@ -150,9 +143,9 @@ const Register = () => {
             required={true}
             name='age'
             value={age}
-            onChange={(e) => {
-              setAge(e.target.value);
-              validateAge(e.target.value);
+            onChange={e => {
+              setAge(e.target.value)
+              validateAge(e.target.value)
             }}
           />
           {ageError && <div style={{ color: 'red' }}>{ageError}</div>}
@@ -165,8 +158,8 @@ const Register = () => {
             minLength={10}
             value={phone}
             onChange={e => {
-              setPhone(e.target.value);
-              validatePhone(e.target.value);
+              setPhone(e.target.value)
+              validatePhone(e.target.value)
             }}
           />
           {phoneError && <div style={{ color: 'red' }}>{phoneError}</div>}
@@ -178,7 +171,7 @@ const Register = () => {
           </Link>
         </form>
       </div>
-      {miregister === true && <Navigate to='/profile' />}
+      {miregister === true && <Navigate to='/mentories' />}
     </>
   )
 }

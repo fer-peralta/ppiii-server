@@ -6,13 +6,19 @@ import { useNavigate } from 'react-router-dom'
 const Mentory = ({ mentory }) => {
   const specificWebPage = window.location.href
 
+  let prevUrl = document.referrer
+
+  console.log(prevUrl)
+
   const mentoryOwnEdit = () => {
-    if (specificWebPage == "http://localhost:3000/mentories/own") {
+    if (specificWebPage == 'http://localhost:3000/mentories/own') {
       return (
-        <div className='botones1' >
-          <Link to={`/mentories/update`}
+        <div className='botones1'>
+          <Link
+            to={`/mentories/update`}
             state={mentoryId}
-            className='submit1 mentory-own'>
+            className='submit1 mentory-own'
+          >
             Editar
           </Link>
           <button
@@ -25,7 +31,6 @@ const Mentory = ({ mentory }) => {
           </button>
         </div>
       )
-
     }
   }
 
@@ -95,7 +100,8 @@ const Mentory = ({ mentory }) => {
               />
             </div>
             <div className='skill'>
-              <h3>Autor: </h3><span>&nbsp;{mentory.author}</span>
+              <h3>Autor: </h3>
+              <span>&nbsp;{mentory.author}</span>
             </div>
             <div className='skill'>
               <h4>Título: </h4> <span>&nbsp;{mentory.title}</span>
