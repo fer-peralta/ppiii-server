@@ -12,4 +12,6 @@ router.get('/logout', auth, SessionController.logOutUserController)
 
 router.get('/profile', auth, SessionController.profileUserController)
 
+router.get('/confirm/:token', SessionController.userConfirmationController)
+
 export { router as sessionRouter }

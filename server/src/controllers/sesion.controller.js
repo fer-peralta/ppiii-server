@@ -1,9 +1,11 @@
 import { avatarGenerator } from '../services/avatar.generator.js'
 import * as UserService from '../services/user.service.js'
-import { generateToken } from '../services/jwt.js'
+import { generateToken, getTokenData } from '../services/jwt.js'
 import { logError, logInfo } from '../logs/logger.js'
 import { createHash, isValidPassword } from '../services/bcrypt.hash.js'
 import { UserModel } from '../database/models/user.model.js'
+import { signUpMail } from '../services/emails/email.user.signup.js'
+import { confirmMail } from '../services/emails/email.user.confirm.js'
 
 export const SignUpUserController = async (req, res, next) => {
   try {
@@ -28,6 +30,8 @@ export const SignUpUserController = async (req, res, next) => {
     }
     const access_token = generateToken(createUser)
     if (createUser) {
+      signUpMail(newUser)
+      confirmMail(newUser, access_token)
       res.json({ message: 'User sign up with success', access_token })
     }
   } catch (error) {
@@ -96,6 +100,30 @@ export const profileUserController = async (req, res) => {
       console.log(data)
       res.status(200).json({ message: 'User profile', User: data })
     }
+  } catch (error) {
+    const errorMessage = { message: `There was an error: ${error}` }
+    logError.error(errorMessage)
+    res.status(400).json(errorMessage)
+  }
+}
+
+export const userConfirmationController = async (req, res) => {
+  try {
+    const { token } = req.params
+    const data = getTokenData(token)
+    data === null &&
+      res.send({ message: 'There was an error with the token data' })
+
+    const { email, code } = data.data
+
+    const user = await UserModel.findOne({ email })
+    user === null &&
+      res.send({ message: "There was an error, user doesn't exist" })
+    code !== user.code &&
+      res.send({ message: "There was an error, code doesn't match" })
+    user.state = 'active'
+    await UserService.updateUser(user._id, user)
+    res.send({ message: 'User confirmed', user: user })
   } catch (error) {
     const errorMessage = { message: `There was an error: ${error}` }
     logError.error(errorMessage)

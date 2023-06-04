@@ -4,7 +4,6 @@ import { logError, logInfo } from '../logs/logger.js'
 
 export const getUsers = async (req, res) => {
   try {
-    console.log(req.user)
     const response = await UserService.getUsers()
     let newArrayOfUsers = []
     for (const user of response) {
