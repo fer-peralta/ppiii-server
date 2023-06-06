@@ -1,5 +1,6 @@
 import { avatarGenerator } from '../services/avatar.generator.js'
 import * as MentoryService from '../services/mentory.service.js'
+import { UserModel } from '../database/models/user.model.js'
 import { logError, logInfo } from '../logs/logger.js'
 
 export const getMentories = async (req, res) => {
@@ -61,8 +62,9 @@ export const getOwnMentories = async (req, res) => {
 
 export const saveMentory = async (req, res) => {
   try {
-    req.body.author = `${req.user.name} ${req.user.surname}`
-    req.body.email = req.user.email
+    const user = await UserModel.findOne({ email: req.user.email }).exec()
+    req.body.author = `${user.name} ${user.surname}`
+    req.body.email = user.email
     req.body.avatar = avatarGenerator(req.body.title, req.body.author)
     const response = await MentoryService.saveMentory(req.body)
     res.status(200).send({ data: response })
