@@ -3,6 +3,7 @@ import * as SubscriptionService from '../services/subscription.service.js'
 import * as MentoryService from '../services/mentory.service.js'
 import { logError, logInfo } from '../logs/logger.js'
 import { UserModel } from '../database/models/user.model.js'
+import { newSubscriptionMail } from '../services/emails/email.user.subscribed.js'
 
 export const getUserSubscriptions = async (req, res) => {
   try {
@@ -48,6 +49,8 @@ export const saveUserSubscription = async (req, res) => {
       await MentoryService.updateMentory(req.body.mentoryId, {
         $push: { subscriptors_email: req.user.email }
       })
+      const mentory = await MentoryService.findMentory(req.body.mentoryId)
+      newSubscriptionMail(data, mentory.data)
       await res.status(200).send({ data: response })
     }
   } catch (error) {

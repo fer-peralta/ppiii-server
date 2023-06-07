@@ -37,6 +37,7 @@ export const userSchema = new mongoose.Schema(
       type: String,
       enum: ['masculino', 'femenino', 'otro', 'prefiero no decirlo']
     },
+    mentories: { type: [{ mentoryId: String }], required: true },
     subscriptions: { type: [subcriptionSchema], required: true }
   },
   { timestamps: true }

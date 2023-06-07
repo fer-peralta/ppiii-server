@@ -89,15 +89,11 @@ export const logOutUserController = async (req, res) => {
 }
 export const profileUserController = async (req, res) => {
   try {
-    console.log(req.user.email)
-    console.log('Hola1', req.user._id)
     if (req.user._id) {
       const { data } = await UserService.findUser(req.user._id)
-      console.log(data)
       res.status(200).json({ message: 'User profile', User: data })
     } else if (req.user.id) {
       const { data } = await UserService.findUser(req.user.id)
-      console.log(data)
       res.status(200).json({ message: 'User profile', User: data })
     }
   } catch (error) {
