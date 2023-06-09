@@ -4,9 +4,9 @@ import { auth } from '../../middlewares/check.session.jwt.js'
 
 const router = express.Router()
 
-router.get('/:id', auth, UserSubscriptionsController.getUserSubscriptions)
+router.get('/', auth, UserSubscriptionsController.getUserSubscriptions)
 
-router.post('/:id', auth, UserSubscriptionsController.saveUserSubscription)
+router.post('/', auth, UserSubscriptionsController.saveUserSubscription)
 
 router.delete(
   '/deleteall',
@@ -14,6 +14,6 @@ router.delete(
   UserSubscriptionsController.deleteAllUserSubscriptions
 )
 
-router.delete('/:id', auth, UserSubscriptionsController.deleteUserSubscription)
+router.delete('/', auth, UserSubscriptionsController.deleteUserSubscription)
 
 export { router as subscriptionsRouter }
