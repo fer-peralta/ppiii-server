@@ -8,9 +8,8 @@ const Mentory = ({ mentory }) => {
 
   let prevUrl = document.referrer
 
-
   const mentoryOwnEdit = () => {
-    if (specificWebPage == 'http://localhost:3000/mentories/own') {
+    if (specificWebPage === 'http://localhost:3000/mentories/own') {
       return (
         <div className='botones1'>
           <Link
@@ -33,18 +32,16 @@ const Mentory = ({ mentory }) => {
     }
   }
   const mentorySubcription = () => {
-    if (specificWebPage == 'http://localhost:3000/mentories') {
+    if (specificWebPage === 'http://localhost:3000/mentories') {
       return (
-
         <button
           type='submit'
-          className='submit1 mentory-own'
+          className='submit1 button-inscription'
           onClick={() => handleSubcription()}
           style={{ backgroundColor: 'grey' }}
         >
-          Anotarse
+          Inscribirse
         </button>
-
       )
     }
   }
@@ -76,6 +73,7 @@ const Mentory = ({ mentory }) => {
   }
 
   const URL = `${config.REACT_APP_API_BASE_URL}mentories/`
+  const URL2 = `${config.REACT_APP_API_BASE_URL}users/subscriptions`
   const token = JSON.stringify(localStorage.getItem('token'))
 
   const handleDelete = async e => {
@@ -98,9 +96,8 @@ const Mentory = ({ mentory }) => {
   }
 
   const handleSubcription = async e => {
-    console.log(mentoryId)
     try {
-      const Post = { mentoryId }
+      const Post = { mentoryId: mentoryId }
       const options = {
         method: 'POST',
         body: JSON.stringify(Post),
@@ -110,12 +107,9 @@ const Mentory = ({ mentory }) => {
           'Content-Type': 'application/json'
         }
       }
-      const response = await fetch(`http://localhost:8080/api/users/subscriptions/`, options).then(resp =>
-        resp.json()
-          .then(console.log(mentoryId))
-          .then()
-
-      )
+      console.log(options)
+      const response = await fetch(URL2, options)
+        .then(resp => resp.json().then(console.log(mentoryId)).then())
         .catch(error => console.log(error))
     } catch (error) {
       console.error(error)
