@@ -8,7 +8,6 @@ const Mentory = ({ mentory }) => {
 
   let prevUrl = document.referrer
 
-  console.log(prevUrl)
 
   const mentoryOwnEdit = () => {
     if (specificWebPage == 'http://localhost:3000/mentories/own') {
@@ -33,8 +32,24 @@ const Mentory = ({ mentory }) => {
       )
     }
   }
+  const mentorySubcription = () => {
+    if (specificWebPage == 'http://localhost:3000/mentories') {
+      return (
 
-  const mentoryId = mentory._id
+        <button
+          type='submit'
+          className='submit1 mentory-own'
+          onClick={() => handleSubcription()}
+          style={{ backgroundColor: 'grey' }}
+        >
+          Anotarse
+        </button>
+
+      )
+    }
+  }
+
+  let mentoryId = mentory._id
 
   const level = () => {
     if (mentory.level) {
@@ -77,6 +92,31 @@ const Mentory = ({ mentory }) => {
         resp.json()
       )
       window.location.reload().catch(error => console.log(error))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const handleSubcription = async e => {
+    console.log(mentoryId)
+    try {
+      const Post = { mentoryId }
+      const options = {
+        method: 'POST',
+        body: JSON.stringify(Post),
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        }
+      }
+      const response = await fetch(`http://localhost:8080/api/users/subscriptions/`, options).then(resp =>
+        resp.json()
+          .then(console.log(mentoryId))
+          .then()
+
+      )
+        .catch(error => console.log(error))
     } catch (error) {
       console.error(error)
     }
@@ -148,6 +188,7 @@ const Mentory = ({ mentory }) => {
               <span> {mentory.day}</span>
             </div>
             {mentoryOwnEdit()}
+            {mentorySubcription()}
           </div>
         </div>
       </div>
