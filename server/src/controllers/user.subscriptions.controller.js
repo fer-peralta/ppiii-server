@@ -7,7 +7,7 @@ import { newSubscriptionMail } from '../services/emails/email.user.subscribed.js
 
 export const getUserSubscriptions = async (req, res) => {
   try {
-    const { data } = await UserService.findUser(req.params.id)
+    const { data } = await UserService.findUser(req.user._id)
     const userSubscriptions = data.subscriptions
     let newArrayOfSubscriptions = []
     for (const subscription of userSubscriptions) {
@@ -32,7 +32,7 @@ export const getUserSubscriptions = async (req, res) => {
 
 export const saveUserSubscription = async (req, res) => {
   try {
-    const { data } = await UserService.findUser(req.params.id)
+    const { data } = await UserService.findUser(req.user._id)
     req.body.email = req.user.email
     if (data.subscriptions.some(e => e.mentoryId == req.body.mentoryId)) {
       res
@@ -65,11 +65,11 @@ export const saveUserSubscription = async (req, res) => {
 export const deleteUserSubscription = async (req, res) => {
   try {
     let user = await UserModel.findOne({ email: req.user.email }).exec()
-    if (user.subscriptions.some(e => e.mentoryId == req.params.id)) {
+    if (user.subscriptions.some(e => e.mentoryId == req.body.mentoryId)) {
       await UserService.updateUser(user._id, {
-        $pull: { subscriptions: { mentoryId: req.params.id } }
+        $pull: { subscriptions: { mentoryId: req.body.mentoryId } }
       })
-      await MentoryService.updateMentory(req.params.id, {
+      await MentoryService.updateMentory(req.body.mentoryId, {
         $pull: { subscriptors_email: req.user.email }
       })
       user = await UserModel.findOne({ email: req.user.email }).exec()
