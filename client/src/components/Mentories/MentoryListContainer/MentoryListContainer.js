@@ -1,9 +1,6 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
 import MentoryList from '../MentoryList/MentoryList'
-import { useQuery } from 'react-query'
 import { config } from '../../../config/config'
-import { Link } from 'react-router-dom'
 
 const ItemListContainer = () => {
   const [mentories, setMentories] = useState([])

@@ -1,0 +1,58 @@
+footer {
+    margin-top: 7rem;
+    width: 100%;
+    height: auto;
+    background-color: grey;
+
+    bottom: 0;
+
+    div.social {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-items: center;
+        padding-top: 1rem;
+
+        .whatsapp {
+            background-image: url('../../utils/iconosSocial/facebook-tag.svg');
+        }
+        
+        .linkedin {
+            background-image: url('../../utils/iconosSocial/linkedin.svg');
+        }
+        
+        .github {
+            background-image: url('../../utils/iconosSocial/github-circle.svg');
+        }
+    
+        a {
+            margin: .25rem;
+            width: 3rem;
+            height: 3rem;
+            border-radius: .25rem;
+            background-color: #ccc;
+            background-position: center;
+            background-size: 2rem;
+            background-repeat: no-repeat;
+        }
+    
+        &:hover {
+            background-color: #eee;
+            background-size: 3rem;
+            box-shadow: 0 0 .5rem rgb(2, 1, 1);
+        }
+    }
+
+    p {
+        align-items: center;
+        text-align: center;
+        letter-spacing: 2px;
+        padding: 2rem 2rem 5rem 2rem;
+    }
+}
+
+
+
+
+
+

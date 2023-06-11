@@ -3,11 +3,10 @@ import './MentoryCreate.css'
 import { config } from '../../../config/config'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
+import { options } from './MentoryCreate.fetchOptions'
 
 const MentoryCreate = () => {
   const navigate = useNavigate()
-  // const [author, setAuthor] = useState('')
-  //const [mentories, setMentories] = useState(false)
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [area, setArea] = useState('')
@@ -19,12 +18,12 @@ const MentoryCreate = () => {
   const [time, setTime] = useState('')
   //const [fecha, setFecha] = useState('')
   const [day, setDay] = useState('')
+  const [isDisabled, setIsDisabled] = useState(false)
 
   const handleSubmit = async e => {
     e.preventDefault()
     try {
-      const Post = {
-        // author,
+      const post = {
         title,
         description,
         area,
@@ -40,22 +39,18 @@ const MentoryCreate = () => {
       const URL = `${config.REACT_APP_API_BASE_URL}mentories`
       const token = JSON.stringify(localStorage.getItem('token'))
 
-      const options = {
-        method: 'POST',
-        body: JSON.stringify(Post),
-        headers: {
-          Authorization: `Bearer ${token}`,
-          Accept: 'application/json',
-          'Content-Type': 'application/json'
-        }
-      }
-      await fetch(URL, options).then(resp => {
+      await fetch(URL, options(post, token)).then(resp => {
         resp.json().then(data => {
           navigate('../mentories/own')
         })
       })
     } catch (error) {
       console.error(error)
+    }
+
+    if (modality !== 'Presencial') {
+      console.log(modality)
+      setIsDisabled(true)
     }
   }
   return (
@@ -65,7 +60,7 @@ const MentoryCreate = () => {
         <form onSubmit={handleSubmit} className='form'>
           <h2 className='title '>Nueva mentoría</h2>
           <label className='label' htmlFor='titulo'>
-            Titulo
+            Título
           </label>
           <input
             className='inputMentories'
@@ -104,7 +99,7 @@ const MentoryCreate = () => {
               setArea(e.target.value)
             }}
           >
-            <option></option>
+            <option disabled={true}></option>
             <option>Análisis de Sistemas</option>
             <option>Seguridad e Higiene</option>
             <option>General</option>
@@ -117,6 +112,8 @@ const MentoryCreate = () => {
             required={true}
             name='cantAlum'
             value={capacity}
+            min={0}
+            max={10}
             onChange={e => setCapacity(e.target.value)}
           />
 
@@ -127,16 +124,19 @@ const MentoryCreate = () => {
             required={true}
             name='cantClas'
             value={classes_quantity}
+            min={0}
             onChange={e => setClasses_quantity(e.target.value)}
           />
 
-          <label htmlFor='duracion'>Duracion</label>
+          <label htmlFor='duracion'>Duracion (horas)</label>
           <input
             className='inputMentories'
             type='number'
             required={true}
             name='duracion'
             value={classes_duration}
+            min={0}
+            max={4}
             onChange={e => {
               setClasses_duration(e.target.value)
             }}
@@ -152,9 +152,16 @@ const MentoryCreate = () => {
             value={modality}
             onChange={e => {
               setModality(e.target.value)
+              if (e.target.value !== 'Presencial') {
+                setLocation(e.target.value)
+                setIsDisabled(true)
+              } else {
+                setIsDisabled(false)
+                setLocation('')
+              }
             }}
           >
-            <option></option>
+            <option disabled={true}></option>
             <option>Presencial</option>
             <option>Virtual</option>
             <option>Asíncrona</option>
@@ -166,6 +173,7 @@ const MentoryCreate = () => {
             type='text'
             name='ubicación'
             value={location}
+            disabled={isDisabled}
             onChange={e => {
               setLocation(e.target.value)
             }}
@@ -182,7 +190,7 @@ const MentoryCreate = () => {
                 setDay(e.target.value)
               }}
             >
-              <option></option>
+              <option disabled={true}></option>
               <option>Lunes</option>
               <option>Martes</option>
               <option>Míercoles</option>

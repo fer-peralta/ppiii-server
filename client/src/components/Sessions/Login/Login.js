@@ -1,14 +1,15 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './login.css'
-import { Link, Navigate } from 'react-router-dom'
-//import { redirect } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { config } from '../../../config/config'
+import { options } from './Login.fetchOptions'
 
 const Login = () => {
   const [miLogin, setMiLogin] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [emailError, setEmailError] = useState('')
+  const navigate = useNavigate()
 
   const validateEmail = value => {
     if (!value.includes('@itbeltran.com.ar')) {
@@ -17,22 +18,23 @@ const Login = () => {
       setEmailError('')
     }
   }
+
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      if (localStorage.getItem('token').length > 0) {
+        navigate('./mentories')
+      }
+    }
+  }, [])
+
   const handleSubmit = async e => {
     e.preventDefault()
 
     try {
-      const Post = { email, password }
+      const post = { email, password }
       const URL = `${config.REACT_APP_API_BASE_URL}session/login`
 
-      const options = {
-        method: 'POST',
-        body: JSON.stringify(Post),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }
-
-      await fetch(URL, options).then(resp => {
+      await fetch(URL, options(post)).then(resp => {
         resp.json().then(data => {
           localStorage.setItem('token', data.access_token)
           data.access_token

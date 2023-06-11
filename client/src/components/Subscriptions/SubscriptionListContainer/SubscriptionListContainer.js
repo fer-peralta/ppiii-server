@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import SubscriptionList from '../SubscriptionList/SubscriptionsList'
 import { config } from '../../../config/config'
+import { options } from './SubscriptionListContainer.fetchOptions'
 
 const ItemListContainer = () => {
   const [subscriptions, setSubscriptions] = useState([])
@@ -8,17 +9,8 @@ const ItemListContainer = () => {
   const URL = `${config.REACT_APP_API_BASE_URL}users/subscriptions`
   const token = JSON.stringify(localStorage.getItem('token'))
 
-  const options = {
-    method: 'GET',
-    headers: {
-      Authorization: `Bearer ${token}`,
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
-    }
-  }
-
-  const getUsers = async () => {
-    const response = await fetch(URL, options)
+  const getSusbcriptions = async () => {
+    const response = await fetch(URL, options(token))
     const dataNew = await response.json()
     const subscriptionsGet = dataNew.data.map(subs => {
       const data = subs
@@ -28,14 +20,11 @@ const ItemListContainer = () => {
     return subscriptionsGet
   }
 
-  console.log(subscriptions)
-
   useEffect(() => {
-    getUsers().then(subscriptions => {
+    getSusbcriptions().then(subscriptions => {
       setSubscriptions(subscriptions)
     })
   }, [])
-  console.log(subscriptions)
 
   return (
     <div className='subscription-list-container'>

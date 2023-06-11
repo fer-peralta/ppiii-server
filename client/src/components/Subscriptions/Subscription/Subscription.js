@@ -1,33 +1,23 @@
 import './Subscription.css'
 import { useState, useEffect } from 'react'
 import { config } from '../../../config/config'
+import { options } from './Subscription.fetchOptions'
+
 const Subscription = ({ susbcription }) => {
   const [mentoryFound, setMentoryFound] = useState([])
 
   const URL = `${config.REACT_APP_API_BASE_URL}mentories/${susbcription.mentoryId}`
   const token = JSON.stringify(localStorage.getItem('token'))
 
-  const options = {
-    method: 'GET',
-    headers: {
-      Authorization: `Bearer ${token}`,
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
-    }
-  }
-
   const getUsers = async () => {
-    const response = await fetch(URL, options)
-    console.log(response)
+    const response = await fetch(URL, options(token))
     const dataNew = await response.json()
     return dataNew
   }
 
-  console.log(mentoryFound)
-
   useEffect(() => {
     getUsers().then(mentoryFound => {
-      setMentoryFound(mentoryFound)
+      setMentoryFound(mentoryFound.data.data)
     })
   }, [])
 

@@ -1,19 +1,14 @@
 import './Navbar.css'
 import Logo from '../../utils/favourite-book.svg'
 import { Link, useLocation } from 'react-router-dom'
-import { useState, useEffect } from 'react'
 
 const Navbar = () => {
   const token = JSON.stringify(localStorage.getItem('token'))
   const location = useLocation()
 
   const conditionalNavBar = () => {
-    if (location.pathname == "/" || location.pathname == "/register") {
-      return (
-        <div className='navList'>
-
-        </div>
-      )
+    if (location.pathname === '/' || location.pathname === '/register') {
+      return <div className='navList'></div>
     } else {
       return (
         <div className='navList'>
@@ -29,13 +24,16 @@ const Navbar = () => {
           <Link to='/mentories/own' className='nav_buttons'>
             Mis mentorías
           </Link>
+          <Link to='/subscriptions' className='nav_buttons'>
+            Mis inscripciones
+          </Link>
         </div>
       )
     }
   }
 
   const conditionalLogo = () => {
-    if (location.pathname == "/" || location.pathname == "/register") {
+    if (location.pathname === '/' || location.pathname === '/register') {
       return (
         <div className='div_logo'>
           <Link to='/'>
@@ -56,7 +54,6 @@ const Navbar = () => {
 
   const loggedIn = () => {
     if (token) {
-
       return (
         <nav className='navTop'>
           {conditionalLogo()}
