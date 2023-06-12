@@ -1,6 +1,7 @@
 import React from 'react'
 // import MainForm from './components/MainForm.js';
-import './App.css'
+import './App.scss'
+import 'react-toastify/dist/ReactToastify.css'
 import { QueryClientProvider, QueryClient } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import Navbar from './components/navbar/Navbar'
@@ -15,6 +16,7 @@ import SubscriptionListContainer from './components/Subscriptions/SubscriptionLi
 import Error404 from './components/Error404/Error404'
 import Footer from './components/Footer/Footer'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 
 const queryClient = new QueryClient()
 
@@ -22,6 +24,7 @@ function App () {
   return (
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
+        <ToastContainer />
         <Navbar />
         <Routes>
           <Route path='/' element={<Login />} />

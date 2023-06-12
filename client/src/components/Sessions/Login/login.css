@@ -1,4 +1,4 @@
-.contenedorLogin {
+/* .contenedorLogin {
     margin-top: 40px;
     padding: 2rem;
 }
@@ -59,13 +59,12 @@ form {
     color: #fff;
     border: none;
     border-radius: 4px;
-    /* padding: 10px 20px; */
     font-size: 1.2rem;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
-}
+} */
 
-.login-btn:hover {
+/* .login-btn:hover {
     transition: 0.7s;
     background-color: #c9cfdc;
     color: #403f4b;
@@ -79,13 +78,12 @@ form {
     color: #fff;
     border: none;
     border-radius: 4px;
-    /* padding: 8px 18px; */
     font-size: 1.2rem;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
-}
+} */
 
-.register-btn:hover {
+/* .register-btn:hover {
     transition: 0.7s;
     background-color: #c9cfdc;
     color: #403f4b;
@@ -112,4 +110,4 @@ a {
     .botones {
         margin-left: 2vh;
     }
-}
+} */

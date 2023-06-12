@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
-import './login.css'
+import './login.scss'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { config } from '../../../config/config'
 import { options } from './Login.fetchOptions'
+import { loginErrorToast } from '../../../services/toastifyNotifications/notifications'
 
 const Login = () => {
   const [miLogin, setMiLogin] = useState(false)
@@ -36,10 +37,13 @@ const Login = () => {
 
       await fetch(URL, options(post)).then(resp => {
         resp.json().then(data => {
-          localStorage.setItem('token', data.access_token)
-          data.access_token
-            ? setMiLogin(true)
-            : console.error('Usuario incorrecto')
+          if (data.error) {
+            console.warn(data)
+            loginErrorToast()
+          } else {
+            localStorage.setItem('token', data.access_token)
+            setMiLogin(true)
+          }
         })
       })
     } catch (error) {
@@ -49,12 +53,11 @@ const Login = () => {
 
   return (
     <>
-      <h1 style={{ textAlign: 'center' }}>Bienvenido voluntarios Beltran</h1>
-      <div className='contenedorLogin'>
-        <div className='form'>
+      <h1 className='title-login-page'>Bienvenido voluntarios Beltrán</h1>
+      <div className='login-container'>
+        <div className='form-container'>
           <form onSubmit={handleSubmit}>
-            <h2 className='title '>Log in</h2>
-
+            <h2 className='login-title '>Log in</h2>
             <label className='label' htmlFor='username'>
               Email
             </label>
@@ -64,16 +67,16 @@ const Login = () => {
               type='email'
               name='email'
               value={email}
-              placeholder='Ej: usuario@itbeltran.com.ar'
+              placeholder='usuario@itbeltran.com.ar'
               onChange={e => {
                 setEmail(e.target.value)
                 validateEmail(e.target.value)
               }}
             />
             {emailError && (
-              <div style={{ color: 'red', border: '1px solid #1a202c' }}>
+              <p style={{ color: 'red', border: '1px solid #1a202c' }}>
                 {emailError}
-              </div>
+              </p>
             )}
 
             <label className='label' htmlFor='password'>
@@ -91,9 +94,9 @@ const Login = () => {
               <button type='submit' className='login-btn'>
                 Enviar
               </button>
-              <Link to='/register' className='register-btn'>
-                Registrar
-              </Link>
+              <button type='button' className='register-btn'>
+                <Link to='/register'>Registrar</Link>
+              </button>
             </div>
           </form>
 

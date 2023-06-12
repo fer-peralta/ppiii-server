@@ -44,16 +44,17 @@ export const SignUpUserController = async (req, res, next) => {
 export const logInUserController = async (req, res, next) => {
   try {
     const { email, password } = req.body
+    console.log(email, password)
     if (!email || !password) {
       return res.json({ message: 'Missing credentials' })
     }
     const user = await UserModel.findOne({
       email: req.body.email
     }).exec()
-    const validPass = isValidPassword(user, password)
     if (!user) {
       return res.json({ error: 'Wrong credentials' })
     }
+    const validPass = isValidPassword(user, password)
     if (validPass) {
       const access_token = generateToken(user)
       logInfo.info(`User ${user.email} logged in`)
@@ -62,7 +63,10 @@ export const logInUserController = async (req, res, next) => {
       return res.json({ error: 'Wrong credentials' })
     }
   } catch (error) {
-    const errorMessage = { message: `There was an error: ${error}` }
+    const errorMessage = {
+      message: `There was an error: ${error}`,
+      error: error
+    }
     logError.error(errorMessage)
     res.status(400).json(errorMessage)
   }
