@@ -26,7 +26,7 @@ export const userSchema = new mongoose.Schema(
     name: { type: String, required: true, maxLength: 50 },
     surname: { type: String, required: true, maxLength: 50 },
     adress: { type: String, required: true },
-    age: { type: Number, required: true, min: 18, max: 120 },
+    age: { type: Number, required: true, min: 18, max: 100 },
     phone: { type: String, required: true, minLength: 10, maxLength: 15 },
     avatar: {
       type: String,

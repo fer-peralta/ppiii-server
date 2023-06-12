@@ -1,8 +1,9 @@
+import './Register.scss'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Navigate } from 'react-router-dom'
-import './register.css'
 import { config } from '../../../config/config'
+import { options } from './Register.fetchOptions'
 
 const Register = () => {
   const [email, setEmail] = useState('')
@@ -28,8 +29,8 @@ const Register = () => {
   }
   const validateAge = value => {
     const ageValue = Number(value)
-    if (ageValue < 18 || ageValue > 65) {
-      setAgeError('La edad debe estar entre 18 y 65 años')
+    if (ageValue < 18 || ageValue > 100) {
+      setAgeError('La edad debe estar entre 18 y 100 años')
     } else {
       setAgeError('')
     }
@@ -40,22 +41,17 @@ const Register = () => {
     } else {
       setPhoneError('')
     }
+    let hasLetter = /[qwertyuiopasdfghjklñzxcvbnm]/.test(value)
+    hasLetter && setPhoneError('Debe ingresar un teléfono válido')
   }
 
   const handleSubmit = async e => {
     e.preventDefault()
     try {
-      const Post = { email, password, name, surname, adress, age, phone }
+      const post = { email, password, name, surname, adress, age, phone }
       const URL = `${config.REACT_APP_API_BASE_URL}session/signup`
 
-      const options = {
-        method: 'POST',
-        body: JSON.stringify(Post),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }
-      await fetch(URL, options).then(resp => {
+      await fetch(URL, options(post)).then(resp => {
         resp.json().then(data => {
           localStorage.setItem('token', data.access_token)
           data.message ===
@@ -64,36 +60,23 @@ const Register = () => {
             : navigate('/profile')
         })
       })
-
-      // const responsePost = await fetch(URL, options)
-
-      //   .then(resp => resp.json())
-      //   .then(data => localStorage.setItem('token', data.access_token))
-      // data.message ? setMiregister(true) : console.error("Usuario incorrecto")
-      // if (responsePost.message === "User sign up with success") {
-      //   alert('Registro exitoso.')
-      //
-      // }
     } catch (error) {
       console.error(error)
     }
-    // finally {
-    //   alert('Registro exitoso.')
-
-    // }
   }
   return (
     <>
-      <div className='contenedorLogin'>
-        <form onSubmit={handleSubmit} className='form'>
-          <h2 className='title '>Registro</h2>
-          <label className='label' htmlFor='Nombre'>
-            Email
-          </label>
+      <h1 className='title-login-page'>Bienvenido voluntarios Beltrán</h1>
+      <div className='contenedorRegister'>
+        <form onSubmit={handleSubmit}>
+          <h2 className='title'>Registro</h2>
+          <label htmlFor='emailReg'>*Email</label>
           <input
             required={true}
             type='email'
             name='email'
+            id='emailReg'
+            placeholder='usuario@itbeltran.com.ar'
             value={email}
             onChange={e => {
               setEmail(e.target.value)
@@ -101,47 +84,54 @@ const Register = () => {
             }}
           />
           {emailError && <div style={{ color: 'red' }}>{emailError}</div>}
-          <label htmlFor='password'>Password</label>
+          <label htmlFor='passwordReg'>*Contraseña</label>
           <input
             type='password'
             required={true}
             name='password'
+            id='passwordReg'
             value={password}
             onChange={e => setPassword(e.target.value)}
           />
 
-          <label htmlFor='Name'>Name</label>
+          <label htmlFor='nameReg'>*Nombre</label>
           <input
             type='text'
             required={true}
             name='name'
+            id='nameReg'
             value={name}
             onChange={e => setName(e.target.value)}
           />
 
-          <label htmlFor='Surname'>Surname</label>
+          <label htmlFor='surnameReg'>*Apellido</label>
           <input
             type='text'
             required={true}
             name='surname'
+            id='surnameReg'
             value={surname}
             onChange={e => setSurname(e.target.value)}
           />
 
-          <label htmlFor='adress'>Adress</label>
+          <label htmlFor='adressReg'>*Dirección</label>
           <input
             type='text'
             required={true}
             name='adress'
+            id='adressReg'
             value={adress}
             onChange={e => setAdress(e.target.value)}
           />
 
-          <label htmlFor='age'>Age</label>
+          <label htmlFor='ageReg'>*Edad</label>
           <input
             type='number'
             required={true}
+            min={18}
+            max={100}
             name='age'
+            id='ageReg'
             value={age}
             onChange={e => {
               setAge(e.target.value)
@@ -150,11 +140,12 @@ const Register = () => {
           />
           {ageError && <div style={{ color: 'red' }}>{ageError}</div>}
 
-          <label htmlFor='phone'>Phone</label>
+          <label htmlFor='phoneReg'>*Teléfono</label>
           <input
             type='text'
             required={true}
             name='phone'
+            id='phoneReg'
             minLength={10}
             value={phone}
             onChange={e => {
@@ -163,12 +154,12 @@ const Register = () => {
             }}
           />
           {phoneError && <div style={{ color: 'red' }}>{phoneError}</div>}
-          <button type='submit' className='submit'>
+          <button type='submit' className='register-btn'>
             Registrar
           </button>
-          <Link to='/' className='submit'>
-            Ir a Log in
-          </Link>
+          <button type='button' className='login-btn'>
+            <Link to='/'>Ir a Log in</Link>
+          </button>
         </form>
       </div>
       {miregister === true && <Navigate to='/profile' />}

@@ -32,13 +32,14 @@
                 margin-bottom: 20px;
                 color: $titles-color;
             }
+            
             .label {
                 color: $titles-color;
                 margin-bottom: 4px;
                 display: block;
             }
-            .input {
 
+            .input {
                 padding: 10px;
                 margin-bottom: 15px;
                 margin-right: 10px;
@@ -48,12 +49,11 @@
                 outline: none;
                 border: 1px solid $titles-color;
                 border-radius: 4px;
-
+                transition: all 0.5s ease-in-out;
                 &:focus {
                     box-shadow: 0 0 0 2px #cbd5e0;
                 }
             }
-
 
             .botones {
                 display: flex;
@@ -71,16 +71,12 @@
                     cursor: pointer;
                     transition: all 0.2s ease-in-out;
                     margin-bottom: 10px;
-
                     &:hover {
                         transition: 0.7s;
                         background-color: #c9cfdc;
                         color: #403f4b;
                     }
-
-                    
                 }
-
 
                 .register-btn {
                     width: 100%;
@@ -95,7 +91,6 @@
                     cursor: pointer;
                     transition: all 0.2s ease-in-out;
                     margin-bottom: 20px;
-
                     &:hover {
                         transition: 0.7s;
                         background-color: #c9cfdc;
