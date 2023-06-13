@@ -1,25 +1,20 @@
-import './Error404.css'
+import './Error404.scss'
 import { useNavigate } from 'react-router-dom'
 
 const Error404 = () => {
-  //   const navigate = useNavigate()
+  const navigate = useNavigate()
 
-  //   const handleLogOut = async () => {
-  //     setLogout(true)
-  //   }
-
-  //   useEffect(() => {
-  //     if (logout === true) {
-  //       setTimeout(() => {
-  //         navigate('/')
-  //       }, '500')
-  //     }
-  //   }, [navigate, logout])
+  const handleGoHome = async () => {
+    navigate('/')
+  }
 
   return (
     <>
-      <h1>Error 404</h1>
-      <h2>Página no encontrada</h2>
+      <div className='error404-container'>
+        <h1>Error 404</h1>
+        <h2>Página no encontrada</h2>
+        <button onClick={handleGoHome}>Ir a home</button>
+      </div>
     </>
   )
 }

@@ -1,0 +1,19 @@
+@import "../../assets/mixins.scss";
+
+.error404-container {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 320px;
+    height: 400px; 
+    text-align: center;
+    margin: auto;
+
+    button {
+        margin-top: 40px;
+        @include button(white, green, rgb(110, 179, 110), rgb(64, 56, 56))
+    }
+
+}

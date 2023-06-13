@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom'
 const Mentory = ({ mentory }) => {
   const specificWebPage = window.location.href
 
+  const navigate = useNavigate()
+
   let prevUrl = document.referrer
 
   const mentoryOwnEdit = () => {
@@ -37,7 +39,10 @@ const Mentory = ({ mentory }) => {
         <button
           type='submit'
           className='submit1 button-inscription'
-          onClick={() => handleSubcription()}
+          onClick={() => {
+            handleSubcription()
+            navigate('../subscriptions')
+          }}
           style={{ backgroundColor: 'grey' }}
         >
           Inscribirse

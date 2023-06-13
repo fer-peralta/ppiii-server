@@ -39,6 +39,7 @@ const Profile = () => {
 
   const getUsers = async () => {
     const response = await fetch(URL, options)
+    response.status === 403 && navigate('/')
     return response.json()
   }
   const { data, status } = useQuery('users', getUsers)
