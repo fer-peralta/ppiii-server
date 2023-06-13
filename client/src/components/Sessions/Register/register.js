@@ -13,6 +13,8 @@ const Register = () => {
   const [adress, setAdress] = useState('')
   const [age, setAge] = useState('')
   const [phone, setPhone] = useState('')
+  const [gender, setGender] = useState('')
+  const [selectGender, setSelectGender] = useState(false)
   const [emailError, setEmailError] = useState('')
   const [ageError, setAgeError] = useState('')
   const [phoneError, setPhoneError] = useState('')
@@ -45,10 +47,45 @@ const Register = () => {
     hasLetter && setPhoneError('Debe ingresar un teléfono válido')
   }
 
+  const otherGender = () => {
+    if (
+      gender !== 'femenino' &&
+      gender !== 'masculino' &&
+      gender !== 'prefiero no decirlo' &&
+      gender !== ''
+    ) {
+      return (
+        <input
+          type='text'
+          required={true}
+          name='otherGender'
+          id='otherGenderReg'
+          placeholder='Por favor ingrese el género'
+          onChange={e => {
+            if (selectGender === false && e.target.value.length > 0) {
+              setSelectGender(true)
+            } else {
+              setSelectGender(false)
+            }
+            setGender(`otro: ${e.target.value}`)
+          }}
+        />
+      )
+    } else {
+      if (selectGender === true) {
+        setSelectGender(false)
+      }
+      return ''
+    }
+  }
+
   const handleSubmit = async e => {
     e.preventDefault()
     try {
       const post = { email, password, name, surname, adress, age, phone }
+      if (gender !== '') {
+        post.gender = gender
+      }
       const URL = `${config.REACT_APP_API_BASE_URL}session/signup`
 
       await fetch(URL, options(post)).then(resp => {
@@ -64,6 +101,7 @@ const Register = () => {
       console.error(error)
     }
   }
+
   return (
     <>
       <h1 className='title-login-page'>Bienvenido voluntarios Beltrán</h1>
@@ -93,6 +131,34 @@ const Register = () => {
             value={password}
             onChange={e => setPassword(e.target.value)}
           />
+
+          <label htmlFor='genderReg'>Género</label>
+          <select
+            id='genderReg'
+            name='gender'
+            required={false}
+            value={gender}
+            disabled={selectGender}
+            onChange={e => {
+              setGender(e.target.value)
+            }}
+          >
+            <option disabled={true}></option>
+            <option name='femenino' value='femenino'>
+              Femenino
+            </option>
+            <option name='masculino' value='masculino'>
+              Masculino
+            </option>
+            <option name='otro' value='otro'>
+              Otro
+            </option>
+            <option name='prefiero no decirlo' value='prefiero no decirlo'>
+              Prefiero no decirlo
+            </option>
+          </select>
+
+          {otherGender()}
 
           <label htmlFor='nameReg'>*Nombre</label>
           <input

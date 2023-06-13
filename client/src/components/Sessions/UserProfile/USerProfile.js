@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import './UserProfile.css'
+import './UserProfile.scss'
 import { useQuery } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 import { config } from '../../../config/config'
@@ -16,7 +16,6 @@ const Profile = () => {
   const handleLink = async () => {
     navigate('/mentories')
   }
-
 
   useEffect(() => {
     if (logout === true) {
@@ -54,25 +53,29 @@ const Profile = () => {
 
   return (
     <>
-
-      <h1>Bienvenido a tu perfil</h1>
-      <div className='contenedor'>
-        <div className='user'>
-          <img className='imgAvatar' src={data.User.avatar} alt='avatar' />
-          <h2>
-            {data.User.name.toUpperCase()} {data.User.surname.toUpperCase()}
-          </h2>
-          <p>{data.User.email}</p>
-          <p>{data.User.adress}</p>
-          <p>{data.User.age} años</p>
-          <p>{data.User.phone}</p>
-
+      <div className='profile-container'>
+        <h1 className='profile-title'>Mi perfil</h1>
+        <div className='profile-data-container'>
+          <div className='user'>
+            <img
+              className='profileAvatar'
+              src={data.User.avatar}
+              alt='avatar'
+            />
+            <h2>
+              {data.User.name.toUpperCase()} {data.User.surname.toUpperCase()}
+            </h2>
+            <p>{data.User.email}</p>
+            <p>{data.User.adress}</p>
+            <p>{data.User.age} años</p>
+            <p>{data.User.phone}</p>
+            <p>{data.User.gender}</p>
+          </div>
         </div>
+        <button onClick={handleLogOut} className='logout-btn'>
+          Cerrar sesion
+        </button>
       </div>
-
-      <button onClick={handleLogOut} className='submitR'>
-        Cerrar sesion
-      </button>
     </>
   )
 }

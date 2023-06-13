@@ -14,6 +14,7 @@ export const SignUpUserController = async (req, res, next) => {
       res.json({ message: 'The user is already in the database, try to login' })
     }
     req.body.avatar = avatarGenerator(req.body.name, req.body.surname)
+    req.body.type = 'normal'
     const newUser = {
       email: req.body.email,
       password: createHash(req.body.password),
@@ -22,7 +23,9 @@ export const SignUpUserController = async (req, res, next) => {
       adress: req.body.adress,
       age: req.body.age,
       phone: req.body.phone,
-      avatar: req.body.avatar
+      avatar: req.body.avatar,
+      type: req.body.type,
+      ...(req.body.gender && { gender: req.body.gender })
     }
     const createUser = await UserService.saveUser(newUser)
     if (createUser.error) {
