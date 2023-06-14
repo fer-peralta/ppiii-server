@@ -47,7 +47,6 @@ export const SignUpUserController = async (req, res, next) => {
 export const logInUserController = async (req, res, next) => {
   try {
     const { email, password } = req.body
-    console.log(email, password)
     if (!email || !password) {
       return res.json({ message: 'Missing credentials' })
     }

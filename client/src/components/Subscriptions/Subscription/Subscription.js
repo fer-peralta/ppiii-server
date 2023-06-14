@@ -1,4 +1,4 @@
-import './Subscription.css'
+import './Subscription.scss'
 import { useState, useEffect } from 'react'
 import { config } from '../../../config/config'
 import { options } from './Subscription.fetchOptions'
@@ -49,69 +49,67 @@ const Subscription = ({ susbcription }) => {
 
   return (
     <>
-      <div>
-        <div className='card'>
-          <div className='header'>{mentoryFound.area}</div>
-          <div className='body'>
-            <div className='contenedorImg'>
-              <img
-                style={{
-                  width: '60px',
-                  height: '60px',
-                  margin: 'auto'
-                }}
-                src={mentoryFound.avatar}
-                alt={mentoryFound.title}
-              />
-            </div>
-            <div className='skill'>
-              <h3>Autor: </h3>
-              <span>&nbsp;{mentoryFound.author}</span>
-            </div>
-            <div className='skill'>
-              <h4>Título: </h4> <span>&nbsp;{mentoryFound.title}</span>
-            </div>
-            <div className='skill1 description'>
-              <h4>Descripción:</h4>
-              <hr />
-              <span
-                style={{
-                  display: 'block',
-                  maxWidth: '250px',
-                  minHeight: '80px'
-                }}
-              >
-                {mentoryFound.description}
-              </span>
-            </div>
-            <div className='skill'>
-              <h4>Cantidad de alumnos:</h4>&nbsp;
-              <span>{mentoryFound.capacity}</span>
-            </div>
-            <div className='skill'>
-              <h4>Cantidad de clases:</h4>&nbsp;
-              <span>{mentoryFound.classes_quantity}</span>
-            </div>
-            <div className='skill'>
-              <h4>Duración de la clase:</h4>&nbsp;
-              <span> {mentoryFound.classes_duration} horas</span>
-            </div>
-            <div className='skill'>
-              <h4>Modalidad:</h4>&nbsp;
-              <span> {mentoryFound.modality}</span>
-            </div>
-            <div className='skill'>
-              <h4>Ubicación:</h4>&nbsp;
-              <span> {mentoryFound.location}</span>
-            </div>
-            <div className='skill'>
-              <h4>Horario:</h4>&nbsp;
-              <span> {mentoryFound.time}</span>
-            </div>
-            <div className='skill'>
-              <h4>Día:</h4>&nbsp;
-              <span> {mentoryFound.day}</span>
-            </div>
+      <div className='subscription-card'>
+        <div className='subscription-card-header'>{mentoryFound.area}</div>
+        <div className='subscription-card-body'>
+          <div className='contenedorImg'>
+            <img
+              style={{
+                width: '60px',
+                height: '60px',
+                margin: 'auto'
+              }}
+              src={mentoryFound.avatar}
+              alt={mentoryFound.title}
+            />
+          </div>
+          <div className='skill'>
+            <h3>Autor: </h3>
+            <span>&nbsp;{mentoryFound.author}</span>
+          </div>
+          <div className='skill'>
+            <h4>Título: </h4> <span>&nbsp;{mentoryFound.title}</span>
+          </div>
+          <div className='skill1 description'>
+            <h4>Descripción:</h4>
+            <hr />
+            <span
+              style={{
+                display: 'block',
+                maxWidth: '250px',
+                minHeight: '80px'
+              }}
+            >
+              {mentoryFound.description}
+            </span>
+          </div>
+          <div className='skill'>
+            <h4>Cantidad de alumnos:</h4>&nbsp;
+            <span>{mentoryFound.capacity}</span>
+          </div>
+          <div className='skill'>
+            <h4>Cantidad de clases:</h4>&nbsp;
+            <span>{mentoryFound.classes_quantity}</span>
+          </div>
+          <div className='skill'>
+            <h4>Duración de la clase:</h4>&nbsp;
+            <span> {mentoryFound.classes_duration} horas</span>
+          </div>
+          <div className='skill'>
+            <h4>Modalidad:</h4>&nbsp;
+            <span> {mentoryFound.modality}</span>
+          </div>
+          <div className='skill'>
+            <h4>Ubicación:</h4>&nbsp;
+            <span> {mentoryFound.location}</span>
+          </div>
+          <div className='skill'>
+            <h4>Horario:</h4>&nbsp;
+            <span> {mentoryFound.time}</span>
+          </div>
+          <div className='skill'>
+            <h4>Día:</h4>&nbsp;
+            <span> {mentoryFound.day}</span>
           </div>
         </div>
       </div>

@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { config } from '../../../config/config'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { subscriptionSuccessToast } from '../../../services/toastifyNotifications/notifications'
+
 const Mentory = ({ mentory }) => {
   const specificWebPage = window.location.href
 
@@ -41,6 +43,7 @@ const Mentory = ({ mentory }) => {
           className='submit1 button-inscription'
           onClick={() => {
             handleSubcription()
+
             navigate('../subscriptions')
           }}
           style={{ backgroundColor: 'grey' }}
@@ -112,10 +115,14 @@ const Mentory = ({ mentory }) => {
           'Content-Type': 'application/json'
         }
       }
-      console.log(options)
       const response = await fetch(URL2, options)
-        .then(resp => resp.json().then(console.log(mentoryId)).then())
+        .then(resp => resp.json())
         .catch(error => console.log(error))
+      if (
+        response.message !== 'The user already was subcripted to the mentory'
+      ) {
+        subscriptionSuccessToast()
+      }
     } catch (error) {
       console.error(error)
     }

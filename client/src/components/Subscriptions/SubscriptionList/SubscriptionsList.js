@@ -1,5 +1,5 @@
 import Subscription from '../Subscription/Subscription'
-import '../Subscription/Subscription.css'
+import './SubscriptionsList.scss'
 
 const SubscriptionList = ({ subscriptions }) => {
   return (

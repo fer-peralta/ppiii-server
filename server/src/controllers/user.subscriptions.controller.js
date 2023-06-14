@@ -7,7 +7,13 @@ import { newSubscriptionMail } from '../services/emails/email.user.subscribed.js
 
 export const getUserSubscriptions = async (req, res) => {
   try {
-    const { data } = await UserService.findUser(req.user._id)
+    let userId
+    if (req.user.id) {
+      userId = req.user.id
+    } else {
+      userId = req.user._id
+    }
+    const { data } = await UserService.findUser(userId)
     const userSubscriptions = data.subscriptions
     let newArrayOfSubscriptions = []
     for (const subscription of userSubscriptions) {
@@ -32,7 +38,13 @@ export const getUserSubscriptions = async (req, res) => {
 
 export const saveUserSubscription = async (req, res) => {
   try {
-    const { data } = await UserService.findUser(req.user._id)
+    let userId
+    if (req.user.id) {
+      userId = req.user.id
+    } else {
+      userId = req.user._id
+    }
+    const { data } = await UserService.findUser(userId)
     req.body.email = req.user.email
     if (data.subscriptions.some(e => e.mentoryId == req.body.mentoryId)) {
       res
@@ -64,6 +76,7 @@ export const saveUserSubscription = async (req, res) => {
 
 export const deleteUserSubscription = async (req, res) => {
   try {
+    console.log(req.body.mentoryId)
     let user = await UserModel.findOne({ email: req.user.email }).exec()
     if (user.subscriptions.some(e => e.mentoryId == req.body.mentoryId)) {
       await UserService.updateUser(user._id, {

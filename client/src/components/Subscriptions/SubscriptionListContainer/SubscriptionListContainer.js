@@ -1,3 +1,4 @@
+import './SubscriptionListContainer.scss'
 import { useState, useEffect } from 'react'
 import SubscriptionList from '../SubscriptionList/SubscriptionsList'
 import { config } from '../../../config/config'
@@ -10,7 +11,7 @@ const ItemListContainer = () => {
   const URL = `${config.REACT_APP_API_BASE_URL}users/subscriptions`
   const token = JSON.stringify(localStorage.getItem('token'))
 
-  const getSusbcriptions = async () => {
+  const getSubscriptions = async () => {
     const response = await fetch(URL, options(token))
     response.status === 403 && navigate('/')
     const dataNew = await response.json()
@@ -23,7 +24,7 @@ const ItemListContainer = () => {
   }
 
   useEffect(() => {
-    getSusbcriptions().then(subscriptions => {
+    getSubscriptions().then(subscriptions => {
       setSubscriptions(subscriptions)
     })
   }, [])
