@@ -66,11 +66,16 @@ const Profile = () => {
             <h2>
               {data.User.name.toUpperCase()} {data.User.surname.toUpperCase()}
             </h2>
-            <p>{data.User.email}</p>
-            <p>{data.User.adress}</p>
-            <p>{data.User.age} años</p>
+            <input value={data.User.email} readOnly={true} />
+            <input value={data.User.adress} readOnly={true} />
+            <input value={`${data.User.age} años`} readOnly={true} />
+            <input value={data.User.phone} readOnly={true} />
+            <input value={data.User.gender} readOnly={true} />
+            {/* <p>{data.User.email}</p> */}
+            {/* <p>{data.User.adress}</p> */}
+            {/* <p>{data.User.age} años</p>
             <p>{data.User.phone}</p>
-            <p>{data.User.gender}</p>
+            <p>{data.User.gender}</p> */}
           </div>
         </div>
         <button onClick={handleLogOut} className='logout-btn'>

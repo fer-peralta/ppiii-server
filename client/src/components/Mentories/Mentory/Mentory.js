@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom'
 import { config } from '../../../config/config'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { subscriptionSuccessToast } from '../../../services/toastifyNotifications/notifications'
+import {
+  subscriptionSuccessToast,
+  subscriptionErrorToast
+} from '../../../services/toastifyNotifications/notifications'
 
 const Mentory = ({ mentory }) => {
   const specificWebPage = window.location.href
@@ -11,6 +14,19 @@ const Mentory = ({ mentory }) => {
   const navigate = useNavigate()
 
   let prevUrl = document.referrer
+
+  const locationVisible = () => {
+    if (mentory.location === mentory.modality) {
+      return ''
+    } else {
+      return (
+        <div className='skill'>
+          <h4>Ubicación:</h4>&nbsp;
+          <span> {mentory.location}</span>
+        </div>
+      )
+    }
+  }
 
   const mentoryOwnEdit = () => {
     if (specificWebPage === 'http://localhost:3000/mentories/own') {
@@ -43,8 +59,6 @@ const Mentory = ({ mentory }) => {
           className='submit1 button-inscription'
           onClick={() => {
             handleSubcription()
-
-            navigate('../subscriptions')
           }}
           style={{ backgroundColor: 'grey' }}
         >
@@ -122,6 +136,11 @@ const Mentory = ({ mentory }) => {
         response.message !== 'The user already was subcripted to the mentory'
       ) {
         subscriptionSuccessToast()
+        setTimeout(() => {
+          navigate('../subscriptions')
+        }, 1500)
+      } else {
+        subscriptionErrorToast()
       }
     } catch (error) {
       console.error(error)
@@ -181,10 +200,7 @@ const Mentory = ({ mentory }) => {
               <h4>Modalidad:</h4>&nbsp;
               <span> {mentory.modality}</span>
             </div>
-            <div className='skill'>
-              <h4>Ubicación:</h4>&nbsp;
-              <span> {mentory.location}</span>
-            </div>
+            {locationVisible()}
             <div className='skill'>
               <h4>Horario:</h4>&nbsp;
               <span> {mentory.time}</span>

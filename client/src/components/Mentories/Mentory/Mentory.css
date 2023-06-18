@@ -3,7 +3,8 @@
     display: block;
     margin: auto;
     max-width: 40vmax;
-    max-height: fit-content;
+    /* max-height: fit-content; */
+    min-height: 655px;
     text-align: justify;
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
