@@ -2,11 +2,12 @@ import './Subscription.scss'
 import { useState, useEffect } from 'react'
 import { config } from '../../../config/config'
 import { options } from './Subscription.fetchOptions'
+import { deleteSubSuccessToast } from '../../../services/toastifyNotifications/notifications'
 
 const Subscription = ({ susbcription }) => {
   const [mentoryFound, setMentoryFound] = useState([])
-
   const URL = `${config.REACT_APP_API_BASE_URL}mentories/${susbcription.mentoryId}`
+  const URL2 = `${config.REACT_APP_API_BASE_URL}users/subscriptions`
   const token = JSON.stringify(localStorage.getItem('token'))
 
   const getUsers = async () => {
@@ -20,6 +21,29 @@ const Subscription = ({ susbcription }) => {
       setMentoryFound(mentoryFound.data.data)
     })
   }, [])
+
+  const handleDeleteSubscription = async () => {
+    try {
+      const body = { mentoryId: susbcription.mentoryId }
+      console.log(body)
+      const options = {
+        method: 'DELETE',
+        body: JSON.stringify(body),
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        }
+      }
+      await fetch(`${URL2}`, options).then(resp => resp.json())
+      deleteSubSuccessToast()
+      setTimeout(() => {
+        window.location.reload()
+      }, 1500)
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   // let mentoryId = mentory._id
 
@@ -111,6 +135,15 @@ const Subscription = ({ susbcription }) => {
             <h4>Día:</h4>&nbsp;
             <span> {mentoryFound.day}</span>
           </div>
+          <button
+            className='desinscription'
+            onClick={() => {
+              handleDeleteSubscription()
+            }}
+            style={{ backgroundColor: 'grey' }}
+          >
+            Desinscribirse
+          </button>
         </div>
       </div>
     </>

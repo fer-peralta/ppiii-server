@@ -26,6 +26,19 @@ export const subscriptionSuccessToast = () => {
   })
 }
 
+export const deleteSubSuccessToast = () => {
+  toast.success('Te desubscribiste con éxito', {
+    position: 'bottom-center',
+    autoClose: 4000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: 'dark'
+  })
+}
+
 export const subscriptionErrorToast = () => {
   toast.error('Ya estás subscripto a la mentoría seleccionada', {
     position: 'bottom-center',

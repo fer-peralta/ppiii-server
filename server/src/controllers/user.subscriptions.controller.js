@@ -76,7 +76,6 @@ export const saveUserSubscription = async (req, res) => {
 
 export const deleteUserSubscription = async (req, res) => {
   try {
-    console.log(req.body.mentoryId)
     let user = await UserModel.findOne({ email: req.user.email }).exec()
     if (user.subscriptions.some(e => e.mentoryId == req.body.mentoryId)) {
       await UserService.updateUser(user._id, {
