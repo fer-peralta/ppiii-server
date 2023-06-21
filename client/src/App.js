@@ -14,7 +14,7 @@ import MentoryCreate from './components/Mentories/MentoryCreate/MentoryCreate'
 import MentoryUpdate from './components/Mentories/MentoryUpdate/MentoryUpdate'
 import SubscriptionListContainer from './components/Subscriptions/SubscriptionListContainer/SubscriptionListContainer'
 import Error404 from './components/Error404/Error404'
-import Footer from './components/Footer/Footer'
+import Footer from './components/footer/Footer'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 
