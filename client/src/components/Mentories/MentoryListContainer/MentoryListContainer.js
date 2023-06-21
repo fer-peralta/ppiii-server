@@ -1,27 +1,19 @@
+import './MentoryListContainer.scss'
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
 import MentoryList from '../MentoryList/MentoryList'
-import { useQuery } from 'react-query'
 import { config } from '../../../config/config'
-import { Link } from 'react-router-dom'
+import { options } from './MentoryListContainer.fetchOptions'
+import { useNavigate } from 'react-router-dom'
 
-const ItemListContainer = () => {
+const MentoryListContainer = () => {
   const [mentories, setMentories] = useState([])
-
+  const navigate = useNavigate()
   const URL = `${config.REACT_APP_API_BASE_URL}mentories`
   const token = JSON.stringify(localStorage.getItem('token'))
 
-  const options = {
-    method: 'GET',
-    headers: {
-      Authorization: `Bearer ${token}`,
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
-    }
-  }
-
   const getUsers = async () => {
-    const response = await fetch(URL, options)
+    const response = await fetch(URL, options(token))
+    response.status === 403 && navigate('/')
     const dataNew = await response.json()
     const mentoriesGet = dataNew.data.map(ment => {
       const data = ment
@@ -40,11 +32,11 @@ const ItemListContainer = () => {
   //   const { data, status } = useQuery('users', getUsers)
 
   return (
-    <div className='itemListContainer'>
+    <div className='mentory-list-container'>
       <h1>Mentorías disponibles</h1>
       <MentoryList mentories={mentories} />
     </div>
   )
 }
 
-export default ItemListContainer
+export default MentoryListContainer

@@ -1,5 +1,6 @@
 import { avatarGenerator } from '../services/avatar.generator.js'
 import * as MentoryService from '../services/mentory.service.js'
+import * as UserService from '../services/user.service.js'
 import { UserModel } from '../database/models/user.model.js'
 import { logError, logInfo } from '../logs/logger.js'
 
@@ -31,7 +32,6 @@ export const getMentories = async (req, res) => {
 
 export const getOwnMentories = async (req, res) => {
   try {
-    console.log(req.user.email)
     const response = await MentoryService.getMentories()
     let newArrayOfMentories = []
     if (Array.isArray(response)) {
@@ -62,11 +62,16 @@ export const getOwnMentories = async (req, res) => {
 
 export const saveMentory = async (req, res) => {
   try {
-    const user = await UserModel.findOne({ email: req.user.email }).exec()
-    req.body.author = `${user.name} ${user.surname}`
-    req.body.email = user.email
+    let reqId = ''
+    req.user._id ? (reqId = req.user._id) : (reqId = req.user.id)
+    const { data } = await UserService.findUser(reqId)
+    req.body.author = `${data.name} ${data.surname}`
+    req.body.email = data.email
     req.body.avatar = avatarGenerator(req.body.title, req.body.author)
     const response = await MentoryService.saveMentory(req.body)
+    await UserService.updateUser(reqId, {
+      $push: { mentories: { mentoryId: response.id } }
+    })
     res.status(200).send({ data: response })
   } catch (error) {
     res.status(400).send({
@@ -92,12 +97,9 @@ export const findMentory = async (req, res) => {
 
 export const updateMentory = async (req, res) => {
   try {
-    console.log(req.body)
-    console.log('PARAMS', req.params)
-    req.body.author = `${req.user.name} ${req.user.surname}`
-    req.body.email = req.user.email
-    req.body.avatar = avatarGenerator(req.body.title, req.body.author)
-    console.log(req.body, req.params)
+    // req.body.author = `${req.user.name} ${req.user.surname}`
+    // req.body.email = req.user.email
+    // req.body.avatar = avatarGenerator(req.body.title, req.body.author)
     const response = await MentoryService.updateMentory(req.params.id, req.body)
     res.status(200).send({ data: response })
   } catch (error) {
@@ -111,7 +113,11 @@ export const updateMentory = async (req, res) => {
 
 export const deleteMentory = async (req, res) => {
   try {
+    let user = await UserModel.findOne({ email: req.user.email }).exec()
     const response = await MentoryService.deleteLogicMentory(req.params.id)
+    await UserService.updateUser(user._id, {
+      $pull: { mentories: { mentoryId: req.params.id } }
+    })
     res.status(200).json({ data: response })
   } catch (error) {
     res.status(400).json({

@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import { userSchema } from './user.model.js'
 
 const mentoriesCollection = 'mentories'
 
@@ -32,7 +33,8 @@ const mentoriesSchema = new mongoose.Schema(
     location: { type: String, required: true },
     time: { type: String, required: true },
     date_specific: { type: String },
-    day: { type: String }
+    day: { type: String },
+    subscriptors_email: { type: [String], required: true }
   },
   { timestamps: true }
 )

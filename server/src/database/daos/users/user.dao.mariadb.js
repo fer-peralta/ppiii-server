@@ -1,7 +1,7 @@
-import { MariaDbManager } from "../../managers/mariaDb.manager.js"
+import { MariaDbManager } from '../../managers/mariaDb.manager.js'
 
 export class UserMariaDbDao extends MariaDbManager {
-    constructor(options, tableName) {
-        super(options, tableName)
-    }
+  constructor (options, tableName) {
+    super(options, tableName)
+  }
 }

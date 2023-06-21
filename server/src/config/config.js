@@ -9,5 +9,7 @@ export const config = {
   PORT: process.env.PORT,
   DBTYPE: process.env.DBTYPE,
   ADMIN_GMAIL_ACCOUNT: process.env.ADMIN_GMAIL,
-  ADMIN_GMAIL_PASSWORD: process.env.PASSWORD_GMAIL
+  ADMIN_GMAIL_PASSWORD: process.env.PASSWORD_GMAIL,
+  DEFAULT_USER_STATE: process.env.DEFAULT_USER_STATE,
+  APP_MODE: process.env.APP_MODE
 }

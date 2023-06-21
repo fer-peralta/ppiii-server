@@ -1,0 +1,145 @@
+@import "../../../assets/variables.scss";
+@import "../../../assets/mixins.scss";
+
+.title-login-page {
+    text-align: center;
+    color: $titles-color;
+    margin-top: 20px;
+}
+
+.login-container {
+    margin-top: 40px;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+
+    .form-container {
+        background-color: rgb(255, 255, 255);
+        padding: 2rem;
+        // display: flex;
+        // margin: auto;
+        padding: 30px;
+        max-width: 320px;
+        // width: 100%;
+        box-shadow: 0px 0px 0px 3px rgba(52, 52, 53, 0.185);
+        border-radius: 10px;
+        
+        form {
+            // margin: 2rem;
+            
+            .login-title {
+                text-align: center;
+                font-size: 2rem;
+                margin-bottom: 20px;
+                color: $titles-color;
+            }
+            
+            .label {
+                color: $titles-color;
+                margin-bottom: 4px;
+                display: block;
+            }
+
+            .input {
+                padding: 10px;
+                margin-bottom: 15px;
+                margin-right: 10px;
+                width: 100%;
+                font-size: 1rem;
+                color: #4a5568;
+                outline: none;
+                border: 1px solid $titles-color;
+                border-radius: 4px;
+                transition: all 0.5s ease-in-out;
+                &:focus {
+                    box-shadow: 0 0 0 2px #cbd5e0;
+                }
+            }
+
+            .botones {
+                display: flex;
+                flex-direction: column;
+                // align-items: center;
+            
+                .login-btn {
+                    @include button($btn-white, $btn-black,$btn-grey-light-hover,$btn-grey-hover);
+                    // width: 100%;
+                    // height: 36px;
+                    // background-color: #1a202c;
+                    // color: #fff;
+                    // border: none;
+                    // border-radius: 5px;
+                    // font-size: 1.2rem;
+                    // cursor: pointer;
+                    // transition: all 0.2s ease-in-out;
+                    // margin-bottom: 10px;
+                    // &:hover {
+                    //     transition: 0.7s;
+                    //     background-color: #c9cfdc;
+                    //     color: #403f4b;
+                    // }
+                }
+
+                .register-btn {
+                    @include button($btn-white, $btn-light-blue,$btn-grey-light-hover,$btn-grey-hover);
+                    // width: 100%;
+                    // height: 36px;
+                    // text-align: center;
+                    // // text-decoration: none;
+                    // background-color: #5a92a7;
+                    // color: white;
+                    // border: none;
+                    // border-radius: 5px;
+                    // font-size: 1.2rem;
+                    // cursor: pointer;
+                    // transition: all 0.2s ease-in-out;
+                    // margin-bottom: 20px;
+                    // &:hover {
+                    //     transition: 0.7s;
+                    //     background-color: #c9cfdc;
+                    //     color: #403f4b;
+                    // }
+                    &>a {
+                        display: block;
+                        padding: 5px 5px;
+                        color: white;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .contenedorLogin {
+        display: flex;
+        justify-content: center;
+        
+        .form-container {
+            form {
+                .botones {
+                    margin-left: 2vh;
+                }
+            }
+        }
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,41 +1,22 @@
-import './Navbar.css'
+import './Navbar.scss'
 import Logo from '../../utils/favourite-book.svg'
 import { Link, useLocation } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { conditionalNavList } from './Navbar.conditionalNav'
 
 const Navbar = () => {
-  const token = JSON.stringify(localStorage.getItem('token'))
   const location = useLocation()
+  const token = JSON.stringify(localStorage.getItem('token'))
 
   const conditionalNavBar = () => {
-    if (location.pathname == "/" || location.pathname == "/register") {
-      return (
-        <div className='navList'>
-
-        </div>
-      )
+    if (location.pathname === '/' || location.pathname === '/register') {
+      return <div className='navList'></div>
     } else {
-      return (
-        <div className='navList'>
-          <Link to='/mentories' className='nav_buttons'>
-            Inicio
-          </Link>
-          <Link to='/profile' className='nav_buttons' id='profile'>
-            Perfil
-          </Link>
-          <Link to='/mentories/create' className='nav_buttons'>
-            Crear mentoría
-          </Link>
-          <Link to='/mentories/own' className='nav_buttons'>
-            Mis mentorías
-          </Link>
-        </div>
-      )
+      return conditionalNavList()
     }
   }
 
   const conditionalLogo = () => {
-    if (location.pathname == "/" || location.pathname == "/register") {
+    if (location.pathname === '/' || location.pathname === '/register') {
       return (
         <div className='div_logo'>
           <Link to='/'>
@@ -56,7 +37,6 @@ const Navbar = () => {
 
   const loggedIn = () => {
     if (token) {
-
       return (
         <nav className='navTop'>
           {conditionalLogo()}
@@ -64,7 +44,7 @@ const Navbar = () => {
         </nav>
       )
     } else {
-      return 'hola'
+      return console.log('no logueado')
     }
   }
   return loggedIn()

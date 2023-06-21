@@ -3,15 +3,33 @@ import { Link } from 'react-router-dom'
 import { config } from '../../../config/config'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import {
+  subscriptionSuccessToast,
+  subscriptionErrorToast
+} from '../../../services/toastifyNotifications/notifications'
+
 const Mentory = ({ mentory }) => {
   const specificWebPage = window.location.href
 
+  const navigate = useNavigate()
+
   let prevUrl = document.referrer
 
-  console.log(prevUrl)
+  const locationVisible = () => {
+    if (mentory.location === mentory.modality) {
+      return ''
+    } else {
+      return (
+        <div className='skill'>
+          <h4>Ubicación:</h4>&nbsp;
+          <span> {mentory.location}</span>
+        </div>
+      )
+    }
+  }
 
   const mentoryOwnEdit = () => {
-    if (specificWebPage == 'http://localhost:3000/mentories/own') {
+    if (specificWebPage === 'http://localhost:3000/mentories/own') {
       return (
         <div className='botones1'>
           <Link
@@ -33,8 +51,24 @@ const Mentory = ({ mentory }) => {
       )
     }
   }
+  const mentorySubcription = () => {
+    if (specificWebPage === 'http://localhost:3000/mentories') {
+      return (
+        <button
+          type='submit'
+          className='submit1 button-inscription'
+          onClick={() => {
+            handleSubcription()
+          }}
+          style={{ backgroundColor: 'grey' }}
+        >
+          Inscribirse
+        </button>
+      )
+    }
+  }
 
-  const mentoryId = mentory._id
+  let mentoryId = mentory._id
 
   const level = () => {
     if (mentory.level) {
@@ -61,6 +95,7 @@ const Mentory = ({ mentory }) => {
   }
 
   const URL = `${config.REACT_APP_API_BASE_URL}mentories/`
+  const URL2 = `${config.REACT_APP_API_BASE_URL}users/subscriptions`
   const token = JSON.stringify(localStorage.getItem('token'))
 
   const handleDelete = async e => {
@@ -77,6 +112,36 @@ const Mentory = ({ mentory }) => {
         resp.json()
       )
       window.location.reload().catch(error => console.log(error))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const handleSubcription = async e => {
+    try {
+      const Post = { mentoryId: mentoryId }
+      const options = {
+        method: 'POST',
+        body: JSON.stringify(Post),
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        }
+      }
+      const response = await fetch(URL2, options)
+        .then(resp => resp.json())
+        .catch(error => console.log(error))
+      if (
+        response.message !== 'The user already was subcripted to the mentory'
+      ) {
+        subscriptionSuccessToast()
+        setTimeout(() => {
+          navigate('../subscriptions')
+        }, 1500)
+      } else {
+        subscriptionErrorToast()
+      }
     } catch (error) {
       console.error(error)
     }
@@ -135,10 +200,7 @@ const Mentory = ({ mentory }) => {
               <h4>Modalidad:</h4>&nbsp;
               <span> {mentory.modality}</span>
             </div>
-            <div className='skill'>
-              <h4>Ubicación:</h4>&nbsp;
-              <span> {mentory.location}</span>
-            </div>
+            {locationVisible()}
             <div className='skill'>
               <h4>Horario:</h4>&nbsp;
               <span> {mentory.time}</span>
@@ -148,6 +210,7 @@ const Mentory = ({ mentory }) => {
               <span> {mentory.day}</span>
             </div>
             {mentoryOwnEdit()}
+            {mentorySubcription()}
           </div>
         </div>
       </div>

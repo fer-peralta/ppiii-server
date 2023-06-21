@@ -1,12 +1,18 @@
 import mongoose from 'mongoose'
+import { config } from '../../config/config.js'
+import { subcriptionSchema } from './subscription.model.js'
 
 const userCollection = 'users'
 
 mongoose.set('strictQuery', true)
 
-const userSchema = new mongoose.Schema(
+export const userSchema = new mongoose.Schema(
   {
-    state: { type: String, default: 'pending', required: true },
+    state: {
+      type: String,
+      default: config.DEFAULT_USER_STATE,
+      required: true
+    },
     email: {
       type: String,
       required: true,
@@ -20,17 +26,19 @@ const userSchema = new mongoose.Schema(
     name: { type: String, required: true, maxLength: 50 },
     surname: { type: String, required: true, maxLength: 50 },
     adress: { type: String, required: true },
-    age: { type: Number, required: true, min: 18, max: 120 },
+    age: { type: Number, required: true, min: 18, max: 100 },
     phone: { type: String, required: true, minLength: 10, maxLength: 15 },
     avatar: {
       type: String,
       required: true
     },
-    type: { type: String, enum: ['student', 'mentor', 'admin'] },
+    type: { type: String, enum: ['normal', 'admin'] },
     gender: {
       type: String,
       enum: ['masculino', 'femenino', 'otro', 'prefiero no decirlo']
-    }
+    },
+    mentories: { type: [{ mentoryId: String }], required: true },
+    subscriptions: { type: [subcriptionSchema], required: true }
   },
   { timestamps: true }
 )

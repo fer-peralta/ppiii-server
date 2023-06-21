@@ -14,6 +14,7 @@ export const SignUpUserController = async (req, res, next) => {
       res.json({ message: 'The user is already in the database, try to login' })
     }
     req.body.avatar = avatarGenerator(req.body.name, req.body.surname)
+    req.body.type = 'normal'
     const newUser = {
       email: req.body.email,
       password: createHash(req.body.password),
@@ -22,7 +23,9 @@ export const SignUpUserController = async (req, res, next) => {
       adress: req.body.adress,
       age: req.body.age,
       phone: req.body.phone,
-      avatar: req.body.avatar
+      avatar: req.body.avatar,
+      type: req.body.type,
+      ...(req.body.gender && { gender: req.body.gender })
     }
     const createUser = await UserService.saveUser(newUser)
     if (createUser.error) {
@@ -50,10 +53,10 @@ export const logInUserController = async (req, res, next) => {
     const user = await UserModel.findOne({
       email: req.body.email
     }).exec()
-    const validPass = isValidPassword(user, password)
     if (!user) {
       return res.json({ error: 'Wrong credentials' })
     }
+    const validPass = isValidPassword(user, password)
     if (validPass) {
       const access_token = generateToken(user)
       logInfo.info(`User ${user.email} logged in`)
@@ -62,7 +65,10 @@ export const logInUserController = async (req, res, next) => {
       return res.json({ error: 'Wrong credentials' })
     }
   } catch (error) {
-    const errorMessage = { message: `There was an error: ${error}` }
+    const errorMessage = {
+      message: `There was an error: ${error}`,
+      error: error
+    }
     logError.error(errorMessage)
     res.status(400).json(errorMessage)
   }
@@ -89,15 +95,11 @@ export const logOutUserController = async (req, res) => {
 }
 export const profileUserController = async (req, res) => {
   try {
-    console.log(req.user.email)
-    console.log('Hola1', req.user._id)
     if (req.user._id) {
       const { data } = await UserService.findUser(req.user._id)
-      console.log(data)
       res.status(200).json({ message: 'User profile', User: data })
     } else if (req.user.id) {
       const { data } = await UserService.findUser(req.user.id)
-      console.log(data)
       res.status(200).json({ message: 'User profile', User: data })
     }
   } catch (error) {

@@ -1,13 +1,17 @@
 import { logInfo, logError, logWarn } from '../../logs/logger.js'
 export class MongoManager {
-  constructor(model) {
+  constructor (model) {
     this.model = model
   }
 
-  async saveData(data) {
+  async saveData (data) {
     try {
       const object = await this.model.create(data)
-      return { message: `New document was saved`, id: object._id, email: object.email }
+      return {
+        message: `New document was saved`,
+        id: object.id,
+        email: object.email
+      }
     } catch (error) {
       logError.error({
         message: `There was an error saving the document`,
@@ -17,7 +21,7 @@ export class MongoManager {
     }
   }
 
-  async getAll() {
+  async getAll () {
     try {
       const response = await this.model.find()
       const data = JSON.parse(JSON.stringify(response))
@@ -34,7 +38,7 @@ export class MongoManager {
     }
   }
 
-  async getById(id) {
+  async getById (id) {
     try {
       const documentToFind = await this.model.findById(id)
       if (!documentToFind) {
@@ -63,7 +67,7 @@ export class MongoManager {
     }
   }
 
-  async updateById(id, body) {
+  async updateById (id, body) {
     try {
       const documentToupdate = await this.model.findById(id)
       if (documentToupdate) {
@@ -94,7 +98,7 @@ export class MongoManager {
     }
   }
 
-  async deleteById(id) {
+  async deleteById (id) {
     try {
       const documentToDelete = await this.model.findById(id)
       if (documentToDelete) {
@@ -124,7 +128,7 @@ export class MongoManager {
     }
   }
 
-  async deleteLogicById(id) {
+  async deleteLogicById (id) {
     try {
       const documentToDelete = await this.model.findById(id)
       if (documentToDelete) {
@@ -154,7 +158,7 @@ export class MongoManager {
     }
   }
 
-  async deleteAll() {
+  async deleteAll () {
     try {
       await this.model.deleteMany()
       return { message: `All the documents were deleted` }
