@@ -3,7 +3,10 @@
 
 div.subscription-card {
 
+    position: relative;
+    width: 290px;
     max-width: 320px;
+    min-height: 655px;
     text-align: justify;
     background-color: white;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -29,7 +32,10 @@ div.subscription-card {
         padding: 20px;
 
         button.desinscription {
-            @include button($btn-white, $btn-black,$btn-grey-light-hover,$btn-grey-hover);
+            @include button($btn-white, $btn-red,$btn-grey-light-hover,$btn-grey-hover);
+            position: absolute;
+            bottom: 0;
+            width: 85%;
         }
 
     }

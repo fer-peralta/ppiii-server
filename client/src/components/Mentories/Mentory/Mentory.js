@@ -1,4 +1,4 @@
-import './Mentory.css'
+import './Mentory.scss'
 import { Link } from 'react-router-dom'
 import { config } from '../../../config/config'
 import { useState } from 'react'
@@ -31,19 +31,16 @@ const Mentory = ({ mentory }) => {
   const mentoryOwnEdit = () => {
     if (specificWebPage === 'http://localhost:3000/mentories/own') {
       return (
-        <div className='botones1'>
-          <Link
-            to={`/mentories/update`}
-            state={mentoryId}
-            className='submit1 mentory-own'
-          >
-            Editar
-          </Link>
+        <div className='actions-btn-container'>
+          <button type='submit' className='update-btn'>
+            <Link to={`/mentories/update`} state={mentoryId}>
+              Editar
+            </Link>
+          </button>
           <button
             type='submit'
-            className='submit1 mentory-own'
+            className='delete-btn'
             onClick={() => handleDelete(mentory._id)}
-            style={{ backgroundColor: 'red' }}
           >
             Eliminar
           </button>
@@ -56,11 +53,10 @@ const Mentory = ({ mentory }) => {
       return (
         <button
           type='submit'
-          className='submit1 button-inscription'
+          className='inscription-btn'
           onClick={() => {
             handleSubcription()
           }}
-          style={{ backgroundColor: 'grey' }}
         >
           Inscribirse
         </button>
@@ -149,7 +145,7 @@ const Mentory = ({ mentory }) => {
 
   return (
     <>
-      <div>
+      <div className='mentories-container'>
         <div className='card'>
           <div className='header'>{mentory.area}</div>
           <div className='body'>

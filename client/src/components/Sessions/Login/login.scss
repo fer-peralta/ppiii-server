@@ -16,16 +16,12 @@
     .form-container {
         background-color: rgb(255, 255, 255);
         padding: 2rem;
-        // display: flex;
-        // margin: auto;
         padding: 30px;
         max-width: 320px;
-        // width: 100%;
         box-shadow: 0px 0px 0px 3px rgba(52, 52, 53, 0.185);
         border-radius: 10px;
         
         form {
-            // margin: 2rem;
             
             .login-title {
                 text-align: center;
@@ -59,46 +55,13 @@
             .botones {
                 display: flex;
                 flex-direction: column;
-                // align-items: center;
             
                 .login-btn {
                     @include button($btn-white, $btn-black,$btn-grey-light-hover,$btn-grey-hover);
-                    // width: 100%;
-                    // height: 36px;
-                    // background-color: #1a202c;
-                    // color: #fff;
-                    // border: none;
-                    // border-radius: 5px;
-                    // font-size: 1.2rem;
-                    // cursor: pointer;
-                    // transition: all 0.2s ease-in-out;
-                    // margin-bottom: 10px;
-                    // &:hover {
-                    //     transition: 0.7s;
-                    //     background-color: #c9cfdc;
-                    //     color: #403f4b;
-                    // }
                 }
 
                 .register-btn {
                     @include button($btn-white, $btn-light-blue,$btn-grey-light-hover,$btn-grey-hover);
-                    // width: 100%;
-                    // height: 36px;
-                    // text-align: center;
-                    // // text-decoration: none;
-                    // background-color: #5a92a7;
-                    // color: white;
-                    // border: none;
-                    // border-radius: 5px;
-                    // font-size: 1.2rem;
-                    // cursor: pointer;
-                    // transition: all 0.2s ease-in-out;
-                    // margin-bottom: 20px;
-                    // &:hover {
-                    //     transition: 0.7s;
-                    //     background-color: #c9cfdc;
-                    //     color: #403f4b;
-                    // }
                     &>a {
                         display: block;
                         padding: 5px 5px;

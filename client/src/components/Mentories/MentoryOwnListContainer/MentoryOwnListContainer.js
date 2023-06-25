@@ -1,14 +1,11 @@
 import { useState, useEffect } from 'react'
-import MentoryList from '../MentoryList/MentoryList'
+import MentoryOwnList from '../MentoryOwnList/MentoryOwnList'
 import { config } from '../../../config/config'
 import './MentoryOwnListContainer.scss'
 import { options } from './MentoryOwnListContainer.fetchOptions'
 import { useNavigate } from 'react-router-dom'
-// import { useParams } from 'react-router-dom'
-// import { useQuery } from 'react-query'
-// import { Link } from 'react-router-dom'
 
-const ItemListContainer = () => {
+const MentoryOwnListContainer = () => {
   const [mentories, setMentories] = useState([])
   const navigate = useNavigate()
   const URL = `${config.REACT_APP_API_BASE_URL}mentories/own`
@@ -32,14 +29,12 @@ const ItemListContainer = () => {
     })
   }, [])
 
-  //   const { data, status } = useQuery('users', getUsers)
-
   return (
     <div className='mentory-own-list-container'>
       <h1>Mis mentorías</h1>
-      <MentoryList mentories={mentories} />
+      <MentoryOwnList mentories={mentories} />
     </div>
   )
 }
 
-export default ItemListContainer
+export default MentoryOwnListContainer

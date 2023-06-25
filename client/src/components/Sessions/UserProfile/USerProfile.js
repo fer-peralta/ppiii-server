@@ -79,7 +79,7 @@ const Profile = () => {
           </div>
         </div>
         <button onClick={handleLogOut} className='logout-btn'>
-          Cerrar sesion
+          Cerrar sesión
         </button>
       </div>
     </>

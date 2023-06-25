@@ -1,22 +1,22 @@
-import React from 'react'
-// import MainForm from './components/MainForm.js';
 import './App.scss'
+import React from 'react'
 import 'react-toastify/dist/ReactToastify.css'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
+// import MainForm from './components/MainForm.js';
 import { QueryClientProvider, QueryClient } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
-import Navbar from './components/navbar/Navbar'
+import Navbar from './components/Navbar/Navbar'
 import Login from './components/Sessions/Login/Login.js'
-import Register from './components/Sessions/Register/register'
-import Profile from './components/Sessions/UserProfile/USerProfile'
+import Register from './components/Sessions/Register/Register'
+import Profile from './components/Sessions/UserProfile/UserProfile'
 import MentoryListContainer from './components/Mentories/MentoryListContainer/MentoryListContainer'
 import MentoryOwnListContainer from './components/Mentories/MentoryOwnListContainer/MentoryOwnListContainer'
 import MentoryCreate from './components/Mentories/MentoryCreate/MentoryCreate'
 import MentoryUpdate from './components/Mentories/MentoryUpdate/MentoryUpdate'
 import SubscriptionListContainer from './components/Subscriptions/SubscriptionListContainer/SubscriptionListContainer'
 import Error404 from './components/Error404/Error404'
-import Footer from './components/footer/Footer'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { ToastContainer } from 'react-toastify'
+import Footer from './components/Footer/Footer'
 
 const queryClient = new QueryClient()
 

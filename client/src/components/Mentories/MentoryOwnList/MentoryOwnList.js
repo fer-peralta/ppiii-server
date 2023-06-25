@@ -3,11 +3,11 @@ import './MentoryOwnList.scss'
 
 const MentoryOwnList = ({ mentories }) => {
   return (
-    <ul>
+    <div className='mentory-own-list'>
       {mentories?.map(mentory => (
         <Mentory key={mentory._id} mentory={mentory} />
       ))}
-    </ul>
+    </div>
   )
 }
 

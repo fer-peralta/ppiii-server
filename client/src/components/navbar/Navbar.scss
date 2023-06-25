@@ -1,9 +1,11 @@
+@import "../../assets/variables.scss";
+@import "../../assets/mixins.scss";
+
 .navTop {
     display: flex;
     justify-content: space-around;
-    background-color: grey;
+    background-color: $nav-light-color;
     align-items: center;
-    color: black;
     flex-wrap: wrap;
     padding: 0.5rem;
     margin-bottom: 0.5rem;
@@ -11,31 +13,28 @@
     div.div_logo {
 
         a {
-
             .home_button {
-                height: 40px;
-                width: 40px;
+                height: 60px;
+                width: 200px;
             }
-
         }
-
     }
 
     .navList {
 
         .nav_buttons {
-            color: black;
+            color: $nav-list-buttons-color-light;
             size: 2rem;
             padding-right: 1rem;
             padding-left: 1rem;
             border-radius: 4px;
+            font-size: 1.2rem;
             &:hover {
                 transition: 0.7s;
                 background-color: #c9cfdc;
                 color: #403f4b;
             }
         }
-
     }
 }
 

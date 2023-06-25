@@ -7,4 +7,13 @@ div.mentory-list-container {
         color: $titles-color;
     }
 
+    div.mentories-and-filter-container {
+        display: flex;
+        margin-top: 2rem;
+    }
+
+    // .mentories-and-filter-container > * {
+    //     flex: 15 1;
+    //   }
+
 }

@@ -1,7 +1,6 @@
 import { useState } from 'react'
-import './MentoryCreate.css'
+import './MentoryCreate.scss'
 import { config } from '../../../config/config'
-import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { options } from './MentoryCreate.fetchOptions'
 
@@ -55,10 +54,9 @@ const MentoryCreate = () => {
   }
   return (
     <>
-      <Link to='../mentories'>Volver</Link>
-      <div className='contenedorLogin'>
+      <div className='mentory-create-container'>
+        <h2 className='title '>Nueva mentoría</h2>
         <form onSubmit={handleSubmit} className='form'>
-          <h2 className='title '>Nueva mentoría</h2>
           <label className='label' htmlFor='titulo'>
             Título
           </label>
@@ -212,7 +210,7 @@ const MentoryCreate = () => {
             />
           </div>
 
-          <button type='submit' className='submit'>
+          <button type='submit' className='create-mentory-button'>
             Crear mentoria
           </button>
         </form>

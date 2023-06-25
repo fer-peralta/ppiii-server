@@ -1,6 +1,7 @@
 import './MentoryListContainer.scss'
 import { useState, useEffect } from 'react'
 import MentoryList from '../MentoryList/MentoryList'
+import { CategoryFilter } from '../CategoryFilter/CategoryFilter'
 import { config } from '../../../config/config'
 import { options } from './MentoryListContainer.fetchOptions'
 import { useNavigate } from 'react-router-dom'
@@ -10,6 +11,8 @@ const MentoryListContainer = () => {
   const navigate = useNavigate()
   const URL = `${config.REACT_APP_API_BASE_URL}mentories`
   const token = JSON.stringify(localStorage.getItem('token'))
+
+  const [getData, setGetData] = useState([])
 
   const getUsers = async () => {
     const response = await fetch(URL, options(token))
@@ -29,12 +32,13 @@ const MentoryListContainer = () => {
     })
   }, [])
 
-  //   const { data, status } = useQuery('users', getUsers)
-
   return (
     <div className='mentory-list-container'>
       <h1>Mentorías disponibles</h1>
-      <MentoryList mentories={mentories} />
+      <div className='mentories-and-filter-container'>
+        <CategoryFilter mentories={mentories} setGetData={setGetData} />
+        <MentoryList mentories={mentories} getData={getData} />
+      </div>
     </div>
   )
 }

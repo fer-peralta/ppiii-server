@@ -1,5 +1,5 @@
 // import './Footer.css'
-import './Footer.css'
+import './Footer.scss'
 import { Link } from 'react-router-dom'
 
 const Footer = () => {
@@ -24,7 +24,7 @@ const Footer = () => {
           ></Link>
         </div>
         <p className='footer_copyright'>
-          Copyright &copy; Todos los derechos reservados
+          Copyright 2023 &copy; Todos los derechos reservados
         </p>
       </footer>
     </>

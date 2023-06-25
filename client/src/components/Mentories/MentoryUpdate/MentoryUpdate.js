@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import './MentoryUpdate.css'
+import './MentoryUpdate.scss'
 import { config } from '../../../config/config'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 
@@ -99,10 +99,9 @@ const MentoryUpdate = props => {
   }
   return (
     <>
-      <Link to='../mentories'>Volver</Link>
-      <div className='contenedorLogin'>
+      <div className='update-mentory-container'>
+        <h2 className='title '>Modificar mentoría</h2>
         <form onSubmit={handleSubmit} className='form'>
-          <h2 className='title '>Mentories</h2>
           <label className='label' htmlFor='titulo'>
             Titulo
           </label>
@@ -196,7 +195,7 @@ const MentoryUpdate = props => {
             <option></option>
             <option>Presencial</option>
             <option>Virtual</option>
-            <option>Asincrónica</option>
+            <option>Asíncrona</option>
           </select>
           <label htmlFor='ubicación'>Ubicación</label>
           <input
@@ -250,8 +249,7 @@ const MentoryUpdate = props => {
                             setFecha(e.target.value)
                         }} /> */}
 
-
-          <button type='submit' className='submit'>
+          <button type='submit' className='update-mentory-btn'>
             Modificar mentoría
           </button>
         </form>

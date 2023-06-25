@@ -140,7 +140,6 @@ const Subscription = ({ susbcription }) => {
             onClick={() => {
               handleDeleteSubscription()
             }}
-            style={{ backgroundColor: 'grey' }}
           >
             Desinscribirse
           </button>
