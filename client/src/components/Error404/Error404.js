@@ -1,4 +1,3 @@
-import './Error404.scss'
 import { useNavigate } from 'react-router-dom'
 
 const Error404 = () => {

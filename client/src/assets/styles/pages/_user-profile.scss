@@ -1,3 +1,5 @@
+@use "../abstracts" as *;
+
 .profile-container {
 
     display: flex;
@@ -5,7 +7,7 @@
     align-items: center;
 
     h1.profile-title {
-        margin-bottom: 40px;
+        @include titles($titles-color)
     }
     .profile-data-container {
         padding: 2rem;

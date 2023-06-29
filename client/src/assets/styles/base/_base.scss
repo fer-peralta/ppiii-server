@@ -1,0 +1,24 @@
+// @use "../abstracts" as *;
+@use "../abstracts" as *;
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+body {
+    background-color: $bg-color-ligth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin-bottom: 180px;
+  }
+  
+  html {
+    min-height: 100%;
+    position: relative;
+  }
+  
+  li {
+    list-style: none;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #000;
+  }

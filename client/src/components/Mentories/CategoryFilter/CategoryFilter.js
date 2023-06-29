@@ -1,4 +1,3 @@
-import './CategoryFilter.scss'
 import { useState, useEffect, useCallback } from 'react'
 
 export const CategoryFilter = ({ mentories, setGetData }) => {

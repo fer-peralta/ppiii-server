@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import './MentoryUpdate.scss'
 import { config } from '../../../config/config'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { sendRequest } from '../../../services/apiRequest.generator'
 
 const MentoryUpdate = props => {
   const navigate = useNavigate()
@@ -25,18 +25,8 @@ const MentoryUpdate = props => {
   const token = JSON.stringify(localStorage.getItem('token'))
   const URLGetById = `${config.REACT_APP_API_BASE_URL}mentories/${mentoryId}`
 
-  const optionsGetUserById = {
-    method: 'GET',
-    headers: {
-      Authorization: `Bearer ${token}`,
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
-    }
-  }
-
   const getUserById = async () => {
-    const response = await fetch(URLGetById, optionsGetUserById)
-    const dataNew = await response.json()
+    const dataNew = await sendRequest('GET', URLGetById, token)
     setmentoryToUpdate(dataNew)
     setTitle(dataNew.data.data.title)
     setDescription(dataNew.data.data.description)
@@ -74,24 +64,8 @@ const MentoryUpdate = props => {
         day
         // fecha
       }
-
       const URLPUT = `${config.REACT_APP_API_BASE_URL}mentories/${mentoryId}`
-
-      const optionsUpdate = {
-        method: 'PUT',
-        body: JSON.stringify(putInfo),
-        headers: {
-          Authorization: `Bearer ${token}`,
-          Accept: 'application/json',
-          'Content-Type': 'application/json'
-        }
-      }
-
-      await fetch(URLPUT, optionsUpdate).then(resp => {
-        resp.json().then(data => {
-          console.log(data)
-        })
-      })
+      sendRequest('PUT', URLPUT, token, putInfo)
     } catch (error) {
       console.error(error)
     }

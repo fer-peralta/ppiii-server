@@ -97,10 +97,10 @@ export const profileUserController = async (req, res) => {
   try {
     if (req.user._id) {
       const { data } = await UserService.findUser(req.user._id)
-      res.status(200).json({ message: 'User profile', User: data })
+      res.status(200).json({ message: 'User profile', user: data })
     } else if (req.user.id) {
       const { data } = await UserService.findUser(req.user.id)
-      res.status(200).json({ message: 'User profile', User: data })
+      res.status(200).json({ message: 'User profile', user: data })
     }
   } catch (error) {
     const errorMessage = { message: `There was an error: ${error}` }
@@ -115,9 +115,7 @@ export const userConfirmationController = async (req, res) => {
     const data = getTokenData(token)
     data === null &&
       res.send({ message: 'There was an error with the token data' })
-
     const { email, code } = data.data
-
     const user = await UserModel.findOne({ email })
     user === null &&
       res.send({ message: "There was an error, user doesn't exist" })

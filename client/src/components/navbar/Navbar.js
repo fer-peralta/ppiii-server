@@ -1,4 +1,3 @@
-import './Navbar.scss'
 // import Logo from '../../assets/images/logo.svg'
 import Logo from '../../assets/images/logo_white_large.png'
 import { Link, useLocation } from 'react-router-dom'

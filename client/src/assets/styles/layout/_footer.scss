@@ -1,5 +1,4 @@
-@import "../../assets/variables.scss";
-@import "../../assets/mixins.scss";
+@use "../abstracts" as *;
 
 footer {
     width: 100%;
@@ -15,15 +14,15 @@ footer {
         align-items: center;
 
         .whatsapp {
-            background-image: url('../../utils/iconosSocial/facebook-tag.svg');
+            background-image: url('../../images/social-icons/facebook-icon.svg');
         }
         
         .linkedin {
-            background-image: url('../../utils/iconosSocial/linkedin.svg');
+            background-image: url('../../images/social-icons/linkedin-icon.svg');
         }
         
         .github {
-            background-image: url('../../utils/iconosSocial/github-circle.svg');
+            background-image: url('../../images/social-icons/github-icon.svg');
         }
     
         a {

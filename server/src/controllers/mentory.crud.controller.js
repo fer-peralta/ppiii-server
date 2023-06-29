@@ -97,9 +97,6 @@ export const findMentory = async (req, res) => {
 
 export const updateMentory = async (req, res) => {
   try {
-    // req.body.author = `${req.user.name} ${req.user.surname}`
-    // req.body.email = req.user.email
-    // req.body.avatar = avatarGenerator(req.body.title, req.body.author)
     const response = await MentoryService.updateMentory(req.params.id, req.body)
     res.status(200).send({ data: response })
   } catch (error) {

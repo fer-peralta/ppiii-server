@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react'
 import MentoryOwnList from '../MentoryOwnList/MentoryOwnList'
 import { config } from '../../../config/config'
-import './MentoryOwnListContainer.scss'
-import { options } from './MentoryOwnListContainer.fetchOptions'
+import { sendRequest } from '../../../services/apiRequest.generator'
 import { useNavigate } from 'react-router-dom'
 
 const MentoryOwnListContainer = () => {
@@ -11,11 +10,16 @@ const MentoryOwnListContainer = () => {
   const URL = `${config.REACT_APP_API_BASE_URL}mentories/own`
   const token = JSON.stringify(localStorage.getItem('token'))
 
-  const getUsers = async () => {
-    const response = await fetch(URL, options(token))
-    response.status === 403 && navigate('/')
-    const dataNew = await response.json()
-    const mentoriesGet = dataNew.data.map(ment => {
+  const getOwnMentories = async () => {
+    const response = await sendRequest('GET', URL, token)
+    if (
+      response.status === 400 ||
+      response.status === 401 ||
+      response.status === 403
+    ) {
+      navigate('/')
+    }
+    const mentoriesGet = response.data.map(ment => {
       const data = ment
       return { _id: ment._id, ...data }
     })
@@ -24,7 +28,7 @@ const MentoryOwnListContainer = () => {
   }
 
   useEffect(() => {
-    getUsers().then(mentories => {
+    getOwnMentories().then(mentories => {
       setMentories(mentories)
     })
   }, [])

@@ -1,8 +1,7 @@
 import { useState } from 'react'
-import './MentoryCreate.scss'
 import { config } from '../../../config/config'
 import { useNavigate } from 'react-router-dom'
-import { options } from './MentoryCreate.fetchOptions'
+import { sendRequest } from '../../../services/apiRequest.generator'
 
 const MentoryCreate = () => {
   const navigate = useNavigate()
@@ -38,17 +37,13 @@ const MentoryCreate = () => {
       const URL = `${config.REACT_APP_API_BASE_URL}mentories`
       const token = JSON.stringify(localStorage.getItem('token'))
 
-      await fetch(URL, options(post, token)).then(resp => {
-        resp.json().then(data => {
-          navigate('../mentories/own')
-        })
-      })
+      sendRequest('POST', URL, token, post)
+      navigate('../mentories/own')
     } catch (error) {
       console.error(error)
     }
 
     if (modality !== 'Presencial') {
-      console.log(modality)
       setIsDisabled(true)
     }
   }
@@ -56,7 +51,7 @@ const MentoryCreate = () => {
     <>
       <div className='mentory-create-container'>
         <h2 className='title '>Nueva mentoría</h2>
-        <form onSubmit={handleSubmit} className='form'>
+        <form onSubmit={handleSubmit} className='form' autoComplete='on'>
           <label className='label' htmlFor='titulo'>
             Título
           </label>
@@ -71,7 +66,7 @@ const MentoryCreate = () => {
             }}
           />
           <label className='label' htmlFor='descripcion'>
-            Descripcion
+            Descripción
           </label>
           <textarea
             className='textArea'

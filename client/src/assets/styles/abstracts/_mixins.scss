@@ -15,4 +15,25 @@
         background-color: $hover-bgcolor;
         color: $hover-color;
     }
-  }
+}
+
+@mixin input($titles-color){
+    
+    width: 100%;
+    font-size: 1rem;
+    color: #4a5568;
+    outline: none;
+    border: 1px solid $titles-color;
+    border-radius: 4px;
+    transition: all 0.5s ease-in-out;
+    &:focus {
+        box-shadow: 0 0 0 2px #cbd5e0;
+    }
+}
+
+@mixin titles($titles-color){
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: $titles-color;
+}

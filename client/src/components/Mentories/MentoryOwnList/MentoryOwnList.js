@@ -1,5 +1,4 @@
 import Mentory from '../Mentory/Mentory'
-import './MentoryOwnList.scss'
 
 const MentoryOwnList = ({ mentories }) => {
   return (

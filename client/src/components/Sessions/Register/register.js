@@ -1,4 +1,3 @@
-import './Register.scss'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Navigate } from 'react-router-dom'
@@ -18,7 +17,6 @@ const Register = () => {
   const [emailError, setEmailError] = useState('')
   const [ageError, setAgeError] = useState('')
   const [phoneError, setPhoneError] = useState('')
-  const [miregister, setMiregister] = useState(false)
 
   const navigate = useNavigate()
 
@@ -91,10 +89,9 @@ const Register = () => {
       await fetch(URL, options(post)).then(resp => {
         resp.json().then(data => {
           localStorage.setItem('token', data.access_token)
-          data.message ===
-          'There was an error: ReferenceError: error is not defined'
-            ? setMiregister(false)
-            : navigate('/profile')
+          data.message !==
+            'There was an error: ReferenceError: error is not defined' &&
+            navigate('/profile')
         })
       })
     } catch (error) {
@@ -104,7 +101,7 @@ const Register = () => {
 
   return (
     <>
-      <h1 className='title-login-page'>Bienvenido voluntarios Beltrán</h1>
+      <h1 className='title-login-page'>Bienvenido a Voluntarios Beltrán</h1>
       <div className='contenedorRegister'>
         <form onSubmit={handleSubmit}>
           <h2 className='title'>Registro</h2>
@@ -228,7 +225,6 @@ const Register = () => {
           </button>
         </form>
       </div>
-      {miregister === true && <Navigate to='/profile' />}
     </>
   )
 }

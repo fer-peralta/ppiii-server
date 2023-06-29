@@ -1,20 +1,15 @@
-import './Subscription.scss'
 import { useState, useEffect } from 'react'
 import { config } from '../../../config/config'
-import { options } from './Subscription.fetchOptions'
 import { deleteSubSuccessToast } from '../../../services/toastifyNotifications/notifications'
+import { sendRequest } from '../../../services/apiRequest.generator'
 
 const Subscription = ({ susbcription }) => {
   const [mentoryFound, setMentoryFound] = useState([])
-  const URL = `${config.REACT_APP_API_BASE_URL}mentories/${susbcription.mentoryId}`
-  const URL2 = `${config.REACT_APP_API_BASE_URL}users/subscriptions`
+  const URLGET = `${config.REACT_APP_API_BASE_URL}mentories/${susbcription.mentoryId}`
+  const URLDELETE = `${config.REACT_APP_API_BASE_URL}users/subscriptions`
   const token = JSON.stringify(localStorage.getItem('token'))
 
-  const getUsers = async () => {
-    const response = await fetch(URL, options(token))
-    const dataNew = await response.json()
-    return dataNew
-  }
+  const getUsers = async () => await sendRequest('GET', URLGET, token)
 
   useEffect(() => {
     getUsers().then(mentoryFound => {
@@ -25,17 +20,7 @@ const Subscription = ({ susbcription }) => {
   const handleDeleteSubscription = async () => {
     try {
       const body = { mentoryId: susbcription.mentoryId }
-      console.log(body)
-      const options = {
-        method: 'DELETE',
-        body: JSON.stringify(body),
-        headers: {
-          Authorization: `Bearer ${token}`,
-          Accept: 'application/json',
-          'Content-Type': 'application/json'
-        }
-      }
-      await fetch(`${URL2}`, options).then(resp => resp.json())
+      sendRequest('DELETE', URLDELETE, token, body)
       deleteSubSuccessToast()
       setTimeout(() => {
         window.location.reload()

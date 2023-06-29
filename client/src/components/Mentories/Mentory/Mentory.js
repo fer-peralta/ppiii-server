@@ -1,4 +1,3 @@
-import './Mentory.scss'
 import { Link } from 'react-router-dom'
 import { config } from '../../../config/config'
 import { useState } from 'react'

@@ -1,5 +1,4 @@
-@import "../../../assets/variables.scss";
-@import "../../../assets/mixins.scss";
+@use "../abstracts" as *;
 
 .contenedorRegister {
     margin-top: 40px;
@@ -19,10 +18,7 @@
         align-items: center;
         
         h2.title {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: $titles-color;
+            @include titles($titles-color)
         }
 
         label {

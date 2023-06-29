@@ -1,5 +1,4 @@
 import mongoose from 'mongoose'
-import { userSchema } from './user.model.js'
 
 const mentoriesCollection = 'mentories'
 

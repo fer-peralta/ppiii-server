@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react'
-import './login.scss'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { config } from '../../../config/config'
 import { options } from './Login.fetchOptions'
 import { loginErrorToast } from '../../../services/toastifyNotifications/notifications'
 
 const Login = () => {
-  const [miLogin, setMiLogin] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [emailError, setEmailError] = useState('')
@@ -42,7 +40,7 @@ const Login = () => {
             loginErrorToast()
           } else {
             localStorage.setItem('token', data.access_token)
-            setMiLogin(true)
+            navigate('./mentories')
           }
         })
       })
@@ -53,12 +51,12 @@ const Login = () => {
 
   return (
     <>
-      <h1 className='title-login-page'>Bienvenido voluntarios Beltrán</h1>
+      <h1 className='title-login-page'>Bienvenido a Voluntarios Beltrán</h1>
       <div className='login-container'>
         <div className='form-container'>
           <form onSubmit={handleSubmit}>
             <h2 className='login-title '>Log in</h2>
-            <label className='label' htmlFor='username'>
+            <label className='label' htmlFor='loginEmail'>
               Email
             </label>
             <input
@@ -66,6 +64,7 @@ const Login = () => {
               required={true}
               type='email'
               name='email'
+              id='loginEmail'
               value={email}
               placeholder='usuario@itbeltran.com.ar'
               onChange={e => {
@@ -79,7 +78,7 @@ const Login = () => {
               </p>
             )}
 
-            <label className='label' htmlFor='password'>
+            <label className='label' htmlFor='passwordLogin'>
               Password
             </label>
             <input
@@ -87,6 +86,7 @@ const Login = () => {
               className='input'
               type='password'
               name='password'
+              id='passwordLogin'
               value={password}
               onChange={e => setPassword(e.target.value)}
             />
@@ -99,8 +99,6 @@ const Login = () => {
               </button>
             </div>
           </form>
-
-          {miLogin === true && <Navigate to='/mentories' />}
         </div>
       </div>
     </>

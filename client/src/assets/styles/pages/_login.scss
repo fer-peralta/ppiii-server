@@ -1,0 +1,93 @@
+@use "../abstracts" as *;
+
+.title-login-page {
+    @include titles($titles-color)
+}
+
+.login-container {
+    margin-top: 40px;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+
+    .form-container {
+        background-color: rgb(255, 255, 255);
+        padding: 2rem;
+        padding: 30px;
+        max-width: 320px;
+        box-shadow: 0px 0px 0px 3px rgba(52, 52, 53, 0.185);
+        border-radius: 10px;
+        
+        .login-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: $titles-color;
+        }
+        
+        .label {
+            color: $titles-color;
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        .input {
+            @include input($titles-color);
+            padding: 10px;
+            margin-bottom: 15px;
+            margin-right: 10px;
+        }
+
+        .botones {
+            display: flex;
+            flex-direction: column;
+        
+            .login-btn {
+                @include button($btn-white, $btn-black,$btn-grey-light-hover,$btn-grey-hover);
+            }
+
+            .register-btn {
+                @include button($btn-white, $btn-light-blue,$btn-grey-light-hover,$btn-grey-hover);
+                &>a {
+                    display: block;
+                    padding: 5px 5px;
+                    color: white;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .contenedorLogin {
+        display: flex;
+        justify-content: center;
+        
+        .form-container {
+            form {
+                .botones {
+                    margin-left: 2vh;
+                }
+            }
+        }
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
