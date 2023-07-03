@@ -3,7 +3,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 // import MainForm from './components/MainForm.js';
-import Navbar from './components/favbar/Navbar'
+import Navbar from './components/navbar/Navbar'
 import Login from './components/Sessions/Login/Login.js'
 import Register from './components/Sessions/Register/register'
 import Profile from './components/Sessions/UserProfile/USerProfile'
