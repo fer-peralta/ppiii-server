@@ -11,7 +11,8 @@ export const SignUpUserController = async (req, res, next) => {
   try {
     const user = await UserModel.findOne({ email: req.body.email }).exec()
     if (user) {
-      res.json({ message: 'The user is already in the database, try to login' })
+      console.log(user)
+      throw user.error
     }
     req.body.avatar = avatarGenerator(req.body.name, req.body.surname)
     req.body.type = 'normal'
@@ -29,18 +30,21 @@ export const SignUpUserController = async (req, res, next) => {
     }
     const createUser = await UserService.saveUser(newUser)
     if (createUser.error) {
-      res.json({ message: 'User sign up failed', error: error })
+      throw createUser.error
     }
     const access_token = generateToken(createUser)
     if (createUser) {
       signUpMail(newUser)
       confirmMail(newUser, access_token)
-      res.json({ message: 'User sign up with success', access_token })
+      res.send({ message: 'User sign up with success', access_token })
     }
   } catch (error) {
-    const errorMessage = { message: `There was an error: ${error}` }
+    const errorMessage = {
+      message: `There was an error: ${error}`,
+      error: true
+    }
     logError.error(errorMessage)
-    res.status(400).json(errorMessage)
+    res.status(400).send(errorMessage)
   }
 }
 

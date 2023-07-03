@@ -1,11 +1,6 @@
 import { avatarGenerator } from '../services/avatar.generator.js'
 import * as UserService from '../services/user.service.js'
-import {
-  signUpStrategy,
-  logInStrategy
-} from '../services/passport.strategies.js'
 import { logError, logInfo } from '../logs/logger.js'
-import passport from 'passport'
 
 passport.use('signUpStrategy', signUpStrategy)
 passport.use('logInStrategy', logInStrategy)

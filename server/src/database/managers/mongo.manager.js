@@ -28,12 +28,12 @@ export class MongoManager {
       return data
     } catch (error) {
       logError.error({
-        message: `There was an error getting the documents`,
-        error: error
+        message: `There was an error getting the documents ${error}`,
+        error: true
       })
       return {
-        message: `There was an error getting the documents`,
-        error: error
+        message: `There was an error getting the documents ${error}`,
+        error: true
       }
     }
   }
@@ -42,14 +42,7 @@ export class MongoManager {
     try {
       const documentToFind = await this.model.findById(id)
       if (!documentToFind) {
-        logWarn.warn({
-          message: `There was an error searching the id, not found`,
-          id: id
-        })
-        return {
-          message: `There was an error searching the id, not found`,
-          id: id
-        }
+        throw `There was an error searching the id, not found`
       } else {
         return { message: `Document found succesfully`, data: documentToFind }
       }
@@ -69,31 +62,28 @@ export class MongoManager {
 
   async updateById (id, body) {
     try {
-      const documentToupdate = await this.model.findById(id)
-      if (documentToupdate) {
+      const { data, error } = await this.getById(id)
+      if (error) {
+        throw error
+      }
+      if (data) {
         await this.model.findByIdAndUpdate(id, body)
-        const { data } = await this.getById(id)
-        return { message: 'Document updated successfully', data }
-      } else {
-        logWarn.warn({
-          message: `There was an error searching the id, not found`,
-          id: id
-        })
-        return {
-          message: `There was an error searching the id, not found`,
-          id: id
+        const { data, error } = await this.getById(id)
+        if (error) {
+          throw error
         }
+        return { message: 'Document updated successfully', data }
       }
     } catch (error) {
       logError.error({
-        message: `There was an error updating the document`,
+        message: `There was an error updating the document: ${error}`,
         id: id,
-        error: error
+        error: true
       })
       return {
-        message: `There was an error updating the document`,
+        message: `There was an error updating the document: ${error}`,
         id: id,
-        error: error
+        error: true
       }
     }
   }
