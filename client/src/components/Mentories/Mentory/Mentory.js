@@ -9,10 +9,14 @@ import {
 
 const Mentory = ({ mentory }) => {
   const specificWebPage = window.location.href
-
   const navigate = useNavigate()
 
-  let prevUrl = document.referrer
+  const URL = `${config.REACT_APP_API_BASE_URL}mentories/`
+  const URL2 = `${config.REACT_APP_API_BASE_URL}users/subscriptions`
+  const token = JSON.stringify(localStorage.getItem('token'))
+
+  const URLfront = `${config.REACT_APP_FRONT_BASE_URL}`
+  console.log(URLfront)
 
   const locationVisible = () => {
     if (mentory.location === mentory.modality) {
@@ -28,7 +32,7 @@ const Mentory = ({ mentory }) => {
   }
 
   const mentoryOwnEdit = () => {
-    if (specificWebPage === 'http://localhost:3000/mentories/own') {
+    if (specificWebPage === `${URLfront}mentories/own`) {
       return (
         <div className='actions-btn-container'>
           <button type='submit' className='update-btn'>
@@ -48,7 +52,7 @@ const Mentory = ({ mentory }) => {
     }
   }
   const mentorySubcription = () => {
-    if (specificWebPage === 'http://localhost:3000/mentories') {
+    if (specificWebPage === `${URLfront}mentories`) {
       return (
         <button
           type='submit'
@@ -88,10 +92,6 @@ const Mentory = ({ mentory }) => {
       return ''
     }
   }
-
-  const URL = `${config.REACT_APP_API_BASE_URL}mentories/`
-  const URL2 = `${config.REACT_APP_API_BASE_URL}users/subscriptions`
-  const token = JSON.stringify(localStorage.getItem('token'))
 
   const handleDelete = async e => {
     try {
