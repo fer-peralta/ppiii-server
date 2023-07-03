@@ -3,17 +3,17 @@ import 'react-toastify/dist/ReactToastify.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 // import MainForm from './components/MainForm.js';
-import Navbar from './components/Navbar/Navbar'
+import Navbar from './components/favbar/Navbar'
 import Login from './components/Sessions/Login/Login.js'
-import Register from './components/Sessions/Register/Register'
-import Profile from './components/Sessions/UserProfile/UserProfile'
+import Register from './components/Sessions/Register/register'
+import Profile from './components/Sessions/UserProfile/USerProfile'
 import MentoryListContainer from './components/Mentories/MentoryListContainer/MentoryListContainer'
 import MentoryOwnListContainer from './components/Mentories/MentoryOwnListContainer/MentoryOwnListContainer'
 import MentoryCreate from './components/Mentories/MentoryCreate/MentoryCreate'
 import MentoryUpdate from './components/Mentories/MentoryUpdate/MentoryUpdate'
 import SubscriptionListContainer from './components/Subscriptions/SubscriptionListContainer/SubscriptionListContainer'
 import Error404 from './components/Error404/Error404'
-import Footer from './components/Footer/Footer'
+import Footer from './components/footer/Footer'
 
 function App () {
   return (
