@@ -12,11 +12,7 @@ const SubscriptionListContainer = () => {
 
   const getSubscriptions = async () => {
     const response = await sendRequest('GET', URL, token)
-    if (
-      response.status === 400 ||
-      response.status === 401 ||
-      response.status === 403
-    ) {
+    if (response.error) {
       navigate('/')
     }
 

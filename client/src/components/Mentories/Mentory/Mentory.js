@@ -16,7 +16,6 @@ const Mentory = ({ mentory }) => {
   const token = JSON.stringify(localStorage.getItem('token'))
 
   const URLfront = `${config.REACT_APP_FRONT_BASE_URL}`
-  console.log(URLfront)
 
   const locationVisible = () => {
     if (mentory.location === mentory.modality) {

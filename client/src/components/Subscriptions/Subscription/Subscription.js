@@ -13,7 +13,7 @@ const Subscription = ({ susbcription }) => {
 
   useEffect(() => {
     getUsers().then(mentoryFound => {
-      setMentoryFound(mentoryFound.data.data)
+      setMentoryFound(mentoryFound.data)
     })
   }, [])
 

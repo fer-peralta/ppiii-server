@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { config } from '../../../config/config'
 import { useNavigate } from 'react-router-dom'
 import { sendRequest } from '../../../services/apiRequest.generator'
 
 const MentoryCreate = () => {
   const navigate = useNavigate()
+  const [isLogged, setIsLogged] = useState(true)
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [area, setArea] = useState('')
@@ -17,6 +18,19 @@ const MentoryCreate = () => {
   //const [fecha, setFecha] = useState('')
   const [day, setDay] = useState('')
   const [isDisabled, setIsDisabled] = useState(false)
+
+  const URL = `${config.REACT_APP_API_BASE_URL}mentories`
+  const token = JSON.stringify(localStorage.getItem('token'))
+
+  useEffect(() => {
+    if (token.toString() === 'null') {
+      setIsLogged(false)
+    }
+  }, [])
+
+  if (isLogged === false) {
+    navigate('/')
+  }
 
   const handleSubmit = async e => {
     e.preventDefault()
@@ -34,9 +48,6 @@ const MentoryCreate = () => {
         day
         // fecha
       }
-      const URL = `${config.REACT_APP_API_BASE_URL}mentories`
-      const token = JSON.stringify(localStorage.getItem('token'))
-
       sendRequest('POST', URL, token, post)
       navigate('../mentories/own')
     } catch (error) {

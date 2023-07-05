@@ -24,6 +24,9 @@ const MentoryUpdate = props => {
 
   const token = JSON.stringify(localStorage.getItem('token'))
   const URLGetById = `${config.REACT_APP_API_BASE_URL}mentories/${mentoryId}`
+  if (mentoryId === null || token === null) {
+    navigate('/')
+  }
 
   const getUserById = async () => {
     const dataNew = await sendRequest('GET', URLGetById, token)
