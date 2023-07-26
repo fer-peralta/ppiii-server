@@ -10,11 +10,19 @@ const Error404 = () => {
 
   return (
     <>
+
       <div className='error404-container'>
+
+
         <h1>Error 404</h1>
         <h2>Página no encontrada</h2>
         <button onClick={handleGoHome}>Ir a home</button>
+
+
+        {/* <Faq></Faq> */}
       </div>
+
+
     </>
   )
 }

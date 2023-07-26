@@ -17,16 +17,18 @@ import MentoryUpdate from './components/Mentories/MentoryUpdate/MentoryUpdate'
 import SubscriptionListContainer from './components/Subscriptions/SubscriptionListContainer/SubscriptionListContainer'
 import Error404 from './components/Error404/Error404'
 import Footer from './components/footer/Footer'
+import Inicio from './components/inicio/Inicio'
 
 const queryClient = new QueryClient()
 
-function App () {
+function App() {
   return (
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
         <ToastContainer />
         <Navbar />
         <Routes>
+          <Route path='/inicio' element={<Inicio />} />
           <Route path='/' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/profile' element={<Profile />} />
