@@ -1,10 +1,11 @@
 import React from 'react'
 import 'react-toastify/dist/ReactToastify.css'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 // import MainForm from './components/MainForm.js';
 import Navbar from './components/Navbar/Navbar'
 import Login from './components/Sessions/Login/Login.js'
+import HomePage from './components/Home/Home-page.js'
 import Register from './components/Sessions/Register/Register'
 import Profile from './components/Sessions/UserProfile/UserProfile'
 import MentoryListContainer from './components/Mentories/MentoryListContainer/MentoryListContainer'
@@ -21,7 +22,9 @@ function App () {
       <ToastContainer />
       <Navbar />
       <Routes>
-        <Route path='/' element={<Login />} />
+        <Route path='/' element={<Navigate to='/home' />} />
+        <Route path='/home' element={<HomePage />} />
+        <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/mentories' element={<MentoryListContainer />} />

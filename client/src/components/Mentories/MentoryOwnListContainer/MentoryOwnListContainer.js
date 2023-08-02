@@ -13,7 +13,8 @@ const MentoryOwnListContainer = () => {
   const getOwnMentories = async () => {
     const response = await sendRequest('GET', URL, token)
     if (response.error) {
-      navigate('/')
+      localStorage.removeItem('token')
+      navigate('/login')
     }
     const mentoriesGet = response.data.map(ment => {
       const data = ment
@@ -29,10 +30,16 @@ const MentoryOwnListContainer = () => {
     })
   }, [])
 
+  console.log(mentories)
+
   return (
     <div className='mentory-own-list-container'>
       <h1>Mis mentorías</h1>
-      <MentoryOwnList mentories={mentories} />
+      {mentories.length > 0 ? (
+        <MentoryOwnList mentories={mentories} />
+      ) : (
+        <h2>No hay mentorías creadas</h2>
+      )}
     </div>
   )
 }

@@ -4,7 +4,7 @@ const Error404 = () => {
   const navigate = useNavigate()
 
   const handleGoHome = async () => {
-    navigate('/')
+    navigate('/home')
   }
 
   return (

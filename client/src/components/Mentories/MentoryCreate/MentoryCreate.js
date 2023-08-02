@@ -25,11 +25,12 @@ const MentoryCreate = () => {
   useEffect(() => {
     if (token.toString() === 'null') {
       setIsLogged(false)
+      localStorage.removeItem('token')
     }
   }, [])
 
   if (isLogged === false) {
-    navigate('/')
+    navigate('/login')
   }
 
   const handleSubmit = async e => {

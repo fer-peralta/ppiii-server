@@ -6,6 +6,11 @@ div.mentory-own-list-container {
         @include titles($titles-color)
     }
 
+    h2 {
+        @include titles($titles-color);
+        font-size: 1.6rem;
+    }
+
     div.mentory-own-list {
         display: flex;
         justify-content: center;

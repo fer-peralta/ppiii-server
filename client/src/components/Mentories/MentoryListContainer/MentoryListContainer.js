@@ -16,7 +16,8 @@ const MentoryListContainer = () => {
   const getMentories = async () => {
     const response = await sendRequest('GET', URL, token)
     if (response.error) {
-      navigate('/')
+      localStorage.removeItem('token')
+      navigate('/login')
     }
     const mentoriesGet = response.data.map(ment => {
       const data = ment
@@ -36,8 +37,16 @@ const MentoryListContainer = () => {
     <div className='mentory-list-container'>
       <h1>Mentorías disponibles</h1>
       <div className='mentories-and-filter-container'>
-        <CategoryFilter mentories={mentories} setGetData={setGetData} />
-        <MentoryList mentories={mentories} getData={getData} />
+        {mentories.length > 0 ? (
+          <CategoryFilter mentories={mentories} setGetData={setGetData} />
+        ) : (
+          <div></div>
+        )}
+        {mentories.length > 0 ? (
+          <MentoryList mentories={mentories} getData={getData} />
+        ) : (
+          <h2>No hay mentorías creadas</h2>
+        )}
       </div>
     </div>
   )

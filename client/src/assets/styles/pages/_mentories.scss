@@ -9,11 +9,13 @@ div.mentory-list-container {
     div.mentories-and-filter-container {
         display: flex;
         margin-top: 2rem;
-    }
 
-    // .mentories-and-filter-container > * {
-    //     flex: 15 1;
-    //   }
+        h2 {
+            @include titles($titles-color);
+            font-size: 1.6rem;
+            margin: auto;
+        }
+    }
 
     div.mentoryList {
     

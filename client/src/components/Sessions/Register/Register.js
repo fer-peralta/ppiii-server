@@ -221,7 +221,7 @@ const Register = () => {
             Registrar
           </button>
           <button type='button' className='login-btn'>
-            <Link to='/'>Ir a Log in</Link>
+            <Link to='/login'>Ir a Log in</Link>
           </button>
         </form>
       </div>

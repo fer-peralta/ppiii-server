@@ -2,14 +2,18 @@
 import Logo from '../../assets/images/logo_white_large.png'
 import { Link, useLocation } from 'react-router-dom'
 import { conditionalNavList } from './Navbar.conditionalNav'
+// import { conditionalNavListHome } from './Navbar.homeNav'
+import { notLoggedNav } from './Navbar.notLoggedNav'
 
 const Navbar = () => {
   const location = useLocation()
   const token = JSON.stringify(localStorage.getItem('token'))
 
   const conditionalNavBar = () => {
-    if (location.pathname === '/' || location.pathname === '/register') {
-      return <div className='navList'></div>
+    if (location.pathname === '/login' || location.pathname === '/register') {
+      return notLoggedNav()
+    } else if (location.pathname === '/home') {
+      return notLoggedNav()
     } else {
       return conditionalNavList()
     }

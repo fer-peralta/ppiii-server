@@ -14,7 +14,8 @@ const Profile = () => {
   const getProfile = async () => {
     const response = await sendRequest('GET', URL, token)
     if (response.error) {
-      navigate('/')
+      localStorage.removeItem('token')
+      navigate('/login')
     }
     return response
   }

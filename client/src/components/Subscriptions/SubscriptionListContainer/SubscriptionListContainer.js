@@ -13,7 +13,8 @@ const SubscriptionListContainer = () => {
   const getSubscriptions = async () => {
     const response = await sendRequest('GET', URL, token)
     if (response.error) {
-      navigate('/')
+      localStorage.removeItem('token')
+      navigate('/login')
     }
 
     const subscriptionsGet = response.data.map(subs => {
@@ -33,7 +34,11 @@ const SubscriptionListContainer = () => {
   return (
     <div className='subscription-list-container'>
       <h1>Mis subscripciones</h1>
-      <SubscriptionList subscriptions={subscriptions} />
+      {subscriptions.length > 0 ? (
+        <SubscriptionList subscriptions={subscriptions} />
+      ) : (
+        <h2>No tenés subscripciones aún</h2>
+      )}
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { config } from '../../../config/config'
 import { options } from './Login.fetchOptions'
 import { loginErrorToast } from '../../../services/toastifyNotifications/notifications'
@@ -18,13 +18,13 @@ const Login = () => {
     }
   }
 
-  useEffect(() => {
-    if (localStorage.getItem('token')) {
-      if (localStorage.getItem('token').length > 0) {
-        navigate('./mentories')
-      }
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (localStorage.getItem('token')) {
+  //     if (localStorage.getItem('token').length > 0) {
+  //       navigate('./mentories')
+  //     }
+  //   }
+  // }, [])
 
   const handleSubmit = async e => {
     e.preventDefault()
@@ -40,7 +40,7 @@ const Login = () => {
             loginErrorToast()
           } else {
             localStorage.setItem('token', data.access_token)
-            navigate('./mentories')
+            navigate('../mentories')
           }
         })
       })
