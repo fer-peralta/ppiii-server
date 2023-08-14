@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom'
 export const conditionalNavList = () => {
   return (
     <div className='navList'>
+      <Link to='/home' className='nav_buttons'>
+        Home
+      </Link>
       <Link to='/mentories' className='nav_buttons'>
         Inicio
       </Link>

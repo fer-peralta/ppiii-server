@@ -4,16 +4,24 @@ import { Link, useLocation } from 'react-router-dom'
 import { conditionalNavList } from './Navbar.conditionalNav'
 // import { conditionalNavListHome } from './Navbar.homeNav'
 import { notLoggedNav } from './Navbar.notLoggedNav'
+import { config } from '../../config/config'
+import { sendRequest } from '../../services/apiRequest.generator'
 
 const Navbar = () => {
   const location = useLocation()
   const token = JSON.stringify(localStorage.getItem('token'))
+  const URL = `${config.REACT_APP_API_BASE_URL}session/profile`
 
   const conditionalNavBar = () => {
     if (location.pathname === '/login' || location.pathname === '/register') {
       return notLoggedNav()
     } else if (location.pathname === '/home') {
-      return notLoggedNav()
+      const response = sendRequest('GET', URL, token)
+      if (response.error) {
+        localStorage.removeItem('token')
+        return notLoggedNav()
+      }
+      return conditionalNavList()
     } else {
       return conditionalNavList()
     }
