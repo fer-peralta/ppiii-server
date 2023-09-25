@@ -1,0 +1,106 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "'Voluntarios Beltrán API'",
+        "description": "",
+        "version": ""
+    },
+    "paths": {
+        "/mentories": {
+            "summary": "",
+            "description": "",
+            "post": {
+                "tags": ["mentories"],
+                "summary": "Permite crear una mentoría en la aplicación",
+                "description": "Para crear una mentoría se debe enviar lo siguiente: ",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "state": {
+                                        "type": "string",
+                                        "default": "active",
+                                        "example": "active"
+                                    },
+                                    "avatar": {
+                                        "type": "string",
+                                        "example": "www.imagehost.com/myavatarphoto.png"
+                                    },
+                                    "author": {
+                                        "type": "string",
+                                        "example": "René Favaloro"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "r.favaloro@mail.com"
+                                    },
+                                    "title": {
+                                        "type": "string",
+                                        "example": "RCP"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Prácticas de emergencia de RCP"
+                                    },
+                                    "area": {
+                                        "type": "string",
+                                        "example": "Enfermería"
+                                    },
+                                    "level": {
+                                        "type": "string",
+                                        "example": "Introductorio"
+                                    },
+                                    "year_carrer": {
+                                        "type": "string",
+                                        "example": 1
+                                    },
+                                    "capacity": {
+                                        "type": "string",
+                                        "example": 5
+                                    },
+                                    "classes_quantity": {
+                                        "type": "string",
+                                        "example": 1
+                                    },
+                                    "classes_duration": {
+                                        "type": "string",
+                                        "example": 2
+                                    },
+                                    "modality": {
+                                        "type": "string",
+                                        "example": "Presencial"
+                                    },
+                                    "location": {
+                                        "type": "string",
+                                        "example": "Auditorio"
+                                    },
+                                    "time": {
+                                        "type": "string",
+                                        "example": "16:00"
+                                    },
+                                    "date_specific": {
+                                        "type": "string",
+                                        "example": "12/12/2023"
+                                    },
+                                    "day": {
+                                        "type": "string",
+                                        "example": "Lunes"
+                                    },
+                                    "subscriptors_email": {
+                                        "type": "string",
+                                        "example": ["San Martin, Jose", "Belgrano, Manuel"]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get":{
+                
+            }
+        }
+    }
+}

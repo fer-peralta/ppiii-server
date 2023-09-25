@@ -20,6 +20,7 @@ const server = app.listen(PORT, () => {
   logInfo.info(
     `Server running in process ${process.pid} and listening on port ${PORT}`
   )
+  logInfo.info(`Docs available in http://localhost:${PORT}/api/docs `)
 })
 server.on('error', error =>
   logError.error({

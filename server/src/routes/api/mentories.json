@@ -1,0 +1,14 @@
+{
+    "api/mentories": {
+        "get": {
+            "tags": ["products"],
+            "summary": "",
+            "description": "",
+            "responses": {
+                "200": {
+                    "description": "ok"
+                }
+            }
+        }
+    }
+}
