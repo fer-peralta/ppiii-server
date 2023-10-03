@@ -2,7 +2,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import Logo from '../../assets/images/logo_white_large.png'
 import { conditionalNavList } from './Navbar.conditionalNav'
-import { notLoggedNav } from './Navbar.notLoggedNav'
+import { NotLoggedNav } from './Navbar.notLoggedNav'
 
 const Navbar = () => {
   const location = useLocation()
@@ -25,7 +25,7 @@ const Navbar = () => {
       location.pathname === '/register'
     ) {
       if (!isLogged) {
-        return notLoggedNav()
+        return NotLoggedNav()
       } else {
         return conditionalNavList()
       }
