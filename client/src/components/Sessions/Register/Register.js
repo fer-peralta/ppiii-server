@@ -88,8 +88,6 @@ const Register = () => {
       await fetch(URL, options(post)).then(resp => {
         resp.json().then(data => {
           console.log(data)
-          // data.message !==
-          //   'There was an error: ReferenceError: error is not defined' &&
           !data.error && navigate('/post-register')
         })
       })

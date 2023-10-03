@@ -12,7 +12,6 @@ export const SignUpUserController = async (req, res, next) => {
   try {
     const user = await UserModel.findOne({ email: req.body.email }).exec()
     if (user) {
-      console.log(user)
       throw new Error('The user was already in the database')
     }
     req.body.avatar = avatarGenerator(req.body.name, req.body.surname)

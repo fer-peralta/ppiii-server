@@ -17,7 +17,6 @@ export const confirmMail = (user, token) => {
       subject: 'Nuevo registro - Por favor confirma tu cuenta',
       html: confirmEmailTemplate(user.name, user.surname, token)
     },
-    console.log(confirmEmailTemplate(user.name, user.surname, token)),
     (error, response) => {
       if (error) {
         logError.error('There was an error sending the mail', error)
