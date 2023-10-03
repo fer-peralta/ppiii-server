@@ -3,19 +3,17 @@ import { transporterEmail } from './email.config.js'
 import { emailAdmin } from './email.config.js'
 import { logError, logInfo } from '../../logs/logger.js'
 
-let authorEmail = ''
-let subscriberEmail = ''
-let date = ''
-
-if (config.APP_MODE == 'development') {
-  authorEmail = emailAdmin
-  subscriberEmail = emailAdmin
-} else {
-  authorEmail = mentory.author
-  subscriberEmail = emailAdmin
-}
-
 export const newSubscriptionMail = (user, mentory) => {
+  let authorEmail = ''
+  let subscriberEmail = ''
+  let date = ''
+  if (config.APP_MODE == 'development') {
+    authorEmail = emailAdmin
+    subscriberEmail = emailAdmin
+  } else {
+    authorEmail = mentory.author
+    subscriberEmail = emailAdmin
+  }
   if (mentory.date_specific != undefined) {
     date = mentory.date_specific
   }

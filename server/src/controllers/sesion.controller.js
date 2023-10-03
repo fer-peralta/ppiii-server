@@ -6,6 +6,7 @@ import { createHash, isValidPassword } from '../services/bcrypt.hash.js'
 import { UserModel } from '../database/models/user.model.js'
 import { signUpMail } from '../services/emails/email.user.signup.js'
 import { confirmMail } from '../services/emails/email.user.confirm.js'
+import { config } from '../config/config.js'
 
 export const SignUpUserController = async (req, res, next) => {
   try {
@@ -57,6 +58,9 @@ export const logInUserController = async (req, res, next) => {
     const user = await UserModel.findOne({
       email: req.body.email
     }).exec()
+    if (user.state === 'pending') {
+      return res.json({ message: 'You have to confirm your user' })
+    }
     if (!user) {
       return res.json({ error: 'Wrong credentials' })
     }
@@ -127,7 +131,8 @@ export const userConfirmationController = async (req, res) => {
       res.send({ message: "There was an error, code doesn't match" })
     user.state = 'active'
     await UserService.updateUser(user._id, user)
-    res.send({ message: 'User confirmed', user: user })
+    // res.send({ message: 'User confirmed', user: user })
+    res.redirect(`${config.REACT_APP_FRONT_BASE_URL}confirm`)
   } catch (error) {
     const errorMessage = { message: `There was an error: ${error}` }
     logError.error(errorMessage)

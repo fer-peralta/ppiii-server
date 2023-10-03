@@ -2,7 +2,10 @@ import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { config } from '../../../config/config'
 import { options } from './Login.fetchOptions'
-import { loginErrorToast } from '../../../services/toastifyNotifications/notifications'
+import {
+  loginErrorToast,
+  loginMissConfirmToast
+} from '../../../services/toastifyNotifications/notifications'
 
 const Login = () => {
   const [email, setEmail] = useState('')
@@ -18,14 +21,6 @@ const Login = () => {
     }
   }
 
-  // useEffect(() => {
-  //   if (localStorage.getItem('token')) {
-  //     if (localStorage.getItem('token').length > 0) {
-  //       navigate('./mentories')
-  //     }
-  //   }
-  // }, [])
-
   const handleSubmit = async e => {
     e.preventDefault()
 
@@ -35,6 +30,10 @@ const Login = () => {
 
       await fetch(URL, options(post)).then(resp => {
         resp.json().then(data => {
+          if (data.message === 'You have to confirm your user') {
+            console.warn(data)
+            loginMissConfirmToast()
+          }
           if (data.error) {
             console.warn(data)
             loginErrorToast()

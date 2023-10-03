@@ -1,15 +1,23 @@
 import { transporterEmail } from './email.config.js'
 import { emailAdmin } from './email.config.js'
 import { logError, logInfo } from '../../logs/logger.js'
+import { config } from '../../config/config.js'
 
 export const confirmMail = (user, token) => {
+  let userEmail = ''
+  if (config.APP_MODE == 'development') {
+    userEmail = emailAdmin
+  } else {
+    userEmail = user.email
+  }
   transporterEmail.sendMail(
     {
       from: `Voluntarios Beltrán <${emailAdmin}>`,
-      to: emailAdmin,
+      to: userEmail,
       subject: 'Nuevo registro - Por favor confirma tu cuenta',
       html: confirmEmailTemplate(user.name, user.surname, token)
     },
+    console.log(confirmEmailTemplate(user.name, user.surname, token)),
     (error, response) => {
       if (error) {
         logError.error('There was an error sending the mail', error)
@@ -23,6 +31,8 @@ export const confirmMail = (user, token) => {
 }
 
 const confirmEmailTemplate = (name, surname, token) => {
+  const URL = `${config.REACT_APP_FRONT_BASE_URL}`
+
   return `
         <head>
             <link rel="stylesheet" href="./style.css">
@@ -32,10 +42,9 @@ const confirmEmailTemplate = (name, surname, token) => {
             <img src="" alt="Voluntarios Beltrán">
             <h2>Hola ${name} ${surname}</h2>
             <p>Para confirmar tu cuenta, ingresá al siguiente enlace</p>
-            <a
-                href="http://localhost:8080/api/session/confirm/${token}"
-                target="_blank"
-            >Confirmar Cuenta</a>
+            <a href="${URL}confirm/${token}" target="_blank">
+              Confirmar Cuenta 
+            </a>
         </div>
       `
 }

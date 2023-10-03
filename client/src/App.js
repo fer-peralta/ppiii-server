@@ -7,7 +7,9 @@ import Navbar from './components/Navbar/Navbar'
 import Login from './components/Sessions/Login/Login.js'
 import HomePage from './components/Home/Home-page.js'
 import Register from './components/Sessions/Register/Register'
+import PostRegister from './components/Sessions/Post-register/Post-register'
 import Profile from './components/Sessions/UserProfile/UserProfile'
+import Confirm from './components/Sessions/Confirm/Confirm'
 import MentoryListContainer from './components/Mentories/MentoryListContainer/MentoryListContainer'
 import MentoryOwnListContainer from './components/Mentories/MentoryOwnListContainer/MentoryOwnListContainer'
 import MentoryCreate from './components/Mentories/MentoryCreate/MentoryCreate'
@@ -26,6 +28,8 @@ function App () {
         <Route path='/home' element={<HomePage />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
+        <Route path='/post-register' element={<PostRegister />} />
+        <Route path='/confirm/:token' element={<Confirm />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/mentories' element={<MentoryListContainer />} />
         <Route path='/mentories/create' element={<MentoryCreate />} />

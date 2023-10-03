@@ -13,6 +13,19 @@ export const loginErrorToast = () => {
   })
 }
 
+export const loginMissConfirmToast = () => {
+  toast.error('Por favor confirma tu usuario, verifica tu casilla de email', {
+    position: 'bottom-center',
+    autoClose: 4000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: 'dark'
+  })
+}
+
 export const subscriptionSuccessToast = () => {
   toast.success('Te suscribiste con éxito', {
     position: 'bottom-center',
