@@ -7,7 +7,7 @@ export const NotLoggedNav = () => {
   return (
 
     <div className='navList'>
-      <div className="menu" onClick={() => setMenuOpen(!menuOpen)}>
+      <div className="menu" onClick={() => setMenuOpen(!menuOpen)} >
         <span></span>
         <span></span>
         <span></span>
