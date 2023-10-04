@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Navigate } from 'react-router-dom'
 import { config } from '../../../config/config'
 import { options } from './Register.fetchOptions'
 
@@ -88,10 +87,8 @@ const Register = () => {
 
       await fetch(URL, options(post)).then(resp => {
         resp.json().then(data => {
-          localStorage.setItem('token', data.access_token)
-          data.message !==
-            'There was an error: ReferenceError: error is not defined' &&
-            navigate('/profile')
+          console.log(data)
+          !data.error && navigate('/post-register')
         })
       })
     } catch (error) {

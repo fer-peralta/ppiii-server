@@ -7,7 +7,7 @@ export const signUpMail = user => {
     {
       from: `Voluntarios Beltrán <${emailAdmin}>`,
       to: emailAdmin,
-      subject: 'Nuevo registro',
+      subject: 'Nuevo registro de usuario',
       text: `El usuario ${user.name} ${user.surname} se registró exitosamente con el email ${user.email}`
     },
     (error, response) => {

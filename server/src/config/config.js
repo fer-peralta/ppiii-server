@@ -5,6 +5,15 @@ dotenv.config()
 export const config = {
   DB_MONGO_CLOUD: process.env.DB_MONGO_CLOUD,
   DB_MONGO_LOCAL: process.env.DB_MONGO_LOCAL,
+  REACT_APP_API_MODE: process.env.REACT_APP_API_MODE,
+  REACT_APP_API_BASE_URL:
+    process.env.REACT_APP_API_MODE === 'LOCAL'
+      ? process.env.REACT_APP_API_BASE_URL_LOCAL
+      : process.env.REACT_APP_API_BASE_URL_CLOUD,
+  REACT_APP_FRONT_BASE_URL:
+    process.env.REACT_APP_API_MODE === 'LOCAL'
+      ? process.env.REACT_APP_FRONT_BASE_URL_LOCAL
+      : process.env.REACT_APP_FRONT_BASE_URL_CLOUD,
   DB_SETUP: process.env.DB_SETUP,
   PORT: process.env.PORT,
   DBTYPE: process.env.DBTYPE,
