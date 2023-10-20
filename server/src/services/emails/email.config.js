@@ -11,7 +11,7 @@ export const transporterEmail = createTransport({
     user: emailAdmin,
     pass: passwordAdmin
   },
-  secure: false,
+  secure: true,
   tls: {
     rejectUnauthorized: false
   }
