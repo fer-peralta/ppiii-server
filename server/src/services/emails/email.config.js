@@ -6,7 +6,7 @@ const passwordAdmin = config.ADMIN_GMAIL_PASSWORD
 
 export const transporterEmail = createTransport({
   host: 'smtp.gmail.com',
-  port: 465,
+  port: 587,
   auth: {
     user: emailAdmin,
     pass: passwordAdmin
