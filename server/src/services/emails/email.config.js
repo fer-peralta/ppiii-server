@@ -16,3 +16,8 @@ export const transporterEmail = createTransport({
     rejectUnauthorized: false
   }
 })
+
+console.log(transporterEmail)
+if (transporterEmail) {
+  console.log('se armo', emailAdmin, passwordAdmin)
+}

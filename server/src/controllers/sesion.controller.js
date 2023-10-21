@@ -36,6 +36,7 @@ export const SignUpUserController = async (req, res, next) => {
     if (createUser) {
       signUpMail(newUser)
       confirmMail(newUser, access_token)
+      console.log(signUpMail(newUser), confirmMail(newUser, access_token))
       res.send({ message: 'User sign up with success', access_token })
     }
   } catch (error) {
