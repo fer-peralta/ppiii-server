@@ -4,12 +4,15 @@ import { logError, logInfo } from '../../logs/logger.js'
 import { config } from '../../config/config.js'
 
 export const confirmMail = (user, token) => {
+  console.log(user)
   let userEmail = ''
   if (config.APP_MODE == 'development') {
     userEmail = emailAdmin
   } else {
     userEmail = user.email
   }
+  console.log(userEmail)
+  console.log(config.APP_MODE)
   transporterEmail.sendMail(
     {
       from: `Voluntarios Beltrán <${emailAdmin}>`,
@@ -19,8 +22,10 @@ export const confirmMail = (user, token) => {
     },
     (error, response) => {
       if (error) {
+        console.log('salio mal', error)
         logError.error('There was an error sending the mail', error)
       } else {
+        console.log('salio bien')
         logInfo.info(
           'An email for the sign up confirmation was sended to the user'
         )
