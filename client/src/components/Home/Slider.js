@@ -31,9 +31,9 @@ const Slider = () => {
       scrollbar={{ draggable: true }}
     >
       <SwiperSlide className='swiper-image'>
-        <img className='swiper-image' src={imgBeltran1} alt=' Beltrán ' />
+        <img className='imgSwiper' src={imgBeltran1} alt=' Beltrán ' />
       </SwiperSlide>
-      <SwiperSlide className='swiper-image'>
+      <SwiperSlide className='imgSwiper'>
         <img src={imgBeltran2} alt=' Beltrán ' />
       </SwiperSlide>
     </Swiper>

@@ -1,5 +1,7 @@
 import Faq from 'react-faq-component'
 import faqInfo from './faq.json'
+//import './FaqStyle.css'
+
 
 const FaqComponent = () => {
   const data = {
@@ -21,11 +23,14 @@ const FaqComponent = () => {
   }
 
   const styles = {
-    // bgColor: '#e8e8e8;',
+
+    bgColor: '#e8e8e8',
     titleTextColor: 'black',
     rowTitleColor: 'Black',
     rowContentColor: 'Black',
-    arrowColor: 'grey'
+    arrowColor: 'Black'
+
+
   }
 
   const config = {
