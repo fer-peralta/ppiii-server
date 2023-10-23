@@ -11,7 +11,8 @@ export const userSchema = new mongoose.Schema(
   {
     state: {
       type: String,
-      default: config.DEFAULT_USER_STATE,
+      // default: config.DEFAULT_USER_STATE,
+      default: 'pending',
       required: true
     },
     email: {
