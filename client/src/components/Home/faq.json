@@ -1,17 +1,17 @@
 {
-        "title": "Preguntas Frecuentes",
-        "questions": [
-          {
-            "question": "No soy alumno de instituto, ¿Puedo acceder a los cursos?",
-            "answer": "Lamentablemente la oferta de mentorías solo está disponible para personal, estudiantes y profesores del Instituto Tecnológico Beltrán."
-          },
-          {
-            "question": "¿Puedo inscribirme a cursos o mentorías de otras materias?",
-            "answer": "Si, no hay ninguna restricción sobre a que mentorías o cursos te podés inscribir."              
-          },
-          {
-            "question": "Olvidé mi contraseña, ¿cómo la recupero?",
-            "answer": "Envía un mail a voluntariosbeltran@gmail.com con el asunto 'Olvidé mi contraseña' y te indicaremos los pasos a seguir."
-          }
-        ]
+  "title": "Preguntas Frecuentes",
+  "questions": [
+    {
+      "question": "No soy alumno de instituto, ¿Puedo acceder a los cursos?",
+      "answer": "Lamentablemente la oferta de mentorías solo está disponible para personal, estudiantes y profesores del Instituto Tecnológico Beltrán."
+    },
+    {
+      "question": "¿Puedo inscribirme a cursos o mentorías de otras materias?",
+      "answer": "Si, no hay ninguna restricción sobre a que mentorías o cursos te podés inscribir."
+    },
+    {
+      "question": "Olvidé mi contraseña, ¿cómo la recupero?",
+      "answer": "Envía un mail a voluntariosbeltran@gmail.com con el asunto 'Olvidé mi contraseña' y te indicaremos los pasos a seguir."
+    }
+  ]
 }

@@ -8,18 +8,21 @@
     margin: auto;
     align-items: center;
     justify-content: center;
-    width: 50%;
+    width: 80%;
     background-color: #e8e8e8;
-    text-align: center;
+    text-align: justify;
 }
 
-.faq-row-wrapper {
+
+.faq-row-wrapper h2 {
+    margin: auto;
     align-items: center;
     justify-content: center;
     background-color: #e8e8e8;
 }
 
-.faq-title h2 {
+.faq-title {
+
     justify-content: center;
     text-align: center;
     font-size: 2.5em;
@@ -31,3 +34,9 @@
 .row-content-text {
     font-weight: 650;
 }
+
+// .faq-row-wrapper h2 {
+//     margin: auto;
+//     font-weight: bolder;
+//     font-size: xx-large;
+// }
