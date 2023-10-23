@@ -19,8 +19,10 @@ export const confirmMail = (user, token) => {
     },
     (error, response) => {
       if (error) {
+        console.log('salio mal', error)
         logError.error('There was an error sending the mail', error)
       } else {
+        console.log('salio bien')
         logInfo.info(
           'An email for the sign up confirmation was sended to the user'
         )
