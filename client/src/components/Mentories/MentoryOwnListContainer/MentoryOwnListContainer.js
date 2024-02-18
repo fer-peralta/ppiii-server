@@ -30,8 +30,6 @@ const MentoryOwnListContainer = () => {
     })
   }, [])
 
-  console.log(mentories)
-
   return (
     <div className='mentory-own-list-container'>
       <h1>Mis mentorías</h1>

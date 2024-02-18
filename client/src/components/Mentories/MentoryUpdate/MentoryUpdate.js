@@ -32,17 +32,17 @@ const MentoryUpdate = props => {
   const getUserById = async () => {
     const dataNew = await sendRequest('GET', URLGetById, token)
     setmentoryToUpdate(dataNew)
-    setTitle(dataNew.data.data.title)
-    setDescription(dataNew.data.data.description)
-    setArea(dataNew.data.data.area)
-    setCapacity(dataNew.data.data.capacity)
-    setClasses_quantity(dataNew.data.data.classes_quantity)
-    setClasses_duration(dataNew.data.data.classes_duration)
-    setModality(dataNew.data.data.modality)
-    setLocation(dataNew.data.data.location)
-    setTime(dataNew.data.data.time)
+    setTitle(dataNew.data.title)
+    setDescription(dataNew.data.description)
+    setArea(dataNew.data.area)
+    setCapacity(dataNew.data.capacity)
+    setClasses_quantity(dataNew.data.classes_quantity)
+    setClasses_duration(dataNew.data.classes_duration)
+    setModality(dataNew.data.modality)
+    setLocation(dataNew.data.location)
+    setTime(dataNew.data.time)
     // setFecha(dataNew.data.data.fecha)
-    setDay(dataNew.data.data.day)
+    setDay(dataNew.data.day)
     return dataNew
   }
 

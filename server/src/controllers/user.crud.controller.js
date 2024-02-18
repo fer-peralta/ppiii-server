@@ -25,6 +25,23 @@ export const getUsers = async (req, res) => {
   }
 }
 
+export const getAllUsers = async (req, res) => {
+  try {
+    const response = await UserService.getUsers()
+    response.length != 0
+      ? res.status(200).send({ data: response })
+      : res.status(200).send({
+          message: "There's no users in the database, please add at least one"
+        })
+  } catch (error) {
+    res.status(400).send({
+      message: `There was an error getting the users: ${error}`,
+      error: error,
+      section: 'controller'
+    })
+  }
+}
+
 export const saveUser = async (req, res) => {
   try {
     req.body.avatar = avatarGenerator(req.body.name, req.body.surname)
@@ -68,6 +85,19 @@ export const updateUser = async (req, res) => {
 export const deleteUser = async (req, res) => {
   try {
     const response = await UserService.deleteLogicUser(req.params.id)
+    res.status(200).json({ data: response })
+  } catch (error) {
+    res.status(400).json({
+      message: `There was an error deleting the user: ${error}`,
+      error: error,
+      section: 'controller'
+    })
+  }
+}
+
+export const deleteUserForce = async (req, res) => {
+  try {
+    const response = await UserService.deleteUser(req.params.id)
     res.status(200).json({ data: response })
   } catch (error) {
     res.status(400).json({

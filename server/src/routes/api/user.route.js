@@ -11,12 +11,16 @@ router.post('/', UserController.saveUser)
 
 router.delete('/deleteall', UserController.deleteAllUsers)
 
+router.delete('/deleteforce/:id', UserController.deleteAllUsers)
+
 router.use('/subscriptions', subscriptionsRouter)
 
+router.get('/getusers', UserController.getAllUsers)
 router.put('/:id', UserController.updateUser)
 
 router.get('/:id', UserController.findUser)
 
+router.delete('/deleteforce/:id', UserController.deleteUserForce)
 router.delete('/:id', UserController.deleteUser)
 
 export { router as userRouter }
