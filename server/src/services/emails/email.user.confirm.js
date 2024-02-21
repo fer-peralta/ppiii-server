@@ -4,6 +4,7 @@ import { logError, logInfo } from '../../logs/logger.js'
 import { config } from '../../config/config.js'
 
 export const confirmMail = (user, token) => {
+  console.log('esta entrando')
   let userEmail = ''
   if (config.APP_MODE == 'development') {
     userEmail = emailAdmin
